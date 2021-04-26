@@ -1,2 +1,2 @@
 # goodEats
-Good Eats helps foodies find their favorite new foods
+GoodEats helps foodies find their favorite new foods
