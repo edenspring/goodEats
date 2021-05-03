@@ -9,13 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       specification: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       listOrder: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       recipeId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Recipes" }
       },
       createdAt: {
         allowNull: false,
