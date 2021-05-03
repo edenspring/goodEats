@@ -1,11 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const RecipeBox = sequelize.define('RecipeBox', {
-    name: DataTypes.STRING,
-    userId: DataTypes.INTEGER
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {});
   RecipeBox.associate = function(models) {
-    // associations can be defined here
+    RecipeBox.belongsTo(models.User, { foreignKey: "userId" });
+    RecipeBox.belongsToMany(models.Recipe, {
+      through: "RecipeBoxJoinTable",
+      otherKey: "recipeId",
+      foreignKey: "recipeBoxId"
+    })
   };
   return RecipeBox;
 };
