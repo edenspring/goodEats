@@ -1,4 +1,4 @@
-const db = require("/db/models");
+const db = require("./db/models");
 
 // the following function will log in the user
 const loginUser = function (req, res, user) {
