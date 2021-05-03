@@ -9,12 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       review: {
-        type: Sequelize.TEXT
+        allowNull:false,
+        type: Sequelize.TEXT,
       },
       userId: {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
       recipeId: {
+        allowNull:false,
         type: Sequelize.INTEGER
       },
       createdAt: {
