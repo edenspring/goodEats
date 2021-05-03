@@ -47,5 +47,3 @@ Things we'll need
 
  - landing page with most recent recipes
  -
-
-test
