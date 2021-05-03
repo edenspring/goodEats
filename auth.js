@@ -1,31 +1,42 @@
-const db = require("./db/models");
+const db = require('./db/models');
 
-// the following function will log in the user
-const loginUser = function (req, res, user) {
+const loginUser = (req, res, user) => {
     req.session.auth = {
-        userId: user.id // sets the authenticated user
-    }
-}
+        userId: user.id
+    };
+};
 
-// the following middleware function will attempt to restore the user if authenticated
-const restoreUser = async function (req, res, next) {
-    if (req.session.auth) { // checks to see if there is an authenticated user
+const logoutUser = (req, res) => {
+    delete req.session.auth;
+};
+
+const requireAuth = (req, res, next) => {
+    if (!res.locals.authenticated) {
+        return res.redirect('/login');
+    };
+    return next();
+};
+
+const restoreUser = async (req, res, next) => {
+    if (req.session.auth) {
         const { userId } = req.session.auth;
+
         try {
             const user = await db.User.findByPk(userId);
-            if (user) { // checks to see if the user matches database
+
+            if (user) {
                 res.locals.authenticated = true;
-                res.locals.user = user; // set to user retrieved from database
+                res.locals.user = user;
                 next();
             }
         } catch (err) {
             res.locals.authenticated = false;
             next(err);
         }
-    } else { // if no session, default to not authenticated
+    } else {
         res.locals.authenticated = false;
         next();
     }
-}
+};
 
-module.exports = { loginUser, restoreUser };
+module.exports = { loginUser, logoutUser, requireAuth, restoreUser };
