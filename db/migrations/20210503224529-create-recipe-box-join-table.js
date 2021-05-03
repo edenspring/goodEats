@@ -9,10 +9,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       recipeId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'Recipes'}
       },
       recipeBoxId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: 'RecipeBoxes'}
       },
       createdAt: {
         allowNull: false,

@@ -1,8 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const RecipeBoxJoinTable = sequelize.define('RecipeBoxJoinTable', {
-    recipeId: DataTypes.INTEGER,
-    recipeBoxId: DataTypes.INTEGER
+    recipeId: {
+    type: DataTypes.INTEGER
+    },
+    recipeBoxId: {
+      type: DataTypes.INTEGER
+    }
   }, {});
   RecipeBoxJoinTable.associate = function(models) {
     // associations can be defined here
