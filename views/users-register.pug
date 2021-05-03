@@ -1,0 +1,17 @@
+extends layout.pug
+include utils.pug
+
+append head
+  link(rel="stylesheet" href="/stylesheets/index.css")
+
+block content
+  h1= title
+
+  +validationErrorSummary(errors)
+  form(method="post" action="/users/register")
+    input(type="hidden" name="_csrf" value=csrfToken)
+    +field("Username", "username", user.username)
+    +field("Email Address", "email", user.email)
+    +field("Password", "password", user.password, "password")
+    +field("Confirm Password", "confirmPassword", user.confirmPassword, "password")
+    button(type="submit" class="submitButton") Submit
