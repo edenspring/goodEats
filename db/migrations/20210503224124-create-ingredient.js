@@ -9,13 +9,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       measurements: {
+        allowNull: false,
         type: Sequelize.TEXT
       },
       recipeId: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { model: "Recipes" }
       },
       createdAt: {
         allowNull: false,
