@@ -32,7 +32,7 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
-    const user = await db.User.findOne({ where: username });
+    const user = await db.User.findOne({ where: { username } });
 
     if (user !== null) {
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
