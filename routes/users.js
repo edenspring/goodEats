@@ -19,7 +19,7 @@ router.get('/login', (req, res) => {
   res.render('users-login');
 });
 
-router.get('/register', (req, res) => {
+router.get('/register', csrfProtection, (req, res) => {
   res.render('users-register', {
     title: "Register a new User",
     user,
@@ -27,9 +27,9 @@ router.get('/register', (req, res) => {
   });
 })
 
-router.post('/', asyncHandler(async(req, res, next)=>{
+router.post('/', csrfProtection, asyncHandler(async(req, res, next)=>{
   const {userName, email, password, confirmedPassworrd} = req.body;
-  
+
 }))
 
 module.exports = router;
