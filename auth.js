@@ -1,9 +1,18 @@
 const db = require('./db/models');
 
+const checkPermissions = (thing, currentUser) => {
+    if (thing.userId !== currentUser.id) {
+      const err = new Error('Illegal operation.');
+      err.status = 403; // Forbidden
+      throw err;
+    }
+  };
+
 const loginUser = (req, res, user) => {
     req.session.auth = {
         userId: user.id
     };
+    console.log(req.session)
 };
 
 const logoutUser = (req, res) => {
@@ -39,4 +48,4 @@ const restoreUser = async (req, res, next) => {
     }
 };
 
-module.exports = { loginUser, logoutUser, requireAuth, restoreUser };
+module.exports = { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions };
