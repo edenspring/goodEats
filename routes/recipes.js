@@ -63,7 +63,7 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
         await recipe.save();
         const ingredient = Ingredient.build();
         const instruction = Instruction.build();
-        res.redirect(`/recipes/${recipe.id}/edit`, { recipe, ingredient, instruction });
+        res.redirect(`/recipes/${recipe.id}/edit`);
     } else {
 
         const errors = validatorErrors.array().map((e) => e.msg);
