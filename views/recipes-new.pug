@@ -3,6 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
+  +validationErrorSummary(errors)
   p Enter a name for your new recipe and click Get Started!
   form(action='/recipes/new' method='post')
     +field('Recipe Name: ', 'name', recipe.name)

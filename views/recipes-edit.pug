@@ -3,12 +3,14 @@ extends layout.pug
 include utils.pug
 
 block content
+  +validationErrorSummary(errors)
   h1=recipe.name
-    form(action='/recipes/#{recipe.id}' method='delete')
-    button(type='submit') Delete this recipe
+    form(action=`/delete` method='post')
+      input(type='hidden' name='recipeId' value=recipeId)
+      button(type='submit') Delete this recipe
   h2 Ingredients
   if ingredients
-    each item in recipe.ingredients
+    each item in ingredients
       div
         span= item.measurements
         span= item.name
@@ -19,14 +21,14 @@ block content
     +field('Ingredient Name: ', 'name', ingredient.name)
     div
       label(for='measurements') Measurements :
-      textarea(name='measurements' value=ingredient.measurements)
+      input(type='text' name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
-      a(href='/recipes/#{recipeid}' class='btn') Cancel
+      a(href='/recipes/#{recipeId}' class='btn') Cancel
   h2 Instructions
-  if instructions && recipe.instructions.length
+  if instructions && instructions.length
     ol
-      each thing in recipe.instructions
+      each thing in instructions
         li= thing.specification
   else
     p No instructions yet, use the form to get started!

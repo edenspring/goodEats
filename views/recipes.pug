@@ -1,0 +1,8 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+    each recipe in recipes
+      div
+        a(href=`/recipes/${recipe.id}`)=recipe.name
