@@ -23,3 +23,5 @@ block content
         li= thing.specification
   else
     a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
+  form(action='/recipes' method='get')
+    button(type='submit') Back to recipes
