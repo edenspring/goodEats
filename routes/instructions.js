@@ -18,12 +18,7 @@ router.post('/', instructionValidator, asyncHandler(async (req, res) => {
         specification,
         listOrder,
         recipeId
-    })
-    await Instruction.create({
-      specification,
-      listOrder,
-      recipeId
-    })
+    });
     if (validatorErrors.isEmpty()) {
         await instruction.save();
         res.redirect(`/recipes/${recipeId}/edit`);
