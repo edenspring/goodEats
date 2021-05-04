@@ -1,0 +1,27 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  +validationErrorSummary(errors)
+  h1=recipe.name
+    form(action=`/recipes/${recipe.id}/edit` method='get')
+      input(type='hidden', name='recipeId' value=recipeId)
+      button(type='submit') Edit this recipe
+  h2 Ingredients
+  if ingredients
+    each item in ingredients
+      div
+        span= item.measurements
+        span= item.name
+  else
+    a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
+  h2 Instructions
+  if instructions && instructions.length
+    ol
+      each thing in instructions
+        li= thing.specification
+  else
+    a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
+  form(action='/recipes' method='get')
+    button(type='submit') Back to recipes
