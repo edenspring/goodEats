@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  h1=recipe.name
+    form(action='/recipes/#{recipe.id}' method='delete')
+    button(type='submit') Delete this recipe
+  h2 Ingredients
+  if recipe.ingredients
+    each item in recipe.ingredients
+      div
+        span= item.measurements
+        span= item.name
+  else
+    a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
+  h2 Instructions
+  if recipe.instructions && recipe.instructions.length
+    ol
+      each thing in recipe.instructions
+        li= thing.specification
+  else
+    a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
