@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   RecipeBoxJoinTable.associate = function(models) {
     // associations can be defined here
+    //map the recipe box to the recipe through here
   };
   return RecipeBoxJoinTable;
 };
