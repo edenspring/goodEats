@@ -11,18 +11,39 @@ const recipeNotFoundError = function (recipeId) {
     return error;
 }
 
-// router.get("/", asyncHandler(async (req, res) => {
-//     const recipes = await Recipe.findAll();
-//     res.render('recipes', { recipes });
-// }))
 const recipeValidator = [
     check("name")
-        .exists({ checkFalsy: true })
-        .withMessage("Please provide a name for the recipe.")
-        .isLength({ max: 50 })
-        .withMessage("The recipe name must not be longer than 50 characters.")
-    // check("")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a name for the recipe.")
+    .isLength({ max: 50 })
+    .withMessage("The recipe name must not be longer than 50 characters.")
 ];
+
+router.get("/", asyncHandler(async (req, res) => {
+    const recipes = await Recipe.findAll();
+    res.render('recipes', { recipes });
+}))
+
+router.get("/:id", asyncHandler(async (req, res) => {
+    const recipeId = parseInt(req.params.id, 10);
+    const recipe = await Recipe.findByPk(recipeId);
+    if (recipe) {
+        const ingredients = await Ingredient.findAll({
+            where: {
+                recipeId: recipeId
+            },
+        });
+        const instructions = await Instruction.findAll({
+            where: {
+                recipeId: recipeId
+            },
+            order: [
+                ['listOrder', 'ASC']
+            ]
+        });
+        res.render('recipe', { recipe, ingredients, instructions, recipeId });
+    }
+}))
 
 router.get("/new", asyncHandler(async (req, res) => {
     const recipe = Recipe.build();
