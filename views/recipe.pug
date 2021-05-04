@@ -5,9 +5,9 @@ include utils.pug
 block content
   +validationErrorSummary(errors)
   h1=recipe.name
-    form(action='/delete' method='post')
+    form(action=`/recipes/${recipe.id}/edit` method='get')
       input(type='hidden', name='recipeId' value=recipeId)
-      button(type='submit') Delete this recipe
+      button(type='submit') Edit this recipe
   h2 Ingredients
   if ingredients
     each item in ingredients
