@@ -1,0 +1,11 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  p Enter a name for your new recipe and click Get Started!
+  form(action='/recipes' method='post')
+    +field('Recipe Name: ', 'name', recipe.name)
+        div
+            button(type='submit' class='btn') Get Started
+            a(href='/' class='btn') Cancel
