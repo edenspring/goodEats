@@ -1,6 +1,7 @@
 extends layout.pug
 
 block content
+  +validationErrorSummary(errors)
   h1=recipe.name
     form(action='/recipes/#{recipe.id}' method='delete')
     button(type='submit') Delete this recipe

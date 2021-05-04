@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, handleValidationErrors } = require('./utils');
+const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Like, Recipe, RecipeBox, Review, User } = require('../db/models');
+const { Ingredient, Instruction, Recipe } = require('../db/models');
 
 const recipeNotFoundError = function (recipeId) {
     const error = new Error(`The recipe with ID ${recipeId} was not found.`);
@@ -15,12 +15,6 @@ const recipeNotFoundError = function (recipeId) {
 //     const recipes = await Recipe.findAll();
 //     res.render('recipes', { recipes });
 // }))
-
-router.get("/new", asyncHandler(async (req, res) => {
-    const recipe = Recipe.build();
-    res.render("recipes-new", { recipe });
-}))
-
 const recipeValidator = [
     check("name")
         .exists({ checkFalsy: true })
@@ -30,17 +24,29 @@ const recipeValidator = [
     // check("")
 ];
 
-// recipeValidator, handleValidationErrors,
+router.get("/new", asyncHandler(async (req, res) => {
+    const recipe = Recipe.build();
+    res.render("recipes-new", { recipe });
+}))
 
-router.post("/new", asyncHandler(async (req, res) => {
+
+router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
     const { name } = req.body;
-    const recipe = await Recipe.create({
+    const recipe = Recipe.build({
         name,
         userId: req.session.auth.userId
-    });
-    const ingredient = Ingredient.build();
-    const instruction = Instruction.build();
-    res.redirect(`/recipes/${recipe.id}/edit`, { recipe, ingredient, instruction });
+    })
+    const validatorErrors = validationResult(req);
+    if (validatorErrors.isEmpty()) {
+        await recipe.save();
+        const ingredient = Ingredient.build();
+        const instruction = Instruction.build();
+        res.redirect(`/recipes/${recipe.id}/edit`, { recipe, ingredient, instruction });
+    } else {
+
+        const errors = validatorErrors.array().map((e) => e.msg);
+        res.render('recipes-new', { recipe, errors });
+    }
 }))
 
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
@@ -49,7 +55,6 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const ingredient = Ingredient.build();
     const instruction = Instruction.build();
     if (recipe) {
-        const name = recipe.name;
         const ingredients = await Ingredient.findAll({
             where: {
                 recipeId: recipeId
@@ -63,91 +68,8 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
                 ['listOrder', 'ASC']
             ]
         });
-        console.log(instructions.length);
         const listOrder = instructions.length + 1;
-        res.render('recipes-edit', { name, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
-    } else {
-        next(recipeNotFoundError(recipeId));
-    }
-}))
-
-router.post("/:id(\\d+)/ingredients", asyncHandler(async (req, res, next) => {
-    const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findByPk(recipeId);
-    if (recipe) {
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
-        console.log(req);
-        const currentLength = instructions.length;
-        await Instruction.create({
-            specification: req.body,
-            listOrder: currentLength,
-            recipeId: recipeId
-        });
-        await Ingredient.create({
-            name,
-            measurements,
-            recipeId: recipeId
-        })
-        res.render('recipes-edit', { name, ingredients, instructions });
-    } else {
-        next(recipeNotFoundError(recipeId));
-    }
-}))
-
-router.put("/:id(\\d+)", asyncHandler(async (req, res, next) => {
-    const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findByPk(recipeId);
-    if (recipe) {
-        const ingredients = await Ingredient.findAll({
-            where: {
-                recipeId: recipeId
-            },
-        });
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
-        await recipe.update({ name: req.body.name });
-        await ingredients.update({ name: req.body.ingredient, measurements: req.body.measurements });
-        await instructions.update({ specifications: req.body.specification });
-        res.render('recipes-edit', { name, ingredients, instructions });
-    } else {
-        next(recipeNotFoundError(recipeId));
-    }
-}))
-
-router.delete("/:id(\\d+)", asyncHandler(async (req, res, next) => {
-    const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findByPk(recipeId);
-    if (recipe) {
-        const ingredients = await Ingredient.findAll({
-            where: {
-                recipeId: recipeId
-            },
-        });
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
-        await instructions.destroy();
-        await ingredients.destroy();
-        await recipe.destroy();
-        res.redirect("/");
+        res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));
     }
