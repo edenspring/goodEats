@@ -7,16 +7,17 @@ block content
     input(type='hidden' name='recipeId' value=recipeId)
     +field('Ingredient Name: ', 'name', ingredient.name)
     div
-      label(for='measurements')
-      textarea(name='measurements' value=ingredient.measurements) Measurements :
+      label(for='measurements') Measurements:
+      textarea(name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
-      a(href='/recipes/#{recipeid}' class='btn') Cancel
+      a(href='/recipes/#{recipeId}' class='btn') Cancel
   form(action='/instructions' method='post')
     input(type='hidden' name='recipeId' value=recipeId)
+    input(type='hidden' name='listOrder' value=listOrder)
     div
       label(for='specification') Instructions:
       textarea(name='specification' placeholder='Type your instruction here...')
     div
       button(type='submit' class='btn') Add Instruction
-      a(href='/recipes/#{recipeid}' class='btn') Cancel
+      a(href='/recipes/#{recipeId}' class='btn') Cancel
