@@ -24,7 +24,13 @@ router.get("/", asyncHandler(async (req, res) => {
     res.render('recipes', { recipes });
 }))
 
+router.get("/new", asyncHandler(async (req, res) => {
+    const recipe = Recipe.build();
+    res.render("recipes-new", { recipe });
+}))
+
 router.get("/:id", asyncHandler(async (req, res) => {
+    console.log(req.params);
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId);
     if (recipe) {
@@ -43,11 +49,6 @@ router.get("/:id", asyncHandler(async (req, res) => {
         });
         res.render('recipe', { recipe, ingredients, instructions, recipeId });
     }
-}))
-
-router.get("/new", asyncHandler(async (req, res) => {
-    const recipe = Recipe.build();
-    res.render("recipes-new", { recipe });
 }))
 
 
