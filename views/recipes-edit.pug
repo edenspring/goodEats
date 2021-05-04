@@ -3,17 +3,36 @@ extends layout.pug
 include utils.pug
 
 block content
+  h1=recipe.name
+    form(action='/recipes/#{recipe.id}' method='delete')
+    button(type='submit') Delete this recipe
+  h2 Ingredients
+  if ingredients
+    each item in recipe.ingredients
+      div
+        span= item.measurements
+        span= item.name
+  else
+    p No ingredients yet, get started below!
   form(action='/ingredients' method='post')
     input(type='hidden' name='recipeId' value=recipeId)
     +field('Ingredient Name: ', 'name', ingredient.name)
     div
-      label(for='measurements')
-      textarea(name='measurements' value=ingredient.measurements) Measurements :
+      label(for='measurements' Measurements :)
+      textarea(name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
       a(href='/recipes/#{recipeid}' class='btn') Cancel
+  h2 Instructions
+  if instructions && recipe.instructions.length
+    ol
+      each thing in recipe.instructions
+        li= thing.specification
+  else
+    p No instructions yet, use the form to get started!
   form(action='/instructions' method='post')
     input(type='hidden' name='recipeId' value=recipeId)
+    input(type='hidden' name='listOrder' value=listOrder)
     div
       label(for='specification') Instructions:
       textarea(name='specification' placeholder='Type your instruction here...')
