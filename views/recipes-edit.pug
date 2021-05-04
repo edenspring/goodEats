@@ -18,7 +18,7 @@ block content
     input(type='hidden' name='recipeId' value=recipeId)
     +field('Ingredient Name: ', 'name', ingredient.name)
     div
-      label(for='measurements' Measurements :)
+      label(for='measurements') Measurements :
       textarea(name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
@@ -38,4 +38,4 @@ block content
       textarea(name='specification' placeholder='Type your instruction here...')
     div
       button(type='submit' class='btn') Add Instruction
-      a(href='/recipes/#{recipeid}' class='btn') Cancel
+      a(href='/recipes/#{recipeId}' class='btn') Cancel

@@ -7,11 +7,11 @@ const { Ingredient, Instruction, Like, Recipe, RecipeBox, Review, User } = requi
 
 router.post('/', asyncHandler(async (req, res) => {
     console.log(req.body);
-    const { name, measurements, recipeId } = req.body
+    const { specification, listOrder, recipeId } = req.body
     console.log("recipe id: ", recipeId);
-    await Ingredient.create({
-      name,
-      measurements,
+    await Instruction.create({
+      specification,
+      listOrder,
       recipeId
     })
     res.redirect(`/recipes/${recipeId}/edit`);
