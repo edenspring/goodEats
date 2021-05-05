@@ -4,6 +4,7 @@ const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { Ingredient, Instruction, Recipe, Review } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
+const Sequelize = require("sequelize");
 
 const recipeNotFoundError = function (recipeId) {
     const error = new Error(`The recipe with ID ${recipeId} was not found.`);
@@ -23,7 +24,7 @@ const recipeValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ],
     });
     res.render('recipes', { recipes });
@@ -35,7 +36,7 @@ router.get("/my", asyncHandler(async (req, res) => {
             userId: req.session.auth.userId
         },
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ]
     });
     res.render('recipes', { recipes });

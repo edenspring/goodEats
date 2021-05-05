@@ -4,6 +4,7 @@ const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { RecipeBox, Recipe, RecipeBoxJoinTable } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
+const Sequelize = require("sequelize");
 
 const boxNotFoundError = function (boxId) {
     const error = new Error(`The box with ID ${boxId} was not found.`);
@@ -23,7 +24,7 @@ const boxValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ]
     });
     res.render('boxes', { boxes });
@@ -35,7 +36,7 @@ router.get("/my", asyncHandler(async (req, res) => {
             userId: req.session.auth.userId
         },
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ]
     });
     res.render("boxes", { boxes });
