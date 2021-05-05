@@ -24,8 +24,20 @@ router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
             ["updatedAt", "DESC"]
-        ]}
-    );
+        ]
+    });
+    res.render('recipes', { recipes });
+}))
+
+router.get("/my", asyncHandler(async (req, res) => {
+    const recipes = await Recipe.findAll({
+        where: {
+            userId: req.session.auth.userId
+        },
+        order: [
+            ["updatedAt", "DESC"]
+        ]
+    });
     res.render('recipes', { recipes });
 }))
 

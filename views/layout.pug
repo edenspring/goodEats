@@ -18,6 +18,8 @@ html
         a(class="recent-recipes" href="/recipes") Most Recent Recipes
       if locals.authenticated
         div
+          a(class="my-recipes" href="/recipes/my") My Recipes
+        div
           a(class="logout" href="/users/logout") Log Out
       else
         div
