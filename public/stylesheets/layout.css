@@ -4,10 +4,12 @@
     font-family: 'Roboto', sans-serif;
 }
 
-/* body {
-    background-image: url("../images/background-texture.jpeg");
-    background-repeat: repeat;
-} */
+@media screen and (max-width: 1000px) {
+    .navbar {
+        width: auto;
+        height: auto;
+    }
+}
 
 .navbar {
     /* box-shadow: 0px 3px 5px grey; */
@@ -15,11 +17,9 @@
     background-color: #f5f6ea;
     border-radius: 5px;
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "logo" "create-recipe" "recent-recipes" "create-box" "recent-boxes" "login" "logout" "register";
-    /* margin: auto;
-    position: relative; */
+    grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
 }
 
 .logo {
@@ -27,57 +27,69 @@
     width: 5rem;
 }
 
-.create-recipe {
+
+
+.recent-recipes {
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.recent-boxes {
+    text-decoration: none;
+    text-align: center;
+
+}
+
+
+.welcome {
+    font-style: italic;
+    font-family: serif;
+}
+
+
+
+.create-recipe,
+.create-box,
+.my-recipes,
+.my-boxes {
     display: grid;
     justify-content: left;
     padding: 10px;
     text-decoration: none;
     color: rgb(166,77,120);
+    text-align: center;
+
 }
 
-.create-recipe:hover {
+a.create-recipe:hover,
+a.create-box:hover,
+a.my-recipes:hover,
+a.my-boxes:hover {
     font-style: italic;
     color: #ffbe54;
 }
 
-.login {
-    display: grid;
-    justify-content: right;
-    color: rgb(166,77,120);
-    padding: 10px;
-    text-decoration: none;
-}
-
-.login:hover {
-    font-style: italic;
-    color: #ffbe54;
-}
-
-.logout {
-    display: grid;
-    justify-content: center;
-    color: rgb(166,77,120);
-    padding: 10px;
-    text-decoration: none;
-}
-
-.logout:hover {
-    font-style: italic;
-    color: #ffbe54;
-}
-
+.logout,
+.login,
 .register {
     display: grid;
     justify-content: left;
-    color: rgb(166,77,120);
     padding: 10px;
     text-decoration: none;
+    color: rgb(166,77,120);
+    text-align: center;
 }
 
-.register:hover {
+a.logout:hover,
+a.login:hover,
+a.register:hover {
     font-style: italic;
     color: #ffbe54;
 }
+
+
+
 
 .banner {
     display: flex;
@@ -103,6 +115,33 @@
     color: white;
 }
 
+
+
+.button {
+     display:inline-block;
+     padding:0.35em 1.2em;
+     border:0.1em solid white;
+     margin:0 0.3em 0.3em 0;
+     border-radius:0.12em;
+     box-sizing: border-box;
+     text-decoration:none;
+     color: white;
+     text-align:center;
+     transition: all 0.2s;
+}
+.button:hover{
+    color: white;
+    background-color: black;
+}
+@media all and (max-width:30em){
+ .button {
+  display:block;
+  margin:0.4em auto;
+ }
+}
+
+
+
 footer {
     /* box-shadow: 0px 3px 5px grey; */
     background-color: #f5f6ea;
@@ -111,6 +150,10 @@ footer {
     font-family: Arial, Helvetica, sans-serif;
     text-align: end;
 }
+
+
+
+
 
 .reviews__container-hidden {
     display: none;

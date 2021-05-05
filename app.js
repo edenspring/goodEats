@@ -33,7 +33,7 @@ app.use(
 );
 
 // create Session table if it doesn't already exist
-app.use(usersRouter);
+// app.use(usersRouter);
 app.use(restoreUser);
 
 store.sync();
