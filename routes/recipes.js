@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Recipe } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Comment } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 
 const recipeNotFoundError = function (recipeId) {
@@ -52,7 +52,15 @@ router.get("/:id", asyncHandler(async (req, res) => {
                 ['listOrder', 'ASC']
             ]
         });
-        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId });
+        const comments = await Comment.findAll({
+            where: {
+                recipeId: recipeId,
+            },
+            order: [
+                ['dateCreated', 'DESC']
+            ]
+        })
+        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, comments });
     }
 }))
 
