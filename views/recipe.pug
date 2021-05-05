@@ -3,6 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
+  script(src="../public/javascripts/recipe.js")
   +validationErrorSummary(errors)
   h1=recipe.name
     form(action=`/recipes/${recipe.id}/edit` method='get')
@@ -17,13 +18,19 @@ block content
         span= " "
         span= item.name
   else
-    a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
+    if userId === recipe.userId
+      a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
   h2 Instructions
   if instructions && instructions.length
     ol
       each thing in instructions
         li= thing.specification
   else
-    a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
+    if userId === recipe.userId
+      a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
+  button(class='reviews__button') Write a review
+  if reviews.length
+    each review in reviews
+      +review(review.username, review.userid, review.review)
