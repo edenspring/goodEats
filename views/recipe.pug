@@ -7,7 +7,8 @@ block content
   h1=recipe.name
     form(action=`/recipes/${recipe.id}/edit` method='get')
       input(type='hidden', name='recipeId' value=recipeId)
-      button(type='submit') Edit this recipe
+      if userId === recipe.userId
+        button(type='submit') Edit this recipe
   h2 Ingredients
   if ingredients
     each item in ingredients

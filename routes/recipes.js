@@ -3,6 +3,7 @@ const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { Ingredient, Instruction, Recipe } = require('../db/models');
+const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 
 const recipeNotFoundError = function (recipeId) {
     const error = new Error(`The recipe with ID ${recipeId} was not found.`);
@@ -34,6 +35,7 @@ router.get("/new", asyncHandler(async (req, res) => {
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {
+    const userId = req.session.auth.userId;
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId);
     if (recipe) {
@@ -50,7 +52,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
                 ['listOrder', 'ASC']
             ]
         });
-        res.render('recipe', { recipe, ingredients, instructions, recipeId });
+        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId });
     }
 }))
 
@@ -77,6 +79,8 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId);
+    const userId = req.session.auth.userId;
+    checkPermissions(recipe, userId)
     const ingredient = Ingredient.build();
     const instruction = Instruction.build();
     if (recipe) {
