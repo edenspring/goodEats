@@ -12,13 +12,12 @@ html
       if locals.authenticated
         div
           h2= `Welcome, ${locals.user.username}`
-        div
-          a(class="create-recipe" href="/recipes/new") Create a Recipe
+      div
+        a(class="create-recipe" href="/recipes/new") Create a Recipe
       div
         a(class="recent-recipes" href="/recipes") Most Recent Recipes
-      if locals.authenticated
-        div
-          a(class="create-box" href="/boxes/new") Create a Recipe Box
+      div
+        a(class="create-box" href="/boxes/new") Create a Recipe Box
       div
         a(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
       if locals.authenticated

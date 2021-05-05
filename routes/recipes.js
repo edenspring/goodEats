@@ -43,6 +43,9 @@ router.get("/my", asyncHandler(async (req, res) => {
 }))
 
 router.get("/new", asyncHandler(async (req, res) => {
+    if (!req.session.auth) {
+        res.redirect("/users/login")
+    }
     const recipe = Recipe.build();
     res.render("recipes-new", { recipe });
 }))
