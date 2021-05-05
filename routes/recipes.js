@@ -24,8 +24,20 @@ router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
             ["updatedAt", "DESC"]
-        ]}
-    );
+        ]
+    });
+    res.render('recipes', { recipes });
+}))
+
+router.get("/my", asyncHandler(async (req, res) => {
+    const recipes = await Recipe.findAll({
+        where: {
+            userId: req.session.auth.userId
+        },
+        order: [
+            ["updatedAt", "DESC"]
+        ]
+    });
     res.render('recipes', { recipes });
 }))
 
@@ -78,7 +90,6 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
         const instruction = Instruction.build();
         res.redirect(`/recipes/${recipe.id}/edit`);
     } else {
-
         const errors = validatorErrors.array().map((e) => e.msg);
         res.render('recipes-new', { recipe, errors });
     }

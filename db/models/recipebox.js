@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const RecipeBox = sequelize.define('RecipeBox', {
     name: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     userId: {
