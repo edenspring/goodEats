@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: 1fr 3fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: "logo" "create-recipe" "login" "register";
+    grid-template-areas: "logo" "create-recipe" "recent-recipes" "create-box" "recent-boxes" "login" "logout" "register";
     /* margin: auto;
     position: relative; */
 }
