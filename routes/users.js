@@ -17,7 +17,10 @@ const logInValidator = [
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render("home", { title: "Welcome" });
+  // setTimeout(function() {
+  //   res.render("splash")
+  // }, 3000);
 });
 
 router.get('/login', csrfProtection, (req, res) => {
@@ -144,7 +147,7 @@ router.post('/register', csrfProtection, registerUserValidators, asyncHandler(as
     const errors = validatorErrors.array().map((e)=>e.msg);
 
     res.render('users-register', {
-      title: "Register a new User",
+      title: "Register a New User",
       user,
       errors,
       csrfToken: req.csrfToken(),
