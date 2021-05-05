@@ -2,12 +2,15 @@ extends layout.pug
 
 include utils.pug
 
+
 block content
+  script(src="/javascripts/recipe.js")
   +validationErrorSummary(errors)
   h1=recipe.name
     form(action=`/recipes/${recipe.id}/edit` method='get')
       input(type='hidden', name='recipeId' value=recipeId)
-      button(type='submit') Edit this recipe
+      if userId === recipe.userId
+        button(type='submit') Edit this recipe
   h2 Ingredients
   if ingredients
     each item in ingredients
@@ -16,13 +19,28 @@ block content
         span= " "
         span= item.name
   else
-    a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
+    if userId === recipe.userId
+      a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
   h2 Instructions
   if instructions && instructions.length
     ol
       each thing in instructions
         li= thing.specification
   else
-    a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
+    if userId === recipe.userId
+      a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
+  button.reviews__button Write a review
+  #reviews__container.reviews__container-hidden
+    form.reviews__form(method='post' action='/reviews')
+      input(type='hidden' name='userId' value=userId)
+      input(type='hidden' name='recipeId' value=recipeId)
+      div
+        textarea(name='review' placeholder='Write your review here...')
+      div
+        button(type='submit') Submit Review
+
+  if reviews.length
+    each review in reviews
+      +review(review.username, review.userid, review.review)

@@ -9,8 +9,13 @@ html
     nav(class="navbar")
       a(class="logo" href="/")
         img(class="logo" type="image" src="/images/logo.svg" alt="logo")
+      if locals.authenticated
+        div
+          h2= `Welcome, ${locals.user.username}`
       div
         a(class="create-recipe" href="/recipes/new") Create a Recipe
+      div
+        a(class="recent-recipes" href="/recipes") Most Recent Recipes
       if locals.authenticated
         div
           a(class="logout" href="/users/logout") Log Out
