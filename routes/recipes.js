@@ -25,7 +25,6 @@ router.get("/", asyncHandler(async (req, res) => {
         order: [
             ["updatedAt", "DESC"]
         ],
-        limit: 10
     });
     res.render('recipes', { recipes });
 }))
