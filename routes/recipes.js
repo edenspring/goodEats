@@ -24,7 +24,8 @@ router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
             ["updatedAt", "DESC"]
-        ]
+        ],
+        limit: 10
     });
     res.render('recipes', { recipes });
 }))
@@ -102,7 +103,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     checkPermissions(recipe, userId)
     const ingredient = Ingredient.build();
     const instruction = Instruction.build();
-    
+
     if (recipe) {
         const ingredients = await Ingredient.findAll({
             where: {
