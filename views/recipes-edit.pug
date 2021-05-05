@@ -5,17 +5,17 @@ include utils.pug
 block content
   +validationErrorSummary(errors)
   h1=recipe.name
-    form(action=`/delete` method='post')
+    form(action=`/recipes/${recipeId}/delete` method='GET')
       input(type='hidden' name='recipeId' value=recipeId)
       button(type='submit') Delete this recipe
   h2 Ingredients
-  if ingredients
+  if ingredients && ingredients.length
     each item in ingredients
       div
         span= item.measurements
         span= " "
         span= item.name
-  else
+  else if userId === recipe.userId
     p No ingredients yet, get started below!
   form(action='/ingredients' method='post')
     input(type='hidden' name='recipeId' value=recipeId)
@@ -25,13 +25,13 @@ block content
       input(type='text' name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
-      a(href='/recipes/#{recipeId}' class='btn') Cancel
+      a(href=`/recipes/${recipeId}` class='btn') Cancel
   h2 Instructions
   if instructions && instructions.length
     ol
       each thing in instructions
         li= thing.specification
-  else
+  else if userId === recipe.userId
     p No instructions yet, use the form to get started!
   form(action='/instructions' method='post')
     input(type='hidden' name='recipeId' value=recipeId)
@@ -41,4 +41,4 @@ block content
       textarea(name='specification' placeholder='Type your instruction here...')
     div
       button(type='submit' class='btn') Add Instruction
-      a(href='/recipes/#{recipeId}' class='btn') Cancel
+      a(href=`/recipes/${recipeId}` class='btn') Cancel

@@ -4,7 +4,7 @@ include utils.pug
 
 block content
   h1=box.name
-    form(action=`/boxes/delete-box` method='post')
+    form(action=`/boxes/${boxId}/delete` method='GET')
       input(type='hidden' name='boxId' value=boxId)
       button(type='submit') Delete this recipe box
   h2 Recipes

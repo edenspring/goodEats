@@ -8,7 +8,7 @@ block content
     form(action=`/boxes/${box.id}/edit` method='get')
       input(type='hidden', name='boxId' value=boxId)
       if userId === box.userId
-        button(type='submit') Edit this recipe
+        button(type='submit') Edit this recipe box
   h2 Recipes
   if recipes && recipes.length
     each recipe in recipes
