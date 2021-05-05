@@ -55,7 +55,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
             where: {
                 recipeBoxId: boxId
             },
-            include: [Recipe],
+            include: [{ model: Recipe, through: { where: { recipeBoxId: boxId } } }],
             order: [
                 ["name", "ASC"]
             ]
@@ -86,11 +86,11 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const userId = req.session.auth.userId;
     checkPermissions(box, userId);
     if (box) {
-        const recipes = await Recipes.findAll({
+        const recipes = await Recipe.findAll({
             where: {
                 recipeBoxId: boxId
             },
-            include: [Recipe],
+            include: [{ model: Recipe, through: {where: {recipeBoxId: boxId}}}],
             order: [
                 ["name", "ASC"]
             ]

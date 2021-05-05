@@ -5,6 +5,7 @@ const instructionsRouter = require('./instructions');
 const recipesRouter = require('./recipes');
 const boxesRouter = require('./boxes')
 const deleteRouter = require('./delete');
+const reviewsRouter = require('./reviews');
 
 module.exports = {
     indexRouter,
@@ -13,5 +14,6 @@ module.exports = {
     instructionsRouter,
     recipesRouter,
     boxesRouter,
-    deleteRouter
+    deleteRouter,
+    reviewsRouter
 }
