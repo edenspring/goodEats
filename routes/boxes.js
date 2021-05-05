@@ -102,12 +102,12 @@ router.get("/:id/add", asyncHandler(async (req, res) => {
     const boxId = parseInt(req.params.id, 10);
     const userId = req.session.auth.userId
     const box = await RecipeBox.findByPk(boxId);
+    checkPermissions(box, userId);
     const recipes = await Recipe.findAll({
         order: [
             ["name", "DESC"]
         ]
     });
-    checkPermissions(box, userId);
     res.render('box-add-recipe', { recipes, boxId });
 }))
 
@@ -137,6 +137,16 @@ router.post("/:id/add/:recipeId", asyncHandler(async (req, res) => {
 router.get("/:id/remove/:recipeId", asyncHandler(async (req, res, next) => {
     const boxId = parseInt(req.params.id, 10);
     const recipeId = parseInt(req.params.recipeId, 10);
+    const userId = req.session.auth.userId
+    const box = await RecipeBox.findByPk(boxId);
+    const recipe = await Recipe.findByPk(recipeId);
+    checkPermissions(box, userId);
+    res.render('box-remove-recipe-confirm', { boxId, recipeId, box, recipe });
+}))
+
+router.post("/:id/remove/:recipeId", asyncHandler(async (req, res, next) => {
+    const boxId = parseInt(req.params.id, 10);
+    const recipeId = parseInt(req.params.recipeId, 10);
     const userId = req.session.auth.userId;
     const box = await RecipeBox.findByPk(boxId, {
         include: { model: Recipe }
@@ -153,9 +163,17 @@ router.get("/:id/remove/:recipeId", asyncHandler(async (req, res, next) => {
     res.redirect(`/boxes/${boxId}/edit`);
 }))
 
-router.post("/delete-box", asyncHandler(async (req, res, next) => {
+router.get("/:id/delete", asyncHandler(async (req, res) => {
+    const boxId = parseInt(req.params.id, 10);
+    const userId = req.session.auth.userId;
+    const box = await RecipeBox.findByPk(boxId);
+    checkPermissions(box, userId);
+    res.render('box-delete-confirm', { boxId, box });
+}))
+
+router.post("/:id/delete", asyncHandler(async (req, res, next) => {
     const boxId = parseInt(req.body.boxId, 10);
-    const userId = req.session.auth.userId
+    const userId = req.session.auth.userId;
     const box = await RecipeBox.findByPk(boxId);
     if (box) {
         checkPermissions(box, userId);

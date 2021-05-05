@@ -12,7 +12,7 @@ block content
       if userId === recipe.userId
         button(type='submit') Edit this recipe
   h2 Ingredients
-  if ingredients
+  if ingredients && ingredients.length
     each item in ingredients
       div
         span= item.measurements
@@ -20,7 +20,7 @@ block content
         span= item.name
   else
     if userId === recipe.userId
-      a(href='/recipes/#{recipe.id}/edit') No ingredients yet, get started here!
+      a(href=`/recipes/${recipe.id}/edit`) No ingredients yet, get started here!
   h2 Instructions
   if instructions && instructions.length
     ol
@@ -28,7 +28,7 @@ block content
         li= thing.specification
   else
     if userId === recipe.userId
-      a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
+      a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
   button.reviews__button Write a review
