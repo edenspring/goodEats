@@ -3,6 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
+  script 
   +validationErrorSummary(errors)
   h1=recipe.name
     form(action=`/recipes/${recipe.id}/edit` method='get')
@@ -29,3 +30,7 @@ block content
       a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
+  button(class='reviews__button') Write a review
+  if reviews.length
+    each review in reviews
+      +review(review.username, review.userid, review.review)

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { asyncHandler } = require("./utils");
 const { check, validationResult } = require("express-validator");
-const { Review } = require("../db/models");
+const { Review, User } = require("../db/models");
 const {
   loginUser,
   logoutUser,
@@ -30,6 +30,8 @@ router.post(
     });
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
+      const user = User.findByPk(userId)
+      newReview.username = user.username;
       await newReview.save();
       res.redirect(`/recipes/${recipe.id}`);
     } else {

@@ -12,6 +12,8 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
     label(for=fieldName)= labelText
     input(type=fieldType id=fieldName name=fieldName value=fieldValue class='form-control')
 
-mixin comment(userName, fieldName, fieldValue)
-  div(class='comments')
-    span
+mixin review(username, userId, review)
+  div(class='reviews')
+    span(class='reviews__userId', visbility='hidden')=userId
+    span(class='reviews__userName') #{username} says...
+    span(class='review__body')=review
