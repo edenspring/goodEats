@@ -15,6 +15,6 @@ block content
       each recipe in recipes
         li= recipe.name
   else
-    a(href='boxes/#{box.id}/edit') No recipes yet, get started here!
+    a(href=`/boxes/${boxId}/edit`) No recipes yet, get started here!
   form(action='/boxes' method='get')
     button(type='submit') Back to boxes
