@@ -36,32 +36,18 @@ router.post(
       await newReview.save();
       res.redirect(`/recipes/${recipeId}`);
     } else {
-      console.log('made it to else')
-      const errors = validatorErrors.array().map((e) => e.msg);
-      const recipe = await Recipe.findByPk(recipeId);
-      const ingredients = await Ingredient.findAll({
-        where: {
-          recipeId: recipeId,
-        },
-      });
-      const instructions = await Instruction.findAll({
-        where: {
-          recipeId: recipeId,
-        },
-        order: [["listOrder", "ASC"]],
-      });
-      const reviews = await Review.findAll({
-        where: {
-            recipeId: recipeId,
-        },
-        order: [
-            ['createdAt', 'DESC']
-        ]
-    })
+
       res.redirect(`/recipes/${recipeId}`)
     }
   })
 );
+
+router.delete("/:id/delete", asyncHandler(async(req, res)=>{
+  const {reviewId} = req.body;
+  console.log('reviewId = ', reviewId)
+  const review = await Review.findByPk(reviewId);
+  await review.destroy();
+}))
 
 
 module.exports = router;
