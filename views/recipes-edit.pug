@@ -5,9 +5,6 @@ include utils.pug
 block content
   +validationErrorSummary(errors)
   h1=recipe.name
-    form(action=`/recipes/${recipeId}/delete` method='GET')
-      input(type='hidden' name='recipeId' value=recipeId)
-      button(type='submit') Delete this recipe
   h2 Ingredients
   if ingredients && ingredients.length
     each item in ingredients
@@ -42,3 +39,9 @@ block content
     div
       button(type='submit' class='btn') Add Instruction
       a(href=`/recipes/${recipeId}` class='btn') Cancel
+  div
+    p=''
+  div
+    form(action=`/recipes/${recipeId}/delete` method='GET')
+      input(type='hidden' name='recipeId' value=recipeId)
+      button(type='submit') Delete this recipe

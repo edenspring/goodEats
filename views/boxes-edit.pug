@@ -4,9 +4,6 @@ include utils.pug
 
 block content
   h1=box.name
-    form(action=`/boxes/${boxId}/delete` method='GET')
-      input(type='hidden' name='boxId' value=boxId)
-      button(type='submit') Delete this recipe box
   h2 Recipes
   if recipes && recipes.length
     div
@@ -18,3 +15,9 @@ block content
     a(href=`/boxes/${boxId}/add`) Add a Recipe
   div
     a(href='/boxes/#{boxId}' class='btn') Cancel
+  div
+    p=''
+  div
+    form(action=`/boxes/${boxId}/delete` method='GET')
+      input(type='hidden' name='boxId' value=boxId)
+      button(type='submit') Delete this recipe box

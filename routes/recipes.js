@@ -122,6 +122,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
             ]
         });
         const listOrder = instructions.length + 1;
+        console.log(ingredients, instructions);
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));
