@@ -67,7 +67,7 @@ router.post('/demo', csrfProtection, asyncHandler(async (req, res) => {
 
 router.get('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/login');
+  res.redirect('/users/login');
 });
 
 router.get('/register', csrfProtection, (req, res) => {

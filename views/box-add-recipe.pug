@@ -1,0 +1,10 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  each recipe in recipes
+    div
+      a(href=`/boxes/${boxId}/add/${recipe.dataValues.id}`)=recipe.dataValues.name
+  div
+    a(href=`/boxes/${boxId}/edit`) Cancel
