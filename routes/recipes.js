@@ -79,6 +79,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipe = await Recipe.findByPk(recipeId);
     const ingredient = Ingredient.build();
     const instruction = Instruction.build();
+    
     if (recipe) {
         const ingredients = await Ingredient.findAll({
             where: {
