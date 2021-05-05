@@ -28,3 +28,4 @@ module.exports = {
       return queryInterface.bulkDelete('Recipes', null, {});
   }
 };
+
