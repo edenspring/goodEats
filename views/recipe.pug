@@ -44,3 +44,7 @@ block content
   if reviews.length
     each review in reviews
       +review(review.username, review.userid, review.review)
+      if review.userid === userId
+        form(action='/reviews/delete' method='post')
+          input(type='hidden' name='reviewId' value=review.id)
+          button(type='submit') Delete this review
