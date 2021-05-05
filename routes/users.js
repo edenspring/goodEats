@@ -46,11 +46,18 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
 
   res.render('users-login', {
     title: 'Log-in',
-    email,
+    username,
     errors,
     csrfToken: req.csrfToken()
   });
 }));
+
+router.post('/demo', csrfProtection, asyncHandler(async (req, res) => {
+  const username = 'demoguy';
+  const user = await db.User.findOne({ where: { username } });
+  loginUser(req, res, user)
+  return res.redirect('/');
+}))
 
 router.get('/logout', (req, res) => {
   logoutUser(req, res);
