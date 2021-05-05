@@ -16,6 +16,15 @@ const logInValidator = [
 ];
 
 /* GET users listing. */
+<<<<<<< HEAD
+router.get('/', function(req, res, next) {
+  res.render("home", { title: "Welcome" });
+  // setTimeout(function() {
+  //   res.render("splash")
+  // }, 3000);
+});
+=======
+>>>>>>> main
 
 router.get('/login', csrfProtection, (req, res) => {
   res.render('users-login', { title: "Log In", csrfToken: req.csrfToken() });
@@ -148,7 +157,7 @@ router.post('/register', csrfProtection, registerUserValidators, asyncHandler(as
     const errors = validatorErrors.array().map((e)=>e.msg);
 
     res.render('users-register', {
-      title: "Register a new User",
+      title: "Register a New User",
       user,
       errors,
       csrfToken: req.csrfToken(),
