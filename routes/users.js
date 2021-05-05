@@ -16,15 +16,12 @@ const logInValidator = [
 ];
 
 /* GET users listing. */
-<<<<<<< HEAD
 router.get('/', function(req, res, next) {
   res.render("home", { title: "Welcome" });
   // setTimeout(function() {
   //   res.render("splash")
   // }, 3000);
 });
-=======
->>>>>>> main
 
 router.get('/login', csrfProtection, (req, res) => {
   res.render('users-login', { title: "Log In", csrfToken: req.csrfToken() });

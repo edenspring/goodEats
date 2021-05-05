@@ -1,0 +1,12 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  +validationErrorSummary(errors)
+  p Enter a name for your box and click Get Started!
+  form(action='/boxes/new' method='post')
+    +field('Box Name: ', 'name', box.name)
+    div
+      button(type='submit' class='btn') Get Started
+  a(href='/' class='btn') Cancel
