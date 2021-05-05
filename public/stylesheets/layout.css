@@ -29,7 +29,6 @@
 
 .create-recipe {
     display: grid;
-<<<<<<< HEAD
     justify-content: left;
     padding: 10px;
     text-decoration: none;
@@ -39,10 +38,6 @@
 .create-recipe:hover {
     font-style: italic;
     color: #ffbe54;
-}
-
-.create-recipe:link {
-    font-style: 
 }
 
 .login {
@@ -117,17 +112,6 @@ footer {
     text-align: end;
 }
 
-
-
-
-
-=======
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    text-align: center;
-
-}
-
 .reviews__container-hidden {
     display: none;
 }
@@ -135,4 +119,3 @@ footer {
 .reviews__container-visible {
     display: block;
 }
->>>>>>> main
