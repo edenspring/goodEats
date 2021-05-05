@@ -43,8 +43,9 @@ block content
 
   if reviews.length
     each review in reviews
-      +review(review.username, review.userid, review.review)
-      if review.userId === userId
+      .review__container
+        +review(review.username, review.userid, review.review)
+        if review.userId === userId
         form(action='/reviews/delete' method='post')
           input(type='hidden' name='reviewId' value=review.id)
-          button(type='submit') Delete this review
+          button.reviews__delete(type='submit') Delete this review
