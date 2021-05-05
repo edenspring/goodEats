@@ -30,7 +30,15 @@ block content
       a(href='recipes/#{recipe.id}/edit') No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
-  button(class='reviews__button') Write a review
+  button.reviews__button Write a review
+  form.reviews__form(method='post' action='/reviews' style='display: none')
+    input(type='hidden' name='userId' value=userId)
+    input(type='hidden' name='recipeId' value=recipeId)
+    div
+      textarea(name='review' placeholder='Write your review here...')
+    div
+      button(type='submit') Submit Review
+
   if reviews.length
     each review in reviews
       +review(review.username, review.userid, review.review)
