@@ -22,6 +22,13 @@ footer {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     text-align: center;
-    
+
 }
 
+.reviews__container-hidden {
+    display: none;
+}
+
+.reviews__container-visible {
+    display: block;
+}

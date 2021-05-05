@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "per-env",
-    "start:development": "nodemon -r dotenv/config ./bin/www",
+    "start:development": "nodemon -r dotenv/config ./bin/www -e js,pug",
     "start:production": "node ./bin/www",
     "db:migrate": "dotenv sequelize-cli db:migrate",
     "db:migrate:undo:all": "dotenv sequelize-cli db:migrate:undo:all",
