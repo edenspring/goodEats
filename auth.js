@@ -1,7 +1,7 @@
 const db = require('./db/models');
 
 const checkPermissions = (thing, currentUser) => {
-    if (thing.userId !== currentUser.id) {
+    if (thing.userId !== currentUser) {
       const err = new Error('Illegal operation.');
       err.status = 403; // Forbidden
       throw err;
