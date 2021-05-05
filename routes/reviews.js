@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { asyncHandler } = require("./utils");
 const { check, validationResult } = require("express-validator");
-const { Review, User } = require("../db/models");
+const { Review, User, Recipe, Ingredient, Instruction } = require("../db/models");
 const {
   loginUser,
   logoutUser,
@@ -14,8 +14,7 @@ const {
 const reviewValidator = [
   check("review")
     .exists({ checkFalsy: true })
-    .isLength({ min: 15 })
-    .withMessage("Reviews must be at least 15 characters long"),
+    .withMessage("Please enter your review"),
 ];
 
 router.post(
@@ -27,14 +26,17 @@ router.post(
       recipeId,
       userId,
       review,
+      username : '',
     });
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-      const user = User.findByPk(userId)
+      console.log('made it here')
+      const user = await User.findByPk(userId)
       newReview.username = user.username;
       await newReview.save();
-      res.redirect(`/recipes/${recipe.id}`);
+      res.redirect(`/recipes/${recipeId}`);
     } else {
+      console.log('made it to else')
       const errors = validatorErrors.array().map((e) => e.msg);
       const recipe = await Recipe.findByPk(recipeId);
       const ingredients = await Ingredient.findAll({
@@ -48,7 +50,15 @@ router.post(
         },
         order: [["listOrder", "ASC"]],
       });
-      res.render('recipe', {recipe, ingredients, instructions, recipeId, userId, errors})
+      const reviews = await Review.findAll({
+        where: {
+            recipeId: recipeId,
+        },
+        order: [
+            ['createdAt', 'DESC']
+        ]
+    })
+      res.redirect(`/recipes/${recipeId}`)
     }
   })
 );
