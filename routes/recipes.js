@@ -102,6 +102,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     checkPermissions(recipe, userId)
     const ingredient = Ingredient.build();
     const instruction = Instruction.build();
+    
     if (recipe) {
         const ingredients = await Ingredient.findAll({
             where: {
