@@ -81,7 +81,9 @@ router.post("/new", boxValidator, asyncHandler(async (req, res) => {
 
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const boxId = parseInt(req.params.id, 10);
-    const box = await RecipeBox.findByPk(boxId);
+    const box = await RecipeBox.findByPk(boxId, {
+        include: { model: Recipe }
+    });
     const userId = req.session.auth.userId;
     checkPermissions(box, userId);
     if (box) {
