@@ -16,9 +16,6 @@ const logInValidator = [
 ];
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 router.get('/login', csrfProtection, (req, res) => {
   res.render('users-login', { title: "Log In", csrfToken: req.csrfToken() });
