@@ -11,10 +11,14 @@ html
         img(class="logo" type="image" src="/images/logo.svg" alt="logo")
       div
         a(class="create-recipe" href="/recipes/new") Create a Recipe
-      div
-        a(class="login" href="/users/login") Log In
-      div
-        a(class="register" href="/users/register") Register
+      if locals.authenticated
+        div
+          a(class="logout" href="/users/logout") Log Out
+      else
+        div
+          a(class="login" href="/users/login") Log In
+        div
+          a(class="register" href="/users/register") Register
     div
     block content
     main

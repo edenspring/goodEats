@@ -1,15 +1,15 @@
 extends layout.pug
 
-include utils.pug 
+include utils.pug
 
-block content 
+block content
     +validationErrorSummary(errors)
     form(action='/users/login' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
         +field('Username', 'username', username)
-        +field('Password', 'password', password)
+        +field('Password', 'password', password, 'password')
         div
             button(type='submit' class='btn') Log-In
-            a(href='/' class='btn') Cancel 
-        div 
+            a(href='/' class='btn') Cancel
+        div
             p: a(href='/users/register') Don't have an account? Register here!
