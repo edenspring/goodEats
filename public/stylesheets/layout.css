@@ -4,24 +4,62 @@
     font-family: 'Roboto', sans-serif;
 }
 
-@media screen and (max-width: 1000px) {
-    .navbar {
-        width: auto;
-        height: auto;
-    }
-}
-
 .navbar {
-    /* background-color: rgb(231,223,212); */
     position: sticky;
     top: 0px;
     background-color:wheat;
     border-radius: 2em;
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
     z-index: 1;
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+@media screen and (min-width: 1000px) {
+    .navbar {
+        /* background-color: rgb(231,223,212); */
+        width: auto;
+        height: auto;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
+    }
+
+    .big {
+        display: block;
+    }
+
+    .small {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .navbar {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    ul.dropdown {
+        grid-column-start: 4;
+        display: block;
+    }
+
+    li.small {
+        position: absolute;
+        display: none;
+    }
+
+    ul.dropdown:hover li.small {
+        display: block;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .big {
+        display: none;
+    }
+
+    .small {
+        display: block;
+    }
 }
 
 body {
@@ -113,7 +151,7 @@ img.banner {
 }
 
 .welcome {
-    position: absolute;
+    position: relative;
     top: 15%;
     left: 15%;
     color: papayawhip;
@@ -123,17 +161,33 @@ img.banner {
     white-space: nowrap;
 }
 
-.banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: papayawhip;
-    font-size: 300%;
-    font-style: italic;
-    text-align: right;
-    text-shadow: 0px 3px 3px black;
-    white-space: nowrap;
+@media screen and (max-width: 999px) {
+    .banner-text {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: papayawhip;
+        font-size: 200%;
+        font-style: italic;
+        text-align: right;
+        text-shadow: 0px 3px 3px black;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .banner-text {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: papayawhip;
+        font-size: 300%;
+        font-style: italic;
+        text-align: right;
+        text-shadow: 0px 3px 3px black;
+        white-space: nowrap;
+    }
 }
 
 .recent-recipes {
