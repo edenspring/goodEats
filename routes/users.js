@@ -17,7 +17,7 @@ const logInValidator = [
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render("home", { title: "Welcome" });
+  res.render("home", { title: "Welcome", user });
   // setTimeout(function() {
   //   res.render("splash")
   // }, 3000);

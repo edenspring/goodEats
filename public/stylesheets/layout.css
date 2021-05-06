@@ -15,7 +15,7 @@
     background-color: rgb(231,223,212);
     border-radius: 2em;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(9, 1fr);
     grid-template-rows: 1fr;
     grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
 }
@@ -49,7 +49,11 @@
 .create-recipe,
 .create-box,
 .my-recipes,
-.my-boxes {
+.my-boxes,
+.recipes,
+.boxes,
+.about
+{
     display: grid;
     justify-content: left;
     padding: 10px;
@@ -62,7 +66,10 @@
 a.create-recipe:hover,
 a.create-box:hover,
 a.my-recipes:hover,
-a.my-boxes:hover {
+a.my-boxes:hover,
+a.recipes:hover,
+a.boxes:hover,
+a.about:hover {
     font-style: italic;
     color: #ffbe54;
 }
@@ -229,7 +236,29 @@ footer {
     place-items: center;
 }
 
+/* about */
 
+.about-container {
+    height: auto;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.about-each {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.about-img {
+    height: 100px;
+    width: 100%;
+}
+
+.about-content {
+    margin: 0px;
+}
 
 /* reviews */
 
@@ -268,7 +297,7 @@ footer {
     text-decoration:none;
     color:#FFFFFF;
     text-align: center;
-    transition: all 0.2s;
+    transition: all 0.3s;
     box-shadow: 0px 2px 3px grey;
     border: none;
 }
