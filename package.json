@@ -10,7 +10,10 @@
     "db:migrate:undo:all": "dotenv sequelize-cli db:migrate:undo:all",
     "db:redo": "npm run db:seed:undo:all && npm run db:migrate:undo:all && npm run db:migrate && npm run db:seed:all",
     "db:seed:all": "dotenv sequelize-cli db:seed:all",
-    "db:seed:undo:all": "dotenv sequelize-cli db:seed:undo:all"
+    "db:seed:undo:all": "dotenv sequelize-cli db:seed:undo:all",
+    "db:drop": "dotenv sequelize-cli db:drop",
+    "db:create": "dotenv sequelize-cli db:create",
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:migrate && npm run db:seed:all"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
