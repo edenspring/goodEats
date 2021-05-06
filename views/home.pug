@@ -11,5 +11,19 @@ block content
         each recipe in recipes
             div(class="recent-recipe-container")
                 a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
-                img(class="recent-recipe-image" type="image" src="assets/scrambled-eggs.jpg")
+                a(class="recent-recipe-image-link" href=`/recipes/${recipe.id}`)
+                    img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
     div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
+    if !locals.authenticated
+        div(class="overlay-wrap")
+            input(type="checkbox" name="hide" id="hide")
+            label(class="hide" for="hide") X
+            div(class="overlay2")
+                div(class="overlay")
+                    div(class="overlay-inner")
+                        div(class="message")
+                            h2 Welcome to GoodEats!
+                            p This is a community where foodies can create and share recipes.
+                            p Log in or create an account to get started!
+                            a(class="btn" href="/users/login") Log In
+                            a(class="btn" href="/users/register") Register
