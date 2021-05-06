@@ -47,7 +47,7 @@ router.post('/', instructionValidator, asyncHandler(async (req, res) => {
             next(recipeNotFoundError(recipeId));
         }
     }
-  }))
+  }));
 
 
 module.exports = router;

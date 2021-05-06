@@ -40,6 +40,8 @@ block content
       button(type='submit' class='btn') Add Instruction
       a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
   div
+    button(type='submit' class='btn' href=`/instructions/${instructionId}/delete`) Delete Instruction
+  div
     p=''
   div
     form(action=`/recipes/${recipeId}/delete` method='GET')
