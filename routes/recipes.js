@@ -118,11 +118,9 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId, {
-        include: {
-            model: Picture,
-            model: Ingredient,
-            model: Instruction,
-        }
+        include: [
+            Picture, Ingredient, Instruction
+        ]
     });
     const userId = req.session.auth.userId;
     checkPermissions(recipe, userId)
@@ -146,7 +144,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
         const ingredients = recipe.Ingredients;
         const instructions = recipe.Instructions;
         const listOrder = instructions.length + 1;
-        console.log('here', ingredients)
+        // console.log('here', recipe)
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));

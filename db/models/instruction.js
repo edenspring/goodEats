@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     recipeId: {
       allowNull: false,
       type: DataTypes.INTEGER,
-      refereces: { models: "Recipes" }
+      refereces: { model: "Recipes" }
     }
   }, {});
   Instruction.associate = function(models) {

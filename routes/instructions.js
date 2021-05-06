@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
+const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const { Ingredient, Instruction, Recipe } = require('../db/models');
 
 const instructionValidator = [
@@ -49,5 +50,38 @@ router.post('/', instructionValidator, asyncHandler(async (req, res) => {
     }
   }))
 
+router.get("/:id", asyncHandler(async (req, res) => {
+    const recipeId = parseInt(req.body.recipeId, 10);
+    const instructions = await Instruction.findAll({
+        where: {
+            recipeId: recipeId
+        }
+    })
+
+    const currentUserId = res.locals.user.id;
+    checkPermissions(instructions, currentUserId);
+
+    res.render('recipes-edit', { instructions });
+}));
+
+router.post("/:id/delete", asyncHandler(async (req, res) => {
+    let { recipeId, listOrder } = req.body;
+    
+    const instructions = await Instruction.findOne({
+        where: {
+            recipeId: recipeId,
+            listOrder: listOrder
+        }, 
+        include: {
+            model: Recipe
+        }
+    });
+    const currentUserId = res.locals.user.id;
+    checkPermissions(instructions.Recipe, currentUserId);
+    
+    await instructions.destroy();
+
+    res.redirect(`/recipes/${recipeId}/edit`);
+}));
 
 module.exports = router;

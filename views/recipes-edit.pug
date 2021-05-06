@@ -39,6 +39,10 @@ block content
     div
       button(type='submit' class='btn') Add Instruction
       a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
+  form(action=`/instructions/${recipeId}/delete` method='post') 
+    input(type='hidden' name='listOrder' value=instructions.length)
+    input(type='hidden' name='recipeId' value=recipeId)
+    button(type='submit' class='delete-instruction-btn btn') Delete Instruction
   div
     p=''
   div
