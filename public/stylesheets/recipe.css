@@ -85,6 +85,7 @@ body {
   height:950px;
   display:block;
   z-index:1;
+  box-shadow: 10px 5px 5px black;
 }
 /* reviews */
 
@@ -119,8 +120,15 @@ body {
 
 .reviews__userName {
 font-size: small;
+color: #444444;
 }
 
 .reviews__body {
 font-size: larger;
+color: #444444;
+}
+
+.write__review textarea {
+  min-height: 95px;
+  min-width: 400px;
 }

@@ -40,7 +40,7 @@ block content
         form.reviews__form(method='post' action='/reviews')
           input(type='hidden' name='userId' value=userId)
           input(type='hidden' name='recipeId' value=recipeId)
-          div
+          div.write__review
             textarea(name='review' placeholder='Write your review here...')
           div
             button(type='submit') Submit Review

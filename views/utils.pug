@@ -15,5 +15,5 @@ mixin field(labelText, fieldName, fieldValue, fieldType = 'text')
 mixin review(username, userId, review, currentUser)
   div
     //- span(class='reviews__userId', display='')=userId
-    span(class='reviews__userName') #{username} says...
-    span(class='reviews__body')=review
+    div(class='reviews__userName') #{username} says...
+    div(class='reviews__body')=review
