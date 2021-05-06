@@ -95,3 +95,32 @@ body {
 .reviews__container-visible {
   display: block;
 }
+
+.recipe__reviews {
+  border: 2px solid black;
+  border-radius: 5px;
+  height: fit-content;
+  background-color: white;
+  padding: 4px;
+  box-shadow: 10px 5px 5px #A64D79;
+}
+
+.reviews {
+  padding: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 3px;
+  margin: 4px;
+}
+
+.reviews__userName {
+font-size: small;
+}
+
+.reviews__body {
+font-size: larger;
+}
