@@ -31,6 +31,11 @@ block content
       a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
+  form(action=`/likes/${recipeId}` method='post')
+    input(type='hidden' name='recipeId' value=recipeId)
+    input(type='hidden' name='userId' value=userId)
+    input(type='hidden' name='like' value=likes)
+    button(type='submit' class='recipe-like-btn') #{counter} Like
   button.reviews__button Write a review
   #reviews__container.reviews__container-hidden
     form.reviews__form(method='post' action='/reviews')

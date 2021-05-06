@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Recipe, Review, Picture } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Review, Picture, Like } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const Sequelize = require("sequelize");
 const Pictures = require('../db/seeders/8-Pictures');
@@ -62,7 +62,8 @@ router.get("/:id", asyncHandler(async (req, res) => {
             {model: Picture},
             {model: Instruction},
             {model: Ingredient},
-            {model: Review}
+            {model: Review},
+            {model: Like}
         ]
     });
     if (recipe) {
@@ -89,10 +90,17 @@ router.get("/:id", asyncHandler(async (req, res) => {
         // })
         // console.log(recipe.Pictures)
         const ingredients = recipe.Ingredients;
-        console.log(recipe)
+        // console.log(recipe)
         const instructions = recipe.Instructions;
         const reviews = recipe.Reviews;
-        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews });
+        const likes = recipe.Likes;
+
+        let counter = likes.length;
+        for (let count = 0; count < likes.length; count++) {
+            counter++;
+        }
+
+        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews, likes, counter });
     }
 }))
 

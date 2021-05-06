@@ -65,7 +65,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
 }));
 
 router.post("/:id/delete", asyncHandler(async (req, res) => {
-    let { recipeId, listOrder } = req.body;
+    const { recipeId, listOrder } = req.body;
     
     const instructions = await Instruction.findOne({
         where: {
