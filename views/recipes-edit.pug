@@ -22,7 +22,7 @@ block content
       input(type='text' name='measurements' value=ingredient.measurements)
     div
       button(type='submit' class='btn') Add Ingredient
-      a(href=`/recipes/${recipeId}` class='btn') Cancel
+      a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
   h2 Instructions
   if instructions && instructions.length
     ol
@@ -38,7 +38,7 @@ block content
       textarea(name='specification' placeholder='Type your instruction here...')
     div
       button(type='submit' class='btn') Add Instruction
-      a(href=`/recipes/${recipeId}` class='btn') Cancel
+      a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
   div
     p=''
   div

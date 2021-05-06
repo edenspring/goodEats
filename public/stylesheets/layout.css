@@ -241,7 +241,10 @@ footer {
     display: block;
 }
 
-.btn {
+/* buttons */
+
+.btn,
+.add-a-recipe-btn {
     background-color: #ffbe54;
     display:inline-block;
     padding:0.3em 1.2em;
