@@ -7,8 +7,9 @@ html
   body
     header
     nav(class="navbar")
-      a(class="logo" href="/")
-        img(class="logo" type="image" src="/images/logo.svg" alt="logo")
+      div(class="logo")
+        a(class="logo" href="/")
+          img(class="logo" type="image" src="/images/logo.svg" alt="logo")
       if locals.authenticated
         div(class="about")
           a(class="about" href="/about") About

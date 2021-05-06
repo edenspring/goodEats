@@ -1,15 +1,17 @@
+body {
+  height: auto;
+}
 .recipes__grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   /* grid-template-rows: 10% 30% 30% 10% 20%; */
-  grid-template-rows: .5fr 1.5fr 1.5fr .5fr 1fr;
+  grid-template-rows: .25fr 1.5fr 1.5fr .5fr;
   gap: 0.5em 0.5em;
   grid-template-areas:
-    "title pics"
+    "title title"
     "ingredients pics"
     "instructions pics"
-    "writereview writereview"
-    "showreviews showreviews";
+    "writereview showreviews";
 }
 
 .recipe__title {
@@ -42,34 +44,45 @@
 }
 
 .recipe__pictures {
+  position: relative;
   grid-area: pics;
   display:flex;
   box-sizing: border-box;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   width: auto;
   border: 1px solid #777;
   border-radius: 4px;
   float: left;
+  /* background-color: black; */
+  max-height: 800px;
 }
 
 .picture__container {
   border: 1px solid #777;
   border-radius: 4px;
-  max-width: 20vw;
+  width: 100%;
+  min-height: 800px;
 }
 
 .recipe__picture {
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.recipe__picture:hover{
-  position:relative;
+.picture__container:hover {
+  position: static;
+  z-index: 999;
+}
+
+.picture__container:hover > .recipe__picture{
+  pointer-events: none;
+  position:absolute;
   top:-25px;
-  left:-35px;
-  width:50vw;
-  height:100%;
+  right: 15%;
+  width:auto;
+  height:950px;
   display:block;
   z-index:1;
 }
@@ -82,5 +95,3 @@
 .reviews__container-visible {
   display: block;
 }
-
-
