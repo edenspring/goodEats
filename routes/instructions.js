@@ -84,8 +84,4 @@ router.post("/:id/delete", asyncHandler(async (req, res) => {
     res.redirect(`/recipes/${recipeId}/edit`);
 }));
 
-router.post("/:id/edit", asyncHandler(async (req, res) => {
-    
-}));
-
 module.exports = router;
