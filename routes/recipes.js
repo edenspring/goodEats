@@ -55,33 +55,40 @@ router.get("/:id", asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId, {
-        include: {
-            model: Picture,
-        }
+        include:[
+            {model: Picture},
+            {model: Instruction},
+            {model: Ingredient},
+            {model: Review}
+        ]
     });
     if (recipe) {
-        const ingredients = await Ingredient.findAll({
-            where: {
-                recipeId: recipeId
-            },
-        });
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
-        const reviews = await Review.findAll({
-            where: {
-                recipeId: recipeId,
-            },
-            order: [
-                ['createdAt', 'DESC']
-            ]
-        })
+        // const ingredients = await Ingredient.findAll({
+        //     where: {
+        //         recipeId: recipeId
+        //     },
+        // });
+        // const instructions = await Instruction.findAll({
+        //     where: {
+        //         recipeId: recipeId
+        //     },
+        //     order: [
+        //         ['listOrder', 'ASC']
+        //     ]
+        // });
+        // const reviews = await Review.findAll({
+        //     where: {
+        //         recipeId: recipeId,
+        //     },
+        //     order: [
+        //         ['createdAt', 'DESC']
+        //     ]
+        // })
         // console.log(recipe.Pictures)
+        const ingredients = recipe.Ingredients;
+        console.log(recipe)
+        const instructions = recipe.Instructions;
+        const reviews = recipe.Reviews;
         res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews });
     }
 }))
@@ -110,6 +117,8 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipe = await Recipe.findByPk(recipeId, {
         include: {
             model: Picture,
+            model: Ingredient,
+            model: Instruction,
         }
     });
     const userId = req.session.auth.userId;
@@ -118,21 +127,23 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const instruction = Instruction.build();
 
     if (recipe) {
-        const ingredients = await Ingredient.findAll({
-            where: {
-                recipeId: recipeId
-            },
-        });
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
+        // const ingredients = await Ingredient.findAll({
+        //     where: {
+        //         recipeId: recipeId
+        //     },
+        // });
+        // const instructions = await Instruction.findAll({
+        //     where: {
+        //         recipeId: recipeId
+        //     },
+        //     order: [
+        //         ['listOrder', 'ASC']
+        //     ]
+        // });
+        const ingredients = recipe.Ingredients;
+        const instructions = recipe.Instructions;
         const listOrder = instructions.length + 1;
-        console.log('here', recipe.Pictures)
+        console.log('here', ingredients)
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));
