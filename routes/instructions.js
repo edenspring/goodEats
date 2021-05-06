@@ -49,36 +49,5 @@ router.post('/', instructionValidator, asyncHandler(async (req, res) => {
     }
   }));
 
-  /** we want to grab all the instructions for a particular recipe
-   * Once we grab those instructions, we want to find a particular instruction at its list order
-   * Then we want to delete that instruction and render the new list.
-   */
-  router.delete("/:id/delete", asyncHandler(async(req, res)=>{
-    const { specification, listOrder, instructionId, recipeId } = req.body;
-        const instructions = await Instruction.findAll({
-            where: {
-                recipeId: recipeId
-            },
-            order: [
-                ['listOrder', 'ASC']
-            ]
-        });
-        checkPermissions(instructions, currentUserId);
-        instructions.forEach(async (instruction) => {
-            await instruction.listOrder.destroy();
-        })
-        console.log(instructions);
-    const currentUserId = res.locals.user.id;
-    // await instruction.destroy(lastItem);
-  }));
-
-//   router.edit("/:id/edit", asyncHandler(async(req, res)=>{
-//     const {instructionId} = req.body;
-//     const instruction = await Instruction.findByPk(instructionId);
-//     const currentUserId = res.locals.user.id;
-//     checkPermissions(instruction, currentUserId);
-//     await review.destroy();
-//   }));
-
 
 module.exports = router;
