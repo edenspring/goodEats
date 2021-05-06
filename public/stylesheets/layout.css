@@ -12,12 +12,17 @@
 }
 
 .navbar {
-    background-color: rgb(231,223,212);
+    /* background-color: rgb(231,223,212); */
+    background-color:wheat;
     border-radius: 2em;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: 1fr;
     grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
+}
+
+body {
+    background-color:papayawhip;
 }
 
 .logo {
@@ -39,11 +44,6 @@
 .recent-boxes {
     text-decoration: none;
     text-align: center;
-}
-
-.welcome {
-    font-style: italic;
-    font-family: serif;
 }
 
 .create-recipe,
@@ -97,14 +97,27 @@ a.register:hover {
 
 /* homepage */
 
-.banner {
+img.banner {
     display: flex;
     justify-content: center;
-    margin: 10px;
-    padding: 3px;
+    flex-direction: column;
+    margin: 10px 0px;
+    padding: 0px;
     max-width:100%;
     max-height: 100%;
     opacity: 0.85;
+    background-color: white;
+}
+
+.welcome {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    color: papayawhip;
+    font-style: italic;
+    font-family: serif;
+    text-shadow: 0px 3px 3px black;
+    white-space: nowrap;
 }
 
 .banner-text {
@@ -112,11 +125,12 @@ a.register:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color: papayawhip;
     font-size: 300%;
     font-style: italic;
     text-align: right;
     text-shadow: 0px 3px 3px black;
+    white-space: nowrap;
 }
 
 .recent-recipes {
@@ -136,7 +150,7 @@ a.register:hover {
 .recent-recipe-description {
     text-decoration: none;
     margin: 10px;
-    color: white;
+    color: papayawhip;
     background-color: rgb(166,77,120);
     border-radius: 2em;
 }
@@ -145,10 +159,99 @@ a.register:hover {
     background-color: #ffbe54;
 }
 
-.recent-recipe-image {
-    height: 100%;
+.recent-recipe-image-link {
     width: 100%;
+    height: 100%;
 }
+
+.recent-recipe-image-link:hover {
+    box-shadow: 1px 1px 3px 3px #d8c3a3 ;
+}
+
+.recent-recipe-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+/* overlay */
+
+.overlay {
+    opacity:0;
+    position:fixed;
+    top:-5em;
+    left:-5em;
+    width:100%;
+    height:100%;
+    display:table;
+    background:rgba(0,0,0,0.8);
+    animation: splash 3s forwards;
+}
+.overlay-inner {
+    display:table-cell;
+    vertical-align:middle;
+    text-align:center;
+}
+.message {
+    border-radius:10px;
+    background:papayawhip;
+    display:inline-block;
+    vertical-align:middle;
+    width:50%;
+    text-align:left;
+    padding:10px;
+}
+
+@keyframes splash {
+    0%  {opacity:0;top:0;left:0;}
+    100%{opacity:1;top:0;left:0;}
+}
+.overlay-wrap {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1;
+}
+.hide {
+    position:absolute;
+    top:-5em;
+    right:10px;
+    opacity:0;
+    color:white;
+    padding:10px;
+    font-size:200%;
+    z-index:2;
+    cursor:pointer;
+    animation:fadein 3s forwards;
+    font-family: 'Roboto',Arial;
+}
+#hide {
+    position:absolute;
+    left:-5em;
+    top:-5em;
+}
+.overlay2{
+    position:absolute;
+    opacity:1;
+    transition:all 3s ;
+}
+
+#hide:checked ~ div,
+#hide:checked ~ div *,
+#hide:checked + label {
+ opacity:0;
+ left:-5em;
+ right:auto;
+ top:-5em;
+ pointer-events:none;
+}
+
+@keyframes fadein {
+ 0% {opacity: 0;top:10px;}
+ 100%{opacity:1;top:10px;}
+}
+
 
 /* my recipe boxes */
 
@@ -215,7 +318,8 @@ a.register:hover {
 /* footer */
 
 footer {
-    background-color: rgb(231,223,212);
+    /* background-color: rgb(231,223,212); */
+    background-color: wheat;
     border-radius: 2em;
     font-family: Arial, Helvetica, sans-serif;
     text-align: end;
