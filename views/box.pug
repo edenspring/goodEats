@@ -8,13 +8,13 @@ block content
     form(action=`/boxes/${box.id}/edit` method='get')
       input(type='hidden', name='boxId' value=boxId)
       if userId === box.userId
-        button(type='submit') Edit this recipe
+        button(type='submit') Edit this recipe box
   h2 Recipes
   if recipes && recipes.length
-    ol
-      each recipe in recipes
-        li= recipe.name
-  else
-    a(href='boxes/#{box.id}/edit') No recipes yet, get started here!
+    each recipe in recipes
+      div
+        a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
+  else if userId === box.userId
+    a(href=`/boxes/${boxId}/edit`) No recipes yet, get started here!
   form(action='/boxes' method='get')
     button(type='submit') Back to boxes

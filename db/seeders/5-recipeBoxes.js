@@ -24,6 +24,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Recipe Boxes', null, {});
+    return queryInterface.bulkDelete('RecipeBoxes', null, {});
   }
 };

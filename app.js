@@ -6,7 +6,14 @@ const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const { indexRouter, usersRouter, ingredientsRouter, instructionsRouter, recipesRouter, boxesRouter, deleteRouter, reviewsRouter } = require("./routes/routers")
+const {
+  indexRouter,
+  usersRouter,
+  ingredientsRouter,
+  instructionsRouter,
+  recipesRouter,
+  boxesRouter,
+  reviewsRouter } = require("./routes/routers")
 const { restoreUser } = require('./auth')
 
 const app = express();
@@ -42,7 +49,6 @@ app.use('/users', usersRouter);
 app.use('/recipes', recipesRouter);
 app.use('/ingredients', ingredientsRouter);
 app.use('/instructions', instructionsRouter);
-app.use('/delete', deleteRouter);
 app.use('/boxes', boxesRouter);
 app.use('/reviews', reviewsRouter);
 

@@ -4,6 +4,7 @@ const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { RecipeBox, Recipe, RecipeBoxJoinTable } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
+const Sequelize = require("sequelize");
 
 const boxNotFoundError = function (boxId) {
     const error = new Error(`The box with ID ${boxId} was not found.`);
@@ -23,7 +24,7 @@ const boxValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ]
     });
     res.render('boxes', { boxes });
@@ -35,31 +36,33 @@ router.get("/my", asyncHandler(async (req, res) => {
             userId: req.session.auth.userId
         },
         order: [
-            ["updatedAt", "DESC"]
+            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
         ]
     });
     res.render("boxes", { boxes });
 }))
 
 router.get("/new", asyncHandler(async (req, res) => {
+    if (!req.session.auth) {
+        res.redirect("/users/login");
+    }
     const box = RecipeBox.build();
     res.render("boxes-new", { box });
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const userId = req.session.auth.userId;
+    let userId;
+    if (req.session.auth) {
+        userId = req.session.auth.userId;
+    } else {
+        userId = 0;
+    }
     const boxId = parseInt(req.params.id, 10);
-    const box = await RecipeBox.findByPk(boxId);
+    const box = await RecipeBox.findByPk(boxId, {
+        include: { model: Recipe }
+    });
     if (box) {
-        const recipes = await Recipe.findAll({
-            where: {
-                recipeBoxId: boxId
-            },
-            include: [{ model: Recipe, through: { where: { recipeBoxId: boxId } } }],
-            order: [
-                ["name", "ASC"]
-            ]
-        });
+        const recipes = box.Recipes;
         res.render("box", { box, recipes, boxId, userId})
     }
 }))
@@ -82,29 +85,98 @@ router.post("/new", boxValidator, asyncHandler(async (req, res) => {
 
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const boxId = parseInt(req.params.id, 10);
-    const box = await RecipeBox.findByPk(boxId);
+    const box = await RecipeBox.findByPk(boxId, {
+        include: { model: Recipe }
+    });
     const userId = req.session.auth.userId;
     checkPermissions(box, userId);
     if (box) {
-        const recipes = await Recipe.findAll({
-            where: {
-                recipeBoxId: boxId
-            },
-            include: [{ model: Recipe, through: {where: {recipeBoxId: boxId}}}],
-            order: [
-                ["name", "ASC"]
-            ]
-        })
+        const recipes = box.Recipes;
         res.render("boxes-edit", { box, recipes, boxId})
     } else {
         next(boxNotFoundError(boxId));
     }
 }))
 
-router.post("/delete", asyncHandler(async (req, res, next) => {
+router.get("/:id/add", asyncHandler(async (req, res) => {
+    const boxId = parseInt(req.params.id, 10);
+    const userId = req.session.auth.userId
+    const box = await RecipeBox.findByPk(boxId);
+    checkPermissions(box, userId);
+    const recipes = await Recipe.findAll({
+        order: [
+            ["name", "DESC"]
+        ]
+    });
+    res.render('box-add-recipe', { recipes, boxId });
+}))
+
+router.get("/:id/add/:recipeId", asyncHandler(async (req, res) => {
+    const boxId = parseInt(req.params.id, 10);
+    const recipeId = parseInt(req.params.recipeId, 10);
+    const userId = req.session.auth.userId
+    const box = await RecipeBox.findByPk(boxId);
+    const recipe = await Recipe.findByPk(recipeId);
+    checkPermissions(box, userId);
+    res.render('box-add-recipe-confirm', { boxId, recipeId, box, recipe });
+}))
+
+router.post("/:id/add/:recipeId", asyncHandler(async (req, res) => {
+    const boxId = parseInt(req.params.id, 10);
+    const recipeId = parseInt(req.params.recipeId, 10);
+    const userId = req.session.auth.userId
+    const box = await RecipeBox.findByPk(boxId);
+    checkPermissions(box, userId);
+    const join = await RecipeBoxJoinTable.create({
+        recipeId,
+        recipeBoxId: boxId
+    })
+    res.redirect(`/boxes/${boxId}/edit`);
+}))
+
+router.get("/:id/remove/:recipeId", asyncHandler(async (req, res, next) => {
+    const boxId = parseInt(req.params.id, 10);
+    const recipeId = parseInt(req.params.recipeId, 10);
+    const userId = req.session.auth.userId
+    const box = await RecipeBox.findByPk(boxId);
+    const recipe = await Recipe.findByPk(recipeId);
+    checkPermissions(box, userId);
+    res.render('box-remove-recipe-confirm', { boxId, recipeId, box, recipe });
+}))
+
+router.post("/:id/remove/:recipeId", asyncHandler(async (req, res, next) => {
+    const boxId = parseInt(req.params.id, 10);
+    const recipeId = parseInt(req.params.recipeId, 10);
+    const userId = req.session.auth.userId;
+    const box = await RecipeBox.findByPk(boxId, {
+        include: { model: Recipe }
+    });
+    checkPermissions(box, userId);
+    const recipe = await Recipe.findByPk(recipeId);
+    const join = await RecipeBoxJoinTable.findOne({
+        where: {
+            recipeBoxId: boxId,
+            recipeId: recipeId
+        }
+    })
+    await join.destroy();
+    res.redirect(`/boxes/${boxId}/edit`);
+}))
+
+router.get("/:id/delete", asyncHandler(async (req, res) => {
+    const boxId = parseInt(req.params.id, 10);
+    const userId = req.session.auth.userId;
+    const box = await RecipeBox.findByPk(boxId);
+    checkPermissions(box, userId);
+    res.render('box-delete-confirm', { boxId, box });
+}))
+
+router.post("/:id/delete", asyncHandler(async (req, res, next) => {
     const boxId = parseInt(req.body.boxId, 10);
+    const userId = req.session.auth.userId;
     const box = await RecipeBox.findByPk(boxId);
     if (box) {
+        checkPermissions(box, userId);
         const joins = await RecipeBoxJoinTable.findAll({
             where: {
                 recipeBoxId: boxId
