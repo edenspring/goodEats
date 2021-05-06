@@ -46,6 +46,7 @@ router.delete("/:id/delete", asyncHandler(async(req, res)=>{
   const {reviewId} = req.body;
   console.log('reviewId = ', reviewId)
   const review = await Review.findByPk(reviewId);
+  // checkPermissions(review, userId)
   await review.destroy();
 }))
 
