@@ -1,10 +1,12 @@
-extends layout.pug 
+extends layout.pug
 
 block content
-    div(class="banner") 
+    div(class="banner")
         img(class="banner" type="image" src="assets/banner.jpg")
+        div(class="welcome")
+          h2(class="welcome")= `Welcome, ${locals.user.username}!`
         div(class="banner-text") Create and Share Your Favorite Recipes!
-    div(class="recent-recipes") 
+    div(class="recent-recipes")
         each recipe in recipes
             div(class="recent-recipe-container")
                 a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
