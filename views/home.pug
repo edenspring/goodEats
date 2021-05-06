@@ -11,5 +11,5 @@ block content
         each recipe in recipes
             div(class="recent-recipe-container")
                 a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
-                img(class="recent-recipe-image" type="image" src="assets/scrambled-eggs.jpg")
+                img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
     div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
