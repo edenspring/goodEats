@@ -3,8 +3,9 @@ extends layout.pug
 block content
     div(class="banner")
         img(class="banner" type="image" src="assets/banner.jpg")
-        div(class="welcome")
-          h2(class="welcome")= `Welcome, ${locals.user.username}!`
+        if locals.authenticated
+            div(class="welcome")
+                h2(class="welcome")= `Welcome, ${locals.user.username}!`
         div(class="banner-text") Create and Share Your Favorite Recipes!
     div(class="recent-recipes")
         each recipe in recipes
