@@ -1,8 +1,12 @@
 extends layout.pug 
 
 block content
-    div(class="banner") banner
-    div(class="recent-recipes")
-        div(class="recent-recipes__item-1") image 1
-        div(class="recent-recipes__item-2") image 2
-        div(class="recent-recipes__item-3") image 3
+    div(class="banner") 
+        img(class="banner" type="image" src="assets/banner.jpg")
+        div(class="centered") Create and Share Your Favorite Recipes!
+    div(class="recent-recipes") Most Recent Recipes
+        each recipe in recipes
+            ul(class="recipe-ul") 
+                li 
+                    a(href=`/recipes/${recipe.id}`)=recipe.name
+    div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
