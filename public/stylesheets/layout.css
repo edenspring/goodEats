@@ -27,6 +27,10 @@
     width: 5rem;
 }
 
+.recipe-ul {
+    display: grid;
+    text-align: center;
+}
 
 
 .recent-recipes {
@@ -94,10 +98,26 @@ a.register:hover {
 .banner {
     display: flex;
     justify-content: center;
-    box-shadow: 0px 3px 5px grey;
-    border-radius: 5px;
+    /* box-shadow: 0px 3px 5px grey; */
+    /* border-radius: 5px; */
     margin: 10px;
     padding: 3px;
+    max-width:100%;
+    max-height: 100%;
+    opacity: 0.85;
+    /* position: relative; */
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 300%;
+    font-style: italic;
+    text-align: right;
+    text-shadow: 0px 3px 3px black;
 }
 
 .recent-recipes {
@@ -113,31 +133,6 @@ a.register:hover {
     margin: 10px;
     padding: 3px;
     color: white;
-}
-
-
-
-.button {
-     display:inline-block;
-     padding:0.35em 1.2em;
-     border:0.1em solid white;
-     margin:0 0.3em 0.3em 0;
-     border-radius:0.12em;
-     box-sizing: border-box;
-     text-decoration:none;
-     color: white;
-     text-align:center;
-     transition: all 0.2s;
-}
-.button:hover{
-    color: white;
-    background-color: black;
-}
-@media all and (max-width:30em){
- .button {
-  display:block;
-  margin:0.4em auto;
- }
 }
 
 

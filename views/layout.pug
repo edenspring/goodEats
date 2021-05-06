@@ -9,10 +9,6 @@ html
     nav(class="navbar")
       a(class="logo" href="/")
         img(class="logo" type="image" src="/images/logo.svg" alt="logo")
-      //- div
-      //-   a(class="recent-recipes" href="/recipes") Most Recent Recipes
-      //- div
-      //-   a(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
       if locals.authenticated
         div(class="welcome")
           h2(class="welcome")= `Welcome, ${locals.user.username}!`
