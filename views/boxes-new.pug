@@ -4,9 +4,9 @@ include utils.pug
 
 block content
   +validationErrorSummary(errors)
-  p Enter a name for your box and click Get Started!
-  form(action='/boxes/new' method='post')
+  p(class='new-box-form') Enter a name for your box and click Get Started!
+  form(class='new-box-form' action='/boxes/new' method='post')
     +field('Box Name: ', 'name', box.name)
     div
       button(type='submit' class='btn') Get Started
-  a(href='/' class='btn') Cancel
+    a(href='/' class='cancel-btn') Cancel
