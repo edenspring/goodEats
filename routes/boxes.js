@@ -24,7 +24,7 @@ const boxValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render('boxes', { boxes });
@@ -51,11 +51,9 @@ router.get("/new", asyncHandler(async (req, res) => {
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    let userId;
+    let userId = 0;
     if (req.session.auth) {
         userId = req.session.auth.userId;
-    } else {
-        userId = 0;
     }
     const boxId = parseInt(req.params.id, 10);
     const box = await RecipeBox.findByPk(boxId, {

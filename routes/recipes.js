@@ -24,7 +24,7 @@ const recipeValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ],
     });
     res.render('recipes', { recipes });
@@ -51,7 +51,10 @@ router.get("/new", asyncHandler(async (req, res) => {
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {
-    const userId = req.session.auth.userId;
+    let userId = 0;
+    if (req.session.auth) {
+        userId = req.session.auth.userId;
+    };
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId);
     if (recipe) {
