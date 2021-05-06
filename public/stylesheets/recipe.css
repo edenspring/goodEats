@@ -1,0 +1,70 @@
+.recipes__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  grid-template-rows: 10% 30% 30% 10% 20%;
+  gap: 0.5em 0.5em;
+  grid-template-areas:
+    "title pics"
+    "ingredients pics"
+    "instructions pics"
+    "writereview writereview"
+    "showreviews showreviews";
+}
+
+.recipe__title {
+  grid-area: title;
+}
+
+.recipe__ingredients {
+  grid-area: ingredients;
+}
+
+.recipe__instructions {
+  grid-area: instructions;
+}
+
+.recipe__ingredients,
+.recipe__instructions {
+  display: block;
+  justify-self: left;
+  justify-items: left;
+  text-align: left;
+}
+
+.recipe__writereview {
+  grid-area: writereview;
+}
+
+.recipe__reviews {
+  grid-area: showreviews;
+}
+
+.recipe__pictures {
+  grid-area: pics;
+  display: table;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  max-width: 50%;
+}
+
+.recipe__picture {
+  max-width: 20vw;
+}
+/* reviews */
+
+/* .reviews__container-hidden {
+  display: none;
+}
+
+.reviews__container-visible {
+  display: block;
+}
+
+
+.recipes__pictures_container {
+
+}
+
+.recipes__pictures_container div {
+  max-width: 25%
+} */
