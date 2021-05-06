@@ -24,7 +24,7 @@ const boxValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render('boxes', { boxes });

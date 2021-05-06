@@ -24,7 +24,7 @@ const recipeValidator = [
 router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ],
     });
     res.render('recipes', { recipes });
