@@ -48,7 +48,7 @@ router.post('/', instructionValidator, asyncHandler(async (req, res) => {
             next(recipeNotFoundError(recipeId));
         }
     }
-  }))
+  }));
 
 router.get("/:id", asyncHandler(async (req, res) => {
     const recipeId = parseInt(req.body.recipeId, 10);

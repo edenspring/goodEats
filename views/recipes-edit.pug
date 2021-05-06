@@ -44,6 +44,8 @@ block content
     input(type='hidden' name='recipeId' value=recipeId)
     button(type='submit' class='delete-instruction-btn btn') Delete Instruction
   div
+    button(type='submit' class='btn' href=`/instructions/${instructionId}/delete`) Delete Instruction
+  div
     p=''
   div
     form(action=`/recipes/${recipeId}/delete` method='GET')
