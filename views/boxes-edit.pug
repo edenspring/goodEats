@@ -12,9 +12,9 @@ block content
           a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
           a(href=`/boxes/${boxId}/remove/${recipe.id}`) Remove
   div
-    a(href=`/boxes/${boxId}/add`) Add a Recipe
+    a(class='add-a-recipe-btn' href=`/boxes/${boxId}/add`) Add a Recipe
   div
-    a(href='/boxes/#{boxId}' class='btn') Cancel
+    a(href='/boxes/#{boxId}' class='cancel-btn') Cancel
   div
     p=''
   div

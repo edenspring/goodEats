@@ -3,6 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
-  each recipe in recipes
-    div
-      a(href=`/recipes/${recipe.id}`)=recipe.name
+  div(class="my-recipes-container")
+    each recipe in recipes
+      div(class="my-recipe")
+        a(class="my-recipe-title" href=`/recipes/${recipe.id}`)=recipe.name
