@@ -47,8 +47,8 @@ block content
     if recipe.Pictures
       div.recipe__pictures
         each picture in recipe.Pictures
-          div
-            img.recipe__picture(src='../'+picture.src alt=picture.alt type="image")
+          .picture__container
+            img.recipe__picture(src='../'+picture.src alt=picture.alt type="image" width="300" height="400")
     .recipe__reviews
       if reviews.length
         each review in reviews

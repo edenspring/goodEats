@@ -1,7 +1,8 @@
 .recipes__grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  grid-template-rows: 10% 30% 30% 10% 20%;
+  /* grid-template-rows: 10% 30% 30% 10% 20%; */
+  grid-template-rows: .5fr 1.5fr 1.5fr .5fr 1fr;
   gap: 0.5em 0.5em;
   grid-template-areas:
     "title pics"
@@ -13,6 +14,7 @@
 
 .recipe__title {
   grid-area: title;
+  text-align: center;
 }
 
 .recipe__ingredients {
@@ -41,18 +43,39 @@
 
 .recipe__pictures {
   grid-area: pics;
-  display: table;
-  flex-flow: row wrap;
+  display:flex;
+  box-sizing: border-box;
   justify-content: space-around;
-  max-width: 50%;
+  width: auto;
+  border: 1px solid #777;
+  border-radius: 4px;
+  float: left;
+}
+
+.picture__container {
+  border: 1px solid #777;
+  border-radius: 4px;
+  max-width: 20vw;
 }
 
 .recipe__picture {
-  max-width: 20vw;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe__picture:hover{
+  position:relative;
+  top:-25px;
+  left:-35px;
+  width:50vw;
+  height:100%;
+  display:block;
+  z-index:1;
 }
 /* reviews */
 
-/* .reviews__container-hidden {
+.reviews__container-hidden {
   display: none;
 }
 
@@ -61,10 +84,3 @@
 }
 
 
-.recipes__pictures_container {
-
-}
-
-.recipes__pictures_container div {
-  max-width: 25%
-} */
