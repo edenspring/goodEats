@@ -10,27 +10,22 @@ html
       a(class="logo" href="/")
         img(class="logo" type="image" src="/images/logo.svg" alt="logo")
       if locals.authenticated
-        div
-          h2= `Welcome, ${locals.user.username}`
-      div
-        a(class="create-recipe" href="/recipes/new") Create a Recipe
-      div
-        a(class="recent-recipes" href="/recipes") Recipes
-      div
-        a(class="create-box" href="/boxes/new") Create a Recipe Box
-      div
-        a(class="recent-boxes" href="/boxes") Recipe Boxes
-      if locals.authenticated
-        div
-          a(class="my-recipes" href="/recipes/my") My Recipes
-        div
+        div(class="welcome")
+          h2(class="welcome")= `Welcome, ${locals.user.username}!`
+        div(class="my-boxes")
           a(class="my-boxes" href="/boxes/my") My Recipe Boxes
-        div
+        div(class="my-recipes")
+          a(class="my-recipes" href="/recipes/my") My Recipes
+        div(class="create-box")
+          a(class="create-box" href="/boxes/new") Create a Recipe Box
+        div(class="create-recipe")
+          a(class="create-recipe" href="/recipes/new") Create a Recipe
+        div(class="logout")
           a(class="logout" href="/users/logout") Log Out
       else
-        div
+        div(class="login")
           a(class="login" href="/users/login") Log In
-        div
+        div(class="register")
           a(class="register" href="/users/register") Register
     div
     block content
