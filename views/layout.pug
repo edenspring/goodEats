@@ -22,11 +22,16 @@ html
           a(class="create-recipe" href="/recipes/new") Create a Recipe
         div(class="logout")
           a(class="logout" href="/users/logout") Log Out
+        div(class="about")
+          a(class="about" href="/about") About
+        
       else
         div(class="login")
           a(class="login" href="/users/login") Log In
         div(class="register")
           a(class="register" href="/users/register") Register
+        div(class="about")
+          a(class="about" href="/about") About
     div
     block content
     main
