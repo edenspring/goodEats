@@ -44,8 +44,11 @@ router.post(
 
 router.delete("/:id/delete", asyncHandler(async(req, res)=>{
   const {reviewId} = req.body;
-  console.log('reviewId = ', reviewId)
   const review = await Review.findByPk(reviewId);
+  const currentUserId = res.locals.user.id;
+  // console.log('user id = ',res.locals.user.id)
+  // console.log('reviewId = ', reviewId)
+  checkPermissions(review, currentUserId);
   await review.destroy();
 }))
 

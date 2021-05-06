@@ -81,7 +81,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
                 ['createdAt', 'DESC']
             ]
         })
-        console.log(recipe.Pictures)
+        // console.log(recipe.Pictures)
         res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews });
     }
 }))
