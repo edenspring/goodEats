@@ -29,6 +29,13 @@ module.exports = {
       {name: 'Brown Sugar', measurements: '1.5 Tablespoons', recipeId: 3, createdAt: new Date(), updatedAt: new Date(), },
       {name: 'Kosher Salt', measurements: '1.5 Teaspoons', recipeId: 3, createdAt: new Date(), updatedAt: new Date(), },
       {name: 'Fresh Cracked Black Pepper', measurements: '2 teaspoons or to taste', recipeId: 3, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Kosher Salt', measurements: '1.5 Teaspoons', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Balsalmic Vinegar', measurements: 'A few glugs', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Vegetable Oil', measurements: 'A few tablespoons', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Large Zucchini or Summer(Yellow) Squash', measurements: '2', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Large Eggplant', measurements: '1', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+      {name: 'Large Onion', measurements: '2', recipeId: 4, createdAt: new Date(), updatedAt: new Date(), },
+
     ])
   },
 

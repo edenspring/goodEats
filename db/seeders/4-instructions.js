@@ -174,6 +174,50 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        specification: "Start by cutting your vegetables, for the eggplant cut 1/2\" rounds. Cut the zucchini/summer squash lengthwise and cut the onion into 1/2\" rings",
+        listOrder: 1,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "Create a brine using 1/4cup salt to 4-5 cups water and place the eggplant in to soak",
+        listOrder: 2,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "Coat the zucchini/squash and onion with vegetable oil and lightly salt, then drizzle some of the vinegar on top",
+        listOrder: 3,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "While the eggplant brines, get your grill heated to around medium maybe medium-high heat",
+        listOrder: 4,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "Once the grill is good and hot, remove the eggplant from the brine and pat dry with paper towels, then rub with oil, lightly salt and drizzle with vinegar",
+        listOrder: 5,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "Grill all veggies for a couple minutes on each side, taking care not to burn but ensuring a good cook throughout. The onion will take the longest to cook through but burn the quickest, try to find a cooler spot on the grill for it to cook on",
+        listOrder: 6,
+        recipeId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+
+
     ]);
   },
 
