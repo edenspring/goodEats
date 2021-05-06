@@ -3,10 +3,10 @@ extends layout.pug
 block content
     div(class="banner") 
         img(class="banner" type="image" src="assets/banner.jpg")
-        div(class="centered") Create and Share Your Favorite Recipes!
-    div(class="recent-recipes") Most Recent Recipes
+        div(class="banner-text") Create and Share Your Favorite Recipes!
+    div(class="recent-recipes") 
         each recipe in recipes
-            ul(class="recipe-ul") 
-                li 
-                    a(href=`/recipes/${recipe.id}`)=recipe.name
+            div(class="recent-recipe-container")
+                a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
+                img(class="recent-recipe-image" type="image" src="assets/scrambled-eggs.jpg")
     div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
