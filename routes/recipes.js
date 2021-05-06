@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Recipe, Review } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Review, Picture } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const Sequelize = require("sequelize");
+const Pictures = require('../db/seeders/8-Pictures');
 
 const recipeNotFoundError = function (recipeId) {
     const error = new Error(`The recipe with ID ${recipeId} was not found.`);
@@ -53,7 +54,11 @@ router.get("/new", asyncHandler(async (req, res) => {
 router.get("/:id", asyncHandler(async (req, res) => {
     const userId = req.session.auth.userId;
     const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findByPk(recipeId);
+    const recipe = await Recipe.findByPk(recipeId, {
+        include: {
+            model: Picture,
+        }
+    });
     if (recipe) {
         const ingredients = await Ingredient.findAll({
             where: {
@@ -76,6 +81,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
                 ['createdAt', 'DESC']
             ]
         })
+        console.log(recipe.Pictures)
         res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews });
     }
 }))
@@ -101,7 +107,11 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
 
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipeId = parseInt(req.params.id, 10);
-    const recipe = await Recipe.findByPk(recipeId);
+    const recipe = await Recipe.findByPk(recipeId, {
+        include: {
+            model: Picture,
+        }
+    });
     const userId = req.session.auth.userId;
     checkPermissions(recipe, userId)
     const ingredient = Ingredient.build();
@@ -122,7 +132,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
             ]
         });
         const listOrder = instructions.length + 1;
-        console.log(ingredients, instructions);
+        console.log('here', recipe.Pictures)
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));

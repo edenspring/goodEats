@@ -40,7 +40,11 @@ block content
         textarea(name='review' placeholder='Write your review here...')
       div
         button(type='submit') Submit Review
-
+  if recipe.Pictures
+    div.recipes__pictures_container
+      each picture in recipe.Pictures
+        div
+          img.recipes__pictures(src='../'+picture.src alt=picture.alt type="image")
   if reviews.length
     each review in reviews
       .review__container
