@@ -1,0 +1,134 @@
+body {
+  height: auto;
+}
+.recipes__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  /* grid-template-rows: 10% 30% 30% 10% 20%; */
+  grid-template-rows: .25fr 1.5fr 1.5fr .5fr;
+  gap: 0.5em 0.5em;
+  grid-template-areas:
+    "title title"
+    "ingredients pics"
+    "instructions pics"
+    "writereview showreviews";
+}
+
+.recipe__title {
+  grid-area: title;
+  text-align: center;
+}
+
+.recipe__ingredients {
+  grid-area: ingredients;
+}
+
+.recipe__instructions {
+  grid-area: instructions;
+}
+
+.recipe__ingredients,
+.recipe__instructions {
+  display: block;
+  justify-self: left;
+  justify-items: left;
+  text-align: left;
+}
+
+.recipe__writereview {
+  grid-area: writereview;
+}
+
+.recipe__reviews {
+  grid-area: showreviews;
+}
+
+.recipe__pictures {
+  position: relative;
+  grid-area: pics;
+  display:flex;
+  box-sizing: border-box;
+  /* justify-content: space-around; */
+  width: auto;
+  border: 1px solid #777;
+  border-radius: 4px;
+  float: left;
+  /* background-color: black; */
+  max-height: 800px;
+}
+
+.picture__container {
+  border: 1px solid #777;
+  border-radius: 4px;
+  width: 100%;
+  min-height: 800px;
+}
+
+.recipe__picture {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.picture__container:hover {
+  position: static;
+  z-index: 999;
+}
+
+.picture__container:hover > .recipe__picture{
+  pointer-events: none;
+  position:absolute;
+  top:-25px;
+  right: 15%;
+  width:auto;
+  height:950px;
+  display:block;
+  z-index:1;
+  box-shadow: 10px 5px 5px black;
+}
+/* reviews */
+
+.reviews__container-hidden {
+  display: none;
+}
+
+.reviews__container-visible {
+  display: block;
+}
+
+.recipe__reviews {
+  border: 2px solid black;
+  border-radius: 5px;
+  height: fit-content;
+  background-color: white;
+  padding: 4px;
+  box-shadow: 10px 5px 5px #A64D79;
+}
+
+.reviews {
+  padding: 2px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 3px;
+  margin: 4px;
+}
+
+.reviews__userName {
+font-size: small;
+color: #444444;
+}
+
+.reviews__body {
+font-size: larger;
+color: #444444;
+}
+
+.write__review textarea {
+  min-height: 95px;
+  min-width: 400px;
+}

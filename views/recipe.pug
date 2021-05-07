@@ -2,33 +2,65 @@ extends layout.pug
 
 include utils.pug
 
-
 block content
+  link(rel='stylesheet' href='/stylesheets/recipe.css')
   script(src="/javascripts/recipe.js")
-  +validationErrorSummary(errors)
-  h1=recipe.name
-    form(action=`/recipes/${recipe.id}/edit` method='get')
-      input(type='hidden', name='recipeId' value=recipeId)
-      if userId === recipe.userId
-        button(type='submit') Edit this recipe
-  h2 Ingredients
-  if ingredients && ingredients.length
-    each item in ingredients
-      div
-        span= item.measurements
-        span= " "
-        span= item.name
-  else
-    if userId === recipe.userId
-      a(href=`/recipes/${recipe.id}/edit`) No ingredients yet, get started here!
-  h2 Instructions
-  if instructions && instructions.length
-    ol
-      each thing in instructions
-        li= thing.specification
-  else
-    if userId === recipe.userId
-      a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
+  .recipes__grid
+    +validationErrorSummary(errors)
+    .recipe__title.recipes
+      h1=recipe.name
+        form(action=`/recipes/${recipe.id}/edit` method='get')
+          input(type='hidden', name='recipeId' value=recipeId)
+          if userId === recipe.userId
+            button(type='submit') Edit this recipe
+    .recipe__ingredients.recipes
+      h2 Ingredients
+      if ingredients && ingredients.length
+        each item in ingredients
+          div
+            span= item.measurements
+            span= " "
+            span= item.name
+      else
+        if userId === recipe.userId
+          a(href=`/recipes/${recipe.id}/edit`) No ingredients yet, get started here!
+    .recipe__instructions.recipes
+      h2 Instructions
+      if instructions && instructions.length
+        ol
+          each thing in instructions
+            li.instructions__instruction= thing.specification
+      else
+        if userId === recipe.userId
+          a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
+
+    .recipe__writereview
+      button.reviews__button Write a review
+      #reviews__container.reviews__container-hidden
+        form.reviews__form(method='post' action='/reviews')
+          input(type='hidden' name='userId' value=userId)
+          input(type='hidden' name='recipeId' value=recipeId)
+          div.write__review
+            textarea(name='review' placeholder='Write your review here...')
+          div
+            button(type='submit') Submit Review
+    if recipe.Pictures
+      div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
+        each picture in recipe.Pictures
+          .picture__container
+            img.recipe__picture(src='../'+picture.src alt=picture.alt type="image" width="300" height="400" )
+    .recipe__reviews
+      if reviews.length
+        each review in reviews
+          .review__container
+            .reviews
+              +review(review.username, review.userid, review.review)
+              if review.userId === userId
+                form(action='/reviews/delete' method='post')
+                  input(type='hidden' name='reviewId' value=review.id)
+                  button.reviews__delete(type='submit') Delete this review
+      else
+        p No reviews yet! Click the button above to write one
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
   form(action=`/recipes/${recipeId}/likes` method='post')

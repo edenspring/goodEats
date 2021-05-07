@@ -367,29 +367,6 @@ footer {
     margin: 0px;
 }
 
-/* reviews */
-
-.reviews__container-hidden {
-    display: none;
-}
-
-.reviews__container-visible {
-    display: block;
-}
-
-.recipes__pictures {
-    max-height: 35vh;
-    max-width: 35vw;
-}
-
-.recipes__pictures_container {
-    display: flex;
-    justify-content: space-evenly
-}
-
-.recipes__pictures_container div {
-    max-width: 25%
-}
 
 /* buttons */
 
