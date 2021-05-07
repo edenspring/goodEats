@@ -9,19 +9,28 @@ const Pictures = require('../db/seeders/8-Pictures');
 
 router.post('/', asyncHandler(async(req, res)=>{
   const {userId, recipeId, cookStatus} = req.body;
+  console.log('user :', userId)
+  console.log('recipe :', recipeId)
+  console.log('status :', cookStatus)
   const workingStatus = await CookStatus.findOne({
-    where: [
-      userId, recipeId
-    ]
+    where: {
+      userId: userId,
+      recipeId: recipeId
+    }
   })
+  console.log(workingStatus)
   if (workingStatus){
     workingStatus.status = cookStatus;
     await workingStatus.save();
+    res.sendStatus(200).end;
   } else {
-    const newStatus = await CookStatus.create({
+      const newStatus = CookStatus.build({
       userId,
-      recipeId
+      recipeId,
+      status: cookStatus
     })
+    await newStatus.save();
+    res.sendStatus(200).end();
   }
 }))
 
