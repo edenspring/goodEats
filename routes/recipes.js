@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Recipe, Review, Picture } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Review, Picture, Like } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const Sequelize = require("sequelize");
 const Pictures = require('../db/seeders/8-Pictures');
@@ -62,7 +62,8 @@ router.get("/:id", asyncHandler(async (req, res) => {
             {model: Picture},
             {model: Instruction},
             {model: Ingredient},
-            {model: Review}
+            {model: Review},
+            {model: Like}
         ]
     });
     if (recipe) {
@@ -89,10 +90,14 @@ router.get("/:id", asyncHandler(async (req, res) => {
         // })
         // console.log(recipe.Pictures)
         const ingredients = recipe.Ingredients;
-        console.log(recipe)
+        // console.log(recipe)
         const instructions = recipe.Instructions;
         const reviews = recipe.Reviews;
-        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews });
+        const likes = recipe.Likes;
+
+        let counter = likes.length;
+
+        res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews, likes, counter });
     }
 }))
 
@@ -118,11 +123,9 @@ router.post("/new", recipeValidator, asyncHandler(async (req, res) => {
 router.get("/:id/edit", asyncHandler(async (req, res, next) => {
     const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId, {
-        include: {
-            model: Picture,
-            model: Ingredient,
-            model: Instruction,
-        }
+        include: [
+            Picture, Ingredient, Instruction
+        ]
     });
     const userId = req.session.auth.userId;
     checkPermissions(recipe, userId)
@@ -146,7 +149,7 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
         const ingredients = recipe.Ingredients;
         const instructions = recipe.Instructions;
         const listOrder = instructions.length + 1;
-        console.log('here', ingredients)
+        // console.log('here', recipe)
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));
@@ -191,5 +194,14 @@ router.post("/:id/delete", asyncHandler(async (req, res, next) => {
         next(recipeNotFoundError(recipeId));
     }
 }))
+
+router.post("/:id/likes", asyncHandler(async (req, res) => {
+    const { recipeId, userId, like } = req.body;
+
+    const newLike = Like.build({ recipeId, userId });
+    await newLike.save();
+    
+    res.redirect(`/recipes/${recipeId}`);
+}));
 
 module.exports = router;
