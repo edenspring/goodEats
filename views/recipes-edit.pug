@@ -42,8 +42,9 @@ block content
   form(action=`/instructions/${recipeId}/delete` method='post')
     input(type='hidden' name='listOrder' value=instructions.length)
     input(type='hidden' name='recipeId' value=recipeId)
-    button(type='submit' class='delete-instruction-btn btn') Delete Instruction
-  div
+    if instructions.length
+      button(type='submit' class='delete-instruction-btn btn') Delete Instruction
+  form(action='/recipes/my')
     button(type='submit' class='done btn') Done With Recipe
   div
     form(action=`/recipes/${recipeId}/delete` method='GET')
