@@ -5,6 +5,7 @@ const instructionsRouter = require('./instructions');
 const recipesRouter = require('./recipes');
 const boxesRouter = require('./boxes');
 const reviewsRouter = require('./reviews');
+const statusRouter = require('./cookstatuses')
 
 module.exports = {
     indexRouter,

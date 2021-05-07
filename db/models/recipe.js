@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     Recipe.hasMany(models.Review, { foreignKey: "recipeId" });
     Recipe.hasMany(models.Like, { foreignKey: "recipeId" });
     Recipe.hasMany(models.Picture, { foreignKey: "recipeId" })
+    Recipe.hasMany(models.CookStatus, { foreignKey: "recipeId" })
     Recipe.belongsToMany(models.RecipeBox, {
       through: "RecipeBoxJoinTable",
       otherKey: "recipeBoxId",
