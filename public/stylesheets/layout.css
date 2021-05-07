@@ -409,7 +409,7 @@ img.banner {
 .my-recipe {
     display: flex;
     flex-direction: column;
-    /* padding: 1rem; */
+    padding: 1rem;
     justify-content: space-between;
     background-color: #ffbe54;
     border-radius: 2em;
@@ -418,7 +418,7 @@ img.banner {
 }
 
 .my-recipe a {
-    padding: 1rem;
+    padding: 0px;
 }
 
 .my-recipe:hover {

@@ -9,3 +9,18 @@ block content
     each recipe in recipes
       div(class="my-recipe")
         a(class="my-recipe-title" href=`/recipes/${recipe.id}`)=recipe.name
+        a(class="recent-recipe-image-link" href=`/recipes/${recipe.id}`)
+          if recipe.Pictures[0]
+            img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
+          else
+            img(class="placeholder-image" type="image" src="/images/logo2.png")
+
+
+        //- each recipe in recipes
+        //-     div(class="recent-recipe-container")
+        //-         a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
+        //-         a(class="recent-recipe-image-link" href=`/recipes/${recipe.id}`)
+        //-             if recipe.Pictures[0]
+        //-                 img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
+        //-             else
+        //-                 img(class="placeholder-image" type="image" src="/images/logo2.png")

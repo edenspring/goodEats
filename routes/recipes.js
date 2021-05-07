@@ -24,6 +24,9 @@ const recipeValidator = [
 
 router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
+        include: {
+            model: Picture
+        },
         order: [
             ['updatedAt', "DESC"]
         ],
@@ -33,6 +36,9 @@ router.get("/", asyncHandler(async (req, res) => {
 
 router.get("/my", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
+        include: {
+            model: Picture
+        },
         where: {
             userId: req.session.auth.userId
         },
