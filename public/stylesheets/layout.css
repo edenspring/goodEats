@@ -95,6 +95,7 @@ body {
 .logo {
     height: 5rem;
     width: 5rem;
+    margin: auto;
 }
 
 .recipe-ul {
@@ -102,6 +103,10 @@ body {
     text-align: center;
 }
 
+.recent-recipes-link {
+    display: flex;
+    justify-content: center;
+}
 
 .recent-recipes {
     text-decoration: none;
@@ -289,6 +294,15 @@ img.banner {
     height: 100%;
 }
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #d8c3a3;
+    margin: 1em 0;
+    padding: 0;
+}
+
 /* overlay */
 
 .overlay {
@@ -300,7 +314,7 @@ img.banner {
     height:100%;
     display:table;
     background:rgba(0,0,0,0.8);
-    animation: splash 3s forwards;
+    animation: splash 2s forwards;
 }
 .overlay-inner {
     display:table-cell;
@@ -338,7 +352,7 @@ img.banner {
     font-size:200%;
     z-index:3;
     cursor:pointer;
-    animation:fadein 3s forwards;
+    animation:fadein 2s forwards;
     font-family: 'Roboto',Arial;
 }
 #hide {
@@ -349,7 +363,7 @@ img.banner {
 .overlay2{
     position:absolute;
     opacity:1;
-    transition:all 3s ;
+    transition:all 2s ;
 }
 
 #hide:checked ~ div,
@@ -380,7 +394,7 @@ img.banner {
 .my-recipe-box {
     display: flex;
     flex-direction: column;
-    /* padding: 1rem; */
+    padding: 1rem;
     justify-content: space-between;
     background-color: #ffbe54;
     border-radius: 2em;
@@ -388,7 +402,7 @@ img.banner {
     transition: all 0.2s;
 }
 .my-recipe-box a {
-    padding: 1rem;
+    padding: 0px;
 }
 
 .my-recipe-box:hover {
@@ -398,7 +412,7 @@ img.banner {
 .my-recipe-box-title {
     margin: 0px;
     text-decoration: none;
-    color: white;
+    color: papayawhip;
     text-align: center;
 }
 
@@ -419,7 +433,7 @@ img.banner {
 .my-recipe {
     display: flex;
     flex-direction: column;
-    /* padding: 1rem; */
+    padding: 1rem;
     justify-content: space-between;
     background-color: #ffbe54;
     border-radius: 2em;
@@ -428,7 +442,7 @@ img.banner {
 }
 
 .my-recipe a {
-    padding: 1rem;
+    padding: 0px;
 }
 
 .my-recipe:hover {
@@ -438,7 +452,7 @@ img.banner {
 .my-recipe-title {
     margin: 0px;
     text-decoration: none;
-    color: white;
+    color: papayawhip;
     text-align: center;
 }
 

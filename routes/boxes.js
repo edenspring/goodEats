@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { RecipeBox, Recipe, RecipeBoxJoinTable } = require('../db/models');
+const { RecipeBox, Recipe, RecipeBoxJoinTable, Picture } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const Sequelize = require("sequelize");
 
@@ -23,6 +23,12 @@ const boxValidator = [
 
 router.get("/", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
+        include: {
+            model: Recipe,
+            include: {
+                model: Picture
+            }
+        },
         order: [
             ['updatedAt', "DESC"]
         ]
@@ -32,11 +38,17 @@ router.get("/", asyncHandler(async (req, res) => {
 
 router.get("/my", asyncHandler(async (req, res) => {
     const boxes = await RecipeBox.findAll({
+        include: {
+            model: Recipe,
+            include: {
+                model: Picture
+            }
+        },
         where: {
             userId: req.session.auth.userId
         },
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render("boxes", { boxes });

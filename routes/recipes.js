@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Ingredient, Instruction, Recipe, Review, Picture, Like } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Review, Picture, Like, RecipeBoxJoinTable } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
-const Sequelize = require("sequelize");
 const Pictures = require('../db/seeders/8-Pictures');
 
 const recipeNotFoundError = function (recipeId) {
@@ -24,6 +23,9 @@ const recipeValidator = [
 
 router.get("/", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
+        include: {
+            model: Picture
+        },
         order: [
             ['updatedAt', "DESC"]
         ],
@@ -33,11 +35,14 @@ router.get("/", asyncHandler(async (req, res) => {
 
 router.get("/my", asyncHandler(async (req, res) => {
     const recipes = await Recipe.findAll({
+        include: {
+            model: Picture
+        },
         where: {
             userId: req.session.auth.userId
         },
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render('recipes', { recipes });
@@ -179,12 +184,44 @@ router.post("/:id/delete", asyncHandler(async (req, res, next) => {
                 ['listOrder', 'ASC']
             ]
         });
+        const reviews = await Review.findAll({
+            where: {
+                recipeId: recipeId
+            }
+        });
+        const likes = await Like.findAll({
+            where: {
+                recipeId: recipeId
+            }
+        });
+        const boxJoins = await RecipeBoxJoinTable.findAll({
+            where: {
+                recipeId: recipeId
+            }
+        });
+        const pictures = await Picture.findAll({
+            where: {
+                recipeId: recipeId
+            }
+        });
         instructions.forEach(async (instruction) => {
             await instruction.destroy();
-        })
+        });
         ingredients.forEach(async (ingredient) => {
             await ingredient.destroy();
-        })
+        });
+        reviews.forEach(async (review) => {
+            await review.destroy();
+        });
+        likes.forEach(async (like) => {
+            await like.destroy();
+        });
+        boxJoins.forEach(async (join) => {
+            await join.destroy();
+        });
+        pictures.forEach(async (picture) => {
+            await picture.destroy();
+        });
         await recipe.destroy();
         res.redirect("/");
     } else {
