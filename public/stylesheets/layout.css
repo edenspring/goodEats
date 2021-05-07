@@ -240,7 +240,8 @@ img.banner {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.recent-recipe-container {
+.recent-recipe-container,
+.recent-recipebox-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

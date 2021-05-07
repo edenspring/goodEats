@@ -17,6 +17,9 @@ block content
                     else
                         img(class="placeholder-image" type="image" src="/images/logo2.png")
     div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
+        each box in boxes
+            div(class="recent-recipe-container")
+                a(class="recent-recipe-description" href=`/boxes/${box.id}`)=box.name
     if !locals.authenticated
         div(class="overlay-wrap")
             input(type="checkbox" name="hide" id="hide")
