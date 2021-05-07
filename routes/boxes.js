@@ -6,6 +6,7 @@ const { RecipeBox, Recipe, RecipeBoxJoinTable, Picture } = require('../db/models
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
 const Sequelize = require("sequelize");
 
+//function to create error if recipebox is not found
 const boxNotFoundError = function (boxId) {
     const error = new Error(`The box with ID ${boxId} was not found.`);
     error.title = "Recipe box not found.";
@@ -13,6 +14,7 @@ const boxNotFoundError = function (boxId) {
     return error;
 }
 
+//list of constraints for recipe box
 const boxValidator = [
     check("name")
         .exists({ checkFalsy: true })
@@ -22,6 +24,7 @@ const boxValidator = [
 ];
 
 router.get("/", asyncHandler(async (req, res) => {
+    //find all recipe boxes
     const boxes = await RecipeBox.findAll({
         include: {
             model: Recipe,
@@ -33,10 +36,12 @@ router.get("/", asyncHandler(async (req, res) => {
             ['updatedAt', "DESC"]
         ]
     });
+    //render boxes view with all recipe boxes
     res.render('boxes', { boxes });
 }))
 
 router.get("/my", asyncHandler(async (req, res) => {
+    //find all recipe boxes created by current authenticated user
     const boxes = await RecipeBox.findAll({
         include: {
             model: Recipe,
