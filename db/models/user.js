@@ -18,11 +18,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // associations can be defined here
-    User.hasMany(models.Recipe, {foreignKey: 'userId'});
-    User.hasMany(models.RecipeBox, {foreignKey: 'userId'});
-    User.hasMany(models.Review, {foreignKey: 'userId'});
-    User.hasMany(models.Like, {foreignKey: 'userId'});
-
+    User.hasMany(models.Recipe, { foreignKey: 'userId' });
+    User.hasMany(models.RecipeBox, { foreignKey: 'userId' });
+    User.hasMany(models.Review, { foreignKey: 'userId' });
+    User.hasMany(models.Like, { foreignKey: 'userId' });
+    User.hasMany(models.CookStatus, { foreignKey: 'userId' })
   };
   return User;
 };

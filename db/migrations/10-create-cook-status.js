@@ -1,19 +1,24 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Pictures', {
+    return queryInterface.createTable('CookStatuses', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      src: {
+      status: {
         allowNull: false,
-        type: Sequelize.STRING(510)
+        type: Sequelize.STRING(40),
       },
-      alt: {
-        type: Sequelize.STRING(100)
+      userId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users",
+          key: "id"
+        }
       },
       recipeId: {
         allowNull: false,
@@ -34,6 +39,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Pictures');
+    return queryInterface.dropTable('CookStatuses');
   }
 };
