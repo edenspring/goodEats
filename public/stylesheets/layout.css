@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,800;1,900&display=swap');
 
 * {
     font-family: 'Roboto', sans-serif;
@@ -112,6 +113,12 @@ body {
     text-align: center;
 }
 
+.my-recipe-box,
+.my-recipe {
+    margin: 1em;
+    padding: .5em;
+}
+
 .recent-boxes {
     text-decoration: none;
     text-align: center;
@@ -121,7 +128,9 @@ body {
 .create-box,
 .my-recipes,
 .my-boxes,
+.my-box-page,
 .recipes,
+.my-recipe-page,
 .boxes,
 .about
 {
@@ -407,6 +416,11 @@ hr {
     text-align: center;
 }
 
+.box-title,
+.recipe-title {
+    font-family: 'Playfair Display', serif;
+}
+
 /* my recipes */
 
 .my-recipes-container {
@@ -485,19 +499,22 @@ footer {
 }
 
 .about-img {
-    border-radius: .75em;
+    border-radius: 10em;
     height: 100px;
     width: 100%;
+    padding: 1em;
 }
 
 .about-content {
     display: flex;
     justify-content: center;
     height: 365px;
-    border: 2px solid rgb(97, 43, 69);
-    border-radius: 2em;
+    /* border: 2px solid rgb(97, 43, 69); */
+    /* border-radius: 0.5em; */
     padding: 8px;
     margin: 3px;
+    border-top: 5px solid rgb(245,222,179);
+    /* border-bottom: 5px solid rgb(97, 43, 69); */
 }
 
 
@@ -508,7 +525,8 @@ footer {
     background-color: #ffbe54;
     display:inline-block;
     padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
+    /* margin:0 0.3em 0.3em 0; */
+    margin: 1em;
     border-radius:2em;
     box-sizing: border-box;
     text-decoration:none;
@@ -523,7 +541,8 @@ footer {
     background-color: lightgray;
     display:inline-block;
     padding:0.3em 1.2em;
-    margin:0 0.3em 0.3em 0;
+    /* margin:0 0.3em 0.3em 0; */
+    margin: 1em;
     border-radius:2em;
     box-sizing: border-box;
     text-decoration:none;
