@@ -101,6 +101,10 @@ body {
     text-align: center;
 }
 
+.recent-recipes-link {
+    display: flex;
+    justify-content: center;
+}
 
 .recent-recipes {
     text-decoration: none;
@@ -240,8 +244,7 @@ img.banner {
     grid-template-columns: repeat(3, 1fr);
 }
 
-.recent-recipe-container,
-.recent-recipebox-container {
+.recent-recipe-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;

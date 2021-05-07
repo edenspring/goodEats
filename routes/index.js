@@ -13,6 +13,12 @@ router.get('/', asyncHandler(async (req, res) => {
     limit: 10
   });
   const boxes = await RecipeBox.findAll({
+    include: {
+      model: Recipe,
+      include: {
+        model: Picture
+      }
+    },
     order: [
       ["updatedAt", "DESC"]
     ],
