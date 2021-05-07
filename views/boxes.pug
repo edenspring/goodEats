@@ -7,3 +7,11 @@ block content
     each box in boxes
       div(class="my-recipe-box")
         a(class="my-recipe-box-title" href=`/boxes/${box.id}`)=box.name
+          a(class="recent-recipe-image-link" href=`/boxes/${box.id}`)
+            if box.Recipes[0]
+              if box.Recipes[0].Pictures[0]
+                img(class="recent-recipe-image" type="image" src=box.Recipes[0].Pictures[0].dataValues.src)
+              else
+                img(class="placeholder-image" type="image" src="/images/logo2.png")
+            else
+              img(class="placeholder-image" type="image" src="/images/logo2.png")
