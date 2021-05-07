@@ -445,6 +445,7 @@ footer {
 .about-container {
     height: auto;
     display: grid;
+    align-content: center;
     grid-gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -452,16 +453,24 @@ footer {
 .about-each {
     display: flex;
     flex-direction: column;
+    align-items: center;
     padding: 1rem;
 }
 
 .about-img {
+    border-radius: .75em;
     height: 100px;
     width: 100%;
 }
 
 .about-content {
-    margin: 0px;
+    display: flex;
+    justify-content: center;
+    height: 365px;
+    border: 2px solid rgb(97, 43, 69);
+    border-radius: 2em;
+    padding: 8px;
+    margin: 3px;
 }
 
 
