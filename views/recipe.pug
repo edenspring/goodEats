@@ -6,6 +6,7 @@ block content
   link(rel='stylesheet' href='/stylesheets/recipe.css')
   script(src="/javascripts/recipe.js")
   script(src="/javascripts/like.js")
+  script(src="/javascripts/cookstatus.js")
   .recipes__grid
     +validationErrorSummary(errors)
     .recipe__title.recipes
@@ -14,13 +15,14 @@ block content
           input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
             button(type='submit') Edit this recipe
-      form.recipes__cookedStatus(action=`status/`, method='post')
-        select(name='cookStatus')
+      form.recipes__cookedStatus(action=`/status`, method='post')
+        label(for='cookStatus') I...
+        select(name='cookStatus' id="cookStatus")
           option(value='Have Cooked') Have Cooked
           option(value='Will Cook') Will Cook
-          option(value='Not Interested') Not Interested
-        input(type='hidden' name='recipeId' value=recipeId)
-        input(type='hidden' name='userId' value=userId)
+          option(value='Am Not Interested') Am Not Interested
+        input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
+        input(type='hidden' name='userId' id='userIdForStatus' value=userId)
         button.recipes__status_submit(type='submit') Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
@@ -47,8 +49,8 @@ block content
       button.reviews__button Write a review
       #reviews__container.reviews__container-hidden
         form.reviews__form(method='post' action='/reviews')
-          input(type='hidden' name='userId' value=userId)
-          input(type='hidden' name='recipeId' value=recipeId)
+          input(type='hidden'  name='userId' value=userId)
+          input(type='hidden'  name='recipeId' value=recipeId)
           div.write__review
             textarea(name='review' placeholder='Write your review here...')
           div
