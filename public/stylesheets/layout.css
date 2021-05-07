@@ -5,6 +5,9 @@
 }
 
 .navbar {
+    /* background-color: rgb(231,223,212); */
+    width: auto;
+    height: auto;
     position: sticky;
     top: 0px;
     background-color:wheat;
@@ -12,15 +15,13 @@
     z-index: 1;
     display: grid;
     grid-template-rows: 1fr;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
 }
 
 @media screen and (min-width: 1000px) {
-    .navbar {
-        /* background-color: rgb(231,223,212); */
-        width: auto;
-        height: auto;
-        grid-template-columns: repeat(9, 1fr);
-        grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
+    .menu {
+        display: none;
     }
 
     .big {
@@ -33,23 +34,33 @@
 }
 
 @media screen and (max-width: 999px) {
-    .navbar {
-        grid-template-columns: repeat(4, 1fr);
+    .menu {
+        display: block;
+        position: fixed;
+        z-index: 2;
+        top: 10px;
+        right: 30%;
+        justify-content: right;
     }
 
-    ul.dropdown {
-        grid-column-start: 4;
-        display: block;
+    .menu div {
+        position: sticky;
+        top: 0px;
+        background-color: wheat;
+        border-radius: 2em;
+        z-index: 2;
+        display: flex;
+        justify-content: right;
+        flex-direction: column;
     }
 
     li.small {
-        position: absolute;
+        position: relative;
         display: none;
     }
 
-    ul.dropdown:hover li.small {
+    .menu:hover div ul li.small {
         display: block;
-        position: relative;
         cursor: pointer;
     }
 
@@ -95,7 +106,7 @@ body {
 .boxes,
 .about
 {
-    display: grid;
+    /* display: grid; */
     justify-content: left;
     padding: 10px;
     text-decoration: none;
@@ -118,7 +129,7 @@ a.about:hover {
 .logout,
 .login,
 .register {
-    display: grid;
+    /* display: grid; */
     justify-content: left;
     padding: 10px;
     text-decoration: none;
@@ -151,7 +162,7 @@ img.banner {
 }
 
 .welcome {
-    position: relative;
+    position: absolute;
     top: 15%;
     left: 15%;
     color: papayawhip;
@@ -163,7 +174,7 @@ img.banner {
 
 @media screen and (max-width: 999px) {
     .banner-text {
-        position: relative;
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -177,7 +188,7 @@ img.banner {
 
 @media screen and (min-width: 1000px) {
     .banner-text {
-        position: relative;
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -268,7 +279,7 @@ img.banner {
     top:0;
     left:0;
     right:0;
-    z-index:2;
+    z-index:3;
 }
 .hide {
     position:absolute;
@@ -278,7 +289,7 @@ img.banner {
     color:white;
     padding:10px;
     font-size:200%;
-    z-index:2;
+    z-index:3;
     cursor:pointer;
     animation:fadein 3s forwards;
     font-family: 'Roboto',Arial;

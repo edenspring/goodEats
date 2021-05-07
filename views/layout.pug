@@ -11,56 +11,74 @@ html
         a(class="logo" href="/")
           img(class="logo" type="image" src="/images/logo.svg" alt="logo")
       if locals.authenticated
-        div(class="big")
+        div(class="about big")
           a(class="about big" href="/about") About
-        div(class="big")
+        div(class="boxes big")
           a(class="boxes big" href="/boxes") Recent Boxes
-        div(class="big")
+        div(class="recipes big")
           a(class="recipes big" href="/recipes") Recent Recipes
-        div(class="big")
+        div(class="my-boxes big")
           a(class="my-boxes big" href="/boxes/my") My Recipe Boxes
-        div(class="big")
+        div(class="my-recipes big")
           a(class="my-recipes big" href="/recipes/my") My Recipes
-        div(class="big")
+        div(class="create-box big")
           a(class="create-box big" href="/boxes/new") Create a Recipe Box
-        div(class="big")
+        div(class="create-recipe big")
           a(class="create-recipe big" href="/recipes/new") Create a Recipe
-        div(class="big")
+        div(class="logout big")
           a(class="logout big" href="/users/logout") Log Out
-        ul(class="dropdown small") Menu
-          li(class="small")
-            a(class="about small" href="/about") About
-          li(class="small")
-            a(class="boxes small" href="/boxes") Recent Boxes
-          li(class="small")
-            a(class="recipes small" href="/recipes") Recent Recipes
-          li(class="small")
-            a(class="my-boxes small" href="/boxes/my") My Recipe Boxes
-          li(class="small")
-            a(class="my-recipes small" href="/recipes/my") My Recipes
-          li(class="small")
-            a(class="create-box small" href="/boxes/new") Create a Recipe Box
-          li(class="small")
-            a(class="create-recipe small" href="/recipes/new") Create a Recipe
-          li(class="small")
-            a(class="logout small" href="/users/logout") Log Out
-
       else
         div(class="about big")
-          a(class="about" href="/about") About
+          a(class="about big" href="/about") About
         div(class="boxes big")
-          a(class="boxes" href="/boxes") Recent Boxes
+          a(class="boxes big" href="/boxes") Recent Boxes
         div(class="recipes big")
-          a(class="recipes" href="/recipes") Recent Recipes
+          a(class="recipes big" href="/recipes") Recent Recipes
         div(class="create-box big")
-          a(class="create-box" href="/boxes/new") Create a Recipe Box
+          a(class="create-box big" href="/boxes/new") Create a Recipe Box
         div(class="create-recipe big")
-          a(class="create-recipe" href="/recipes/new") Create a Recipe
+          a(class="create-recipe big" href="/recipes/new") Create a Recipe
         div(class="login big")
-          a(class="login" href="/users/login") Log In
+          a(class="login big" href="/users/login") Log In
         div(class="register big")
-          a(class="register" href="/users/register") Register
-
+          a(class="register big" href="/users/register") Register
+    div(class="menu small")
+      div(class="dropdown-container")
+        ul(class="dropdown small") Menu
+          if locals.authenticated
+            li(class="small")
+              a(class="about small" href="/about") About
+            li(class="small")
+              a(class="boxes small" href="/boxes") Recent Boxes
+            li(class="small")
+              a(class="recipes small" href="/recipes") Recent Recipes
+            li(class="small")
+              a(class="my-boxes small" href="/boxes/my") My Recipe Boxes
+            li(class="small")
+              a(class="my-recipes small" href="/recipes/my") My Recipes
+            li(class="small")
+              a(class="create-box small" href="/boxes/new") Create a Recipe Box
+            li(class="small")
+              a(class="create-recipe small" href="/recipes/new") Create a Recipe
+            li(class="small")
+              a(class="logout small" href="/users/logout") Log Out
+          else
+            div(class="dropdown small")
+            ul(class="dropdown small") Menu
+              li(class="small")
+                a(class="about small" href="/about") About
+              li(class="small")
+                a(class="boxes small" href="/boxes") Recent Boxes
+              li(class="small")
+                a(class="recipes small" href="/recipes") Recent Recipes
+              li(class="small")
+                a(class="create-box small" href="/boxes/new") Create a Recipe Box
+              li(class="small")
+                a(class="create-recipe small" href="/recipes/new") Create a Recipe
+              li(class="small")
+                a(class="login small" href="/users/login") Log In
+              li(class="small")
+                a(class="register small" href="users/register") Register
 
     div
     block content
