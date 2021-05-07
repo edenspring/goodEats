@@ -13,7 +13,7 @@ block content
         form(action=`/recipes/${recipe.id}/edit` method='get')
           input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
-            button(type='submit') Edit this recipe
+            button(type='submit' class="btn") Edit this recipe
       form.recipes__cookedStatus(action=`status/`, method='post')
         select(name='cookStatus')
           option(value='Have Cooked') Have Cooked
@@ -21,7 +21,7 @@ block content
           option(value='Not Interested') Not Interested
         input(type='hidden' name='recipeId' value=recipeId)
         input(type='hidden' name='userId' value=userId)
-        button.recipes__status_submit(type='submit') Update Status
+        button.recipes__status_submit(type='submit' class="btn") Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
       if ingredients && ingredients.length
@@ -44,7 +44,7 @@ block content
           a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
 
     .recipe__writereview
-      button.reviews__button Write a review
+      button.reviews__button(class="btn") Write a review
       #reviews__container.reviews__container-hidden
         form.reviews__form(method='post' action='/reviews')
           input(type='hidden' name='userId' value=userId)
@@ -52,7 +52,7 @@ block content
           div.write__review
             textarea(name='review' placeholder='Write your review here...')
           div
-            button(type='submit') Submit Review
+            button(type='submit' class="btn") Submit Review
     if recipe.Pictures
       div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
@@ -67,17 +67,17 @@ block content
               if review.userId === userId
                 form(action='/reviews/delete' method='post')
                   input(type='hidden' name='reviewId' value=review.id)
-                  button.reviews__delete(type='submit') Delete this review
+                  button.reviews__delete(type='submit' class="btn") Delete this review
       else
         p No reviews yet! Click the button above to write one
   form(action='/recipes' method='get')
-    button(type='submit') Back to recipes
+    button(type='submit' class="cancel-btn") Back to recipes
   form(action=`/recipes/${recipeId}/likes` method='post')
     input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
     input(type='hidden' name='userId' value=userId)
     input(type='hidden' name='like' value=likes)
     button(type='submit' class='recipe-like-btn') #{counter} Like
-  button.reviews__button Write a review
+  button.reviews__button(class="btn") Write a review
   #reviews__container.reviews__container-hidden
     form.reviews__form(method='post' action='/reviews')
       input(type='hidden' name='userId' value=userId)
