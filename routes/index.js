@@ -11,7 +11,6 @@ router.get('/', asyncHandler(async (req, res) => {
       ["updatedAt", "DESC"]
     ]
   });
-  // console.log(recipes[0].Pictures[0].dataValues.src);
   res.render('home', { title: "GoodEats", recipes });
 }));
 

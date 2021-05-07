@@ -14,7 +14,8 @@ const {
   recipesRouter,
   boxesRouter,
   reviewsRouter,
-  likesRouter } = require("./routes/routers")
+  likesRouter
+} = require("./routes/routers")
 const { restoreUser } = require('./auth')
 
 const app = express();
