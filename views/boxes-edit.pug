@@ -3,21 +3,22 @@ extends layout.pug
 include utils.pug
 
 block content
-  h1=box.name
-  h2 Recipes
-  if recipes && recipes.length
+  div(class="my-box-page")
+    h1(class="box-title")=box.name
+    h2 Recipes
+    if recipes && recipes.length
+      div
+        each recipe in recipes
+          div
+            a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
+            a(href=`/boxes/${boxId}/remove/${recipe.id}`) Remove
     div
-      each recipe in recipes
-        div
-          a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
-          a(href=`/boxes/${boxId}/remove/${recipe.id}`) Remove
-  div
-    a(class='add-a-recipe-btn' href=`/boxes/${boxId}/add`) Add a Recipe
-  div
-    a(href='/boxes/#{boxId}' class='cancel-btn') Cancel
-  div
-    p=''
-  div
-    form(action=`/boxes/${boxId}/delete` method='GET')
-      input(type='hidden' name='boxId' value=boxId)
-      button(type='submit' class="btn") Delete this recipe box
+      a(class='add-a-recipe-btn' href=`/boxes/${boxId}/add`) Add a Recipe
+    div
+      a(href='/boxes/#{boxId}' class='cancel-btn') Cancel
+    div
+      p=''
+    div
+      form(action=`/boxes/${boxId}/delete` method='GET')
+        input(type='hidden' name='boxId' value=boxId)
+        button(type='submit' class="btn") Delete this recipe box

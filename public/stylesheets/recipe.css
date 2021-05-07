@@ -11,7 +11,7 @@ body {
     "title title"
     "ingredients pics"
     "instructions pics"
-    "writereview showreviews";
+    "showreviews writereview";
 }
 
 .recipe__title {
@@ -103,7 +103,7 @@ body {
   height: fit-content;
   background-color: white;
   padding: 4px;
-  box-shadow: 10px 5px 5px #A64D79;
+  /* box-shadow: 10px 5px 5px #A64D79; */
 }
 
 .reviews {
