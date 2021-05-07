@@ -196,12 +196,11 @@ router.post("/:id/delete", asyncHandler(async (req, res, next) => {
 }))
 
 router.post("/:id/likes", asyncHandler(async (req, res) => {
-    const { recipeId, userId, like } = req.body;
-
+    const { recipeId, like } = req.body;
+    const userId = res.locals.user.id;
     const newLike = Like.build({ recipeId, userId });
     await newLike.save();
-    
-    res.redirect(`/recipes/${recipeId}`);
+    res.end();
 }));
 
 module.exports = router;

@@ -5,6 +5,7 @@ include utils.pug
 block content
   link(rel='stylesheet' href='/stylesheets/recipe.css')
   script(src="/javascripts/recipe.js")
+  script(src="/javascripts/like.js")
   .recipes__grid
     +validationErrorSummary(errors)
     .recipe__title.recipes
@@ -64,7 +65,7 @@ block content
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
   form(action=`/recipes/${recipeId}/likes` method='post')
-    input(type='hidden' name='recipeId' value=recipeId)
+    input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
     input(type='hidden' name='userId' value=userId)
     input(type='hidden' name='like' value=likes)
     button(type='submit' class='recipe-like-btn') #{counter} Like
