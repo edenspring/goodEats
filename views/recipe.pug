@@ -58,7 +58,6 @@ block content
             .reviews
               +review(review.username, review.userid, review.review)
               if review.userId === userId
-<<<<<<< HEAD
                 div
                   form(action='/reviews/delete' method='post')
                     input(type='hidden' name='reviewId' value=review.id)
@@ -71,7 +70,6 @@ block content
         p No reviews yet! Click the button above to write one
   form(action='/recipes' method='get')
     button.btn(type='submit') Back to recipes
-=======
                 form(action='/reviews/delete' method='post')
                   input(type='hidden' name='reviewId' value=review.id)
                   button.reviews__delete(type='submit' class="btn") Delete this review
@@ -79,18 +77,12 @@ block content
         p No reviews yet! Click the button above to write one
   form(action='/recipes' method='get')
     button(type='submit' class="cancel-btn") Back to recipes
->>>>>>> main
   form(action=`/recipes/${recipeId}/likes` method='post')
     input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
     input(type='hidden' name='userId' value=userId)
     input(type='hidden' name='like' value=likes)
-<<<<<<< HEAD
-    button(type='submit' class='recipe-like-btn btn') #{counter} Like
-  button(class="reviews__button btn") Write a review
-=======
     button(type='submit' class='recipe-like-btn') #{counter} Like
   button.reviews__button(class="btn") Write a review
->>>>>>> main
   #reviews__container.reviews__container-hidden
     form.reviews__form(method='post' action='/reviews')
       input(type='hidden' name='userId' value=userId)
