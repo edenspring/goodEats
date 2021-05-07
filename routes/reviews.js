@@ -42,6 +42,16 @@ router.post(
   })
 );
 
+router.get("/:id/edit", asyncHandler(async(req, res) => {
+  const {reviewId} = req.body;
+  const review = await Review.findByPk(reviewId, {
+    where: {
+      recipeId: recipeId
+  }});
+
+
+}))
+
 router.delete("/:id/delete", asyncHandler(async(req, res)=>{
   const {reviewId} = req.body;
   const review = await Review.findByPk(reviewId);
