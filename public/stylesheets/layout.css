@@ -129,6 +129,7 @@ body {
 .my-recipes,
 .my-boxes,
 .my-box-page,
+.my-box-page-add-recipe,
 .recipes,
 .my-recipe-page,
 .boxes,
@@ -278,9 +279,9 @@ img.banner {
     height: 100%;
 }
 
-.recent-recipe-image-link:hover {
+/* .recent-recipe-image-link:hover {
     box-shadow: 1px 1px 3px 3px #d8c3a3 ;
-}
+} */
 
 .recent-recipe-image {
     object-fit: cover;
@@ -414,6 +415,7 @@ hr {
     text-decoration: none;
     color: papayawhip;
     text-align: center;
+    font-size: 1.5em;
 }
 
 .box-title,
@@ -454,6 +456,7 @@ hr {
     text-decoration: none;
     color: papayawhip;
     text-align: center;
+    font-size: 1.5em;
 }
 
 /* footer */
@@ -471,6 +474,10 @@ footer {
 .new-box-form {
     display: grid;
     place-items: center;
+}
+
+.my-box-page-add-recipe__each-recipe {
+    text-decoration: none;
 }
 
 /* create a recipe */
