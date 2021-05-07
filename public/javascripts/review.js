@@ -5,28 +5,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
     editButton.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const reviewId = document.getElementById("reviewIdForReviewEdit").value;
-        const reviewContent = document.getElementById("review-content").value;
+        const editDiv = document.createElement("div");
+        editDiv.classList.add("review-edit-container")
+        const editTextArea = document.createElement("textarea");
+        editTextArea.classList.add("review-edit-text-area")
+        const confirmButton = document.createElement("button");
+        confirmButton.classList.add("confirm-button", "btn");
 
-        editDiv = document.createElement("div");
-        editTextArea = document.createElement("textarea");
-        confirmButton = document.createElement("button");
+        editDiv.appendChild(editTextArea);
+        editDiv.appendChild(confirmButton);
 
-        editDiv.appendChild()
+        confirmButton.addEventListener("click", e => {
+            e.preventDefault();
 
+            const reviewId = document.getElementById("reviewIdForReviewEdit").value;
+            const reviewContent = document.getElementById("review-content").value;
 
-
-
+            editReview(reviewId, reviewContent);
+        });
     });
-    editReview(reviewId, reviewContent);
 
-    //make fetch request and update dom with new content; manipulate dom to change from old review to new review
-//send actual content of the review that's getting edited.
     async function editReview(reviewId, review) {
          data = {};
          data.reviewId = reviewId;
          data.review = review;
-        console.log(data);
+        // console.log(data);
         await fetch(`/reviews/${reviewId}/edit`, {
             method: "PATCH",
             headers: {
