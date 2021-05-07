@@ -14,6 +14,6 @@ block content
         div
             p: a(href='/users/register') Don't have an account? Register here!
     div
-        form(action='/users/demo' method='post')
+        form(action='/users/demo' method='get')
             input(type='hidden' name='_csrf' value=csrfToken)
             button(type='submit' class='btn') Demo User Log In
