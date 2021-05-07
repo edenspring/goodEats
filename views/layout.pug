@@ -42,6 +42,8 @@ html
           a(class="login big" href="/users/login") Log In
         div(class="register big")
           a(class="register big" href="/users/register") Register
+        div(class="demo big")
+          a(class="demo big" href="/users/demo") Demo User Log In
     div(class="menu small")
       div(class="dropdown-container")
         if locals.authenticated
@@ -78,7 +80,9 @@ html
             li(class="small")
               a(class="login small" href="/users/login") Log In
             li(class="small")
-              a(class="register small" href="users/register") Register
+              a(class="register small" href="/users/register") Register
+            li(class="small")
+              a(class="demo small" href="/users/demo") Demo User Log In
   div
   block content
   main

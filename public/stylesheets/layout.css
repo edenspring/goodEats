@@ -142,7 +142,8 @@ a.about:hover {
 
 .logout,
 .login,
-.register {
+.register,
+.demo {
     /* display: grid; */
     justify-content: left;
     padding: 10px;
@@ -154,7 +155,8 @@ a.about:hover {
 
 a.logout:hover,
 a.login:hover,
-a.register:hover {
+a.register:hover,
+a.demo:hover {
     font-style: italic;
     color: #ffbe54;
 }
