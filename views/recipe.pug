@@ -53,7 +53,7 @@ block content
             textarea(name='review' placeholder='Write your review here...')
           div
             button(type='submit' class="btn") Submit Review
-    if recipe.Pictures
+    if recipe.Pictures[0]
       div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
           .picture__container
