@@ -42,19 +42,17 @@ router.post(
   })
 );
 
-router.get("/:id/edit", asyncHandler(async(req, res) => {
-  const {reviewId} = req.body;
+router.post("/:id/edit", asyncHandler(async(req, res) => {
+  const {recipeId, reviewId} = req.body;
   const review = await Review.findByPk(reviewId);
   const currentUserId = res.locals.user.id;
 
   checkPermissions(review, currentUserId);
 
   if(review) {
-    res.render
+    res.redirect(`/recipes/${recipeId}`)
   }
-
-
-}))
+}));
 
 router.delete("/:id/delete", asyncHandler(async(req, res)=>{
   const {reviewId} = req.body;
