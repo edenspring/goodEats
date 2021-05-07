@@ -274,6 +274,12 @@ img.banner {
     height: 100%;
 }
 
+.placeholder-image {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+
 /* overlay */
 
 .overlay {
