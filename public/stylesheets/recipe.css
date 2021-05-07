@@ -166,3 +166,6 @@ color: #444444;
     box-shadow: 0px 2px 3px grey;
     border: none;
 }
+.status__selector {
+  background-color: #F5DEB3;
+}
