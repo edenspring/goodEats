@@ -16,15 +16,20 @@ const logInValidator = [
 ];
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render("home", { title: "Welcome", user });
-  // setTimeout(function() {
-  //   res.render("splash")
-  // }, 3000);
+router.get('/', function (req, res, next) {
+  if (req.session.auth) {
+    res.redirect("/");
+  } else {
+    res.redirect("/users/login");
+  }
 });
 
 router.get('/login', csrfProtection, (req, res) => {
-  res.render('users-login', { title: "Log In", csrfToken: req.csrfToken() });
+  if (req.session.auth) {
+    res.redirect("/");
+  } else {
+    res.render('users-login', { title: "Log In", csrfToken: req.csrfToken() });
+  }
 });
 
 router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, res) => {
@@ -58,11 +63,11 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
   });
 }));
 
-router.post('/demo', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/demo', csrfProtection, asyncHandler(async (req, res) => {
   const username = 'demoguy';
   const user = await db.User.findOne({ where: { username } });
   loginUser(req, res, user)
-  return res.redirect('/');
+  req.session.save(() => res.redirect('/'));
 }))
 
 router.get('/logout', (req, res) => {
@@ -71,12 +76,16 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/register', csrfProtection, (req, res) => {
-  const user = db.User.build();
-  res.render('users-register', {
-    title: "Register a new User",
-    user,
-    csrfToken: req.csrfToken(),
-  });
+  if (req.session.auth) {
+    res.redirect("/");
+  } else {
+    const user = db.User.build();
+    res.render('users-register', {
+      title: "Register a new User",
+      user,
+      csrfToken: req.csrfToken(),
+    });
+  }
 })
 
 
@@ -147,8 +156,8 @@ router.post('/register', csrfProtection, registerUserValidators, asyncHandler(as
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
     await user.save();
-    loginUser(req, res, user)
-    res.render('index')
+    loginUser(req, res, user);
+    res.redirect("/");
   }
   else {
     const errors = validatorErrors.array().map((e)=>e.msg);
