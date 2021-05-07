@@ -292,7 +292,7 @@ img.banner {
     height:100%;
     display:table;
     background:rgba(0,0,0,0.8);
-    animation: splash 3s forwards;
+    animation: splash 2s forwards;
 }
 .overlay-inner {
     display:table-cell;
@@ -330,7 +330,7 @@ img.banner {
     font-size:200%;
     z-index:3;
     cursor:pointer;
-    animation:fadein 3s forwards;
+    animation:fadein 2s forwards;
     font-family: 'Roboto',Arial;
 }
 #hide {
@@ -341,7 +341,7 @@ img.banner {
 .overlay2{
     position:absolute;
     opacity:1;
-    transition:all 3s ;
+    transition:all 2s ;
 }
 
 #hide:checked ~ div,
