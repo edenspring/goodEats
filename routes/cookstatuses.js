@@ -7,7 +7,7 @@ const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = re
 const Sequelize = require("sequelize");
 const Pictures = require('../db/seeders/8-Pictures');
 
-router.post('/recipe/:id', asyncHandler(async(req, res)=>{
+router.post('/', asyncHandler(async(req, res)=>{
   const {userId, recipeId, cookStatus} = req.body;
   const workingStatus = await CookStatus.findOne({
     where: [
@@ -24,3 +24,5 @@ router.post('/recipe/:id', asyncHandler(async(req, res)=>{
     })
   }
 }))
+
+module.exports = router;

@@ -10,9 +10,17 @@ block content
     .recipe__title.recipes
       h1=recipe.name
         form(action=`/recipes/${recipe.id}/edit` method='get')
-          input(type='hidden', name='recipeId' value=recipeId)
+          input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
             button(type='submit') Edit this recipe
+      form.recipes__cookedStatus(action=`status/`, method='post')
+        select(name='cookStatus')
+          option(value='Have Cooked') Have Cooked
+          option(value='Will Cook') Will Cook
+          option(value='Not Interested') Not Interested
+        input(type='hidden' name='recipeId' value=recipeId)
+        input(type='hidden' name='userId' value=userId)
+        button.recipes__status_submit(type='submit') Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
       if ingredients && ingredients.length
