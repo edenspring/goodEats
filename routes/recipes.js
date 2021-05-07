@@ -4,7 +4,6 @@ const { asyncHandler } = require('./utils');
 const { check, validationResult } = require('express-validator');
 const { Ingredient, Instruction, Recipe, Review, Picture, Like, RecipeBoxJoinTable } = require('../db/models');
 const { loginUser, logoutUser, requireAuth, restoreUser, checkPermissions } = require('../auth')
-const Sequelize = require("sequelize");
 const Pictures = require('../db/seeders/8-Pictures');
 
 const recipeNotFoundError = function (recipeId) {
@@ -43,7 +42,7 @@ router.get("/my", asyncHandler(async (req, res) => {
             userId: req.session.auth.userId
         },
         order: [
-            [Sequelize.fn('lower', Sequelize.col('name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render('recipes', { recipes });

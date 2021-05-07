@@ -48,7 +48,7 @@ router.get("/my", asyncHandler(async (req, res) => {
             userId: req.session.auth.userId
         },
         order: [
-            [Sequelize.fn('lower', Sequelize.col('RecipeBox.name')), "ASC"]
+            ['updatedAt', "DESC"]
         ]
     });
     res.render("boxes", { boxes });
