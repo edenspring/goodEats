@@ -42,15 +42,15 @@ router.post(
   })
 );
 
-router.post("/:id/edit", asyncHandler(async(req, res) => {
-  const {recipeId, reviewId} = req.body;
-  const review = await Review.findByPk(reviewId);
+router.patch("/:id/edit", asyncHandler(async(req, res) => {
+  const {reviewId, review} = req.body;
+  const currentReview = await Review.findByPk(reviewId);
   const currentUserId = res.locals.user.id;
 
-  checkPermissions(review, currentUserId);
-
-  if(review) {
-    res.redirect(`/recipes/${recipeId}`)
+  if(currentReview) {
+    checkPermissions(currentReview, currentUserId);
+    currentReview.review = review;
+    await currentReview.save();
   }
 }));
 
