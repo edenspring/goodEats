@@ -558,11 +558,6 @@ footer {
     border: none;
 }
 
-.btn:hover,
-.cancel-btn:hover {
-    background-color:rgb(166,77,120);
-}
-
 .recipe-like-btn {
     background-color: rgb(206,50,50);
     display:inline-block;
@@ -576,4 +571,10 @@ footer {
     transition: all 0.2s;
     box-shadow: 0px 2px 3px grey;
     border: none;
+}
+
+.btn:hover,
+.cancel-btn:hover,
+.recipe-like-btn:hover {
+    background-color:rgb(166,77,120);
 }
