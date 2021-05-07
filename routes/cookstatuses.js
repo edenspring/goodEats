@@ -20,18 +20,15 @@ router.post('/', asyncHandler(async(req, res)=>{
   })
   console.log(workingStatus)
   if (workingStatus){
-    console.log('status found')
     workingStatus.status = cookStatus;
     await workingStatus.save();
     res.end();
   } else {
-    console.log('make new')
-    const newStatus = CookStatus.build({
+      const newStatus = CookStatus.build({
       userId,
       recipeId,
       status: cookStatus
     })
-    console.log(newStatus)
     await newStatus.save();
     res.end();
   }

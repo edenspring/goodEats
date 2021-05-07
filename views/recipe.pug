@@ -17,13 +17,14 @@ block content
             button(type='submit') Edit this recipe
       form.recipes__cookedStatus(action=`/status`, method='post')
         label(for='cookStatus') I...
-        select(name='cookStatus' id="cookStatus")
+        select.status__selector(name='cookStatus' id="cookStatus")
           option(value='Have Cooked') Have Cooked
           option(value='Will Cook') Will Cook
-          option(value='Am Not Interested') Am Not Interested
+          option(value='Not Interested') Am Not Interested In
+        span this
         input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
         input(type='hidden' name='userId' id='userIdForStatus' value=userId)
-        button.recipes__status_submit(type='submit') Update Status
+        button.recipes__status_submit.btn(type='submit') Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
       if ingredients && ingredients.length

@@ -132,3 +132,8 @@ color: #444444;
   min-height: 95px;
   min-width: 400px;
 }
+
+.status__selector {
+  background-color: #F5DEB3;
+}
+
