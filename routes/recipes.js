@@ -96,9 +96,6 @@ router.get("/:id", asyncHandler(async (req, res) => {
         const likes = recipe.Likes;
 
         let counter = likes.length;
-        for (let count = 0; count < likes.length; count++) {
-            counter++;
-        }
 
         res.render('recipe', { recipe, ingredients, instructions, recipeId, userId, reviews, likes, counter });
     }
@@ -197,5 +194,14 @@ router.post("/:id/delete", asyncHandler(async (req, res, next) => {
         next(recipeNotFoundError(recipeId));
     }
 }))
+
+router.post("/:id/likes", asyncHandler(async (req, res) => {
+    const { recipeId, userId, like } = req.body;
+
+    const newLike = Like.build({ recipeId, userId });
+    await newLike.save();
+    
+    res.redirect(`/recipes/${recipeId}`);
+}));
 
 module.exports = router;

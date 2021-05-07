@@ -31,7 +31,7 @@ block content
       a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
   form(action='/recipes' method='get')
     button(type='submit') Back to recipes
-  form(action=`/likes/${recipeId}` method='post')
+  form(action=`/recipes/${recipeId}/likes` method='post')
     input(type='hidden' name='recipeId' value=recipeId)
     input(type='hidden' name='userId' value=userId)
     input(type='hidden' name='like' value=likes)

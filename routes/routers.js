@@ -13,6 +13,5 @@ module.exports = {
     instructionsRouter,
     recipesRouter,
     boxesRouter,
-    reviewsRouter,
-    likesRouter
+    reviewsRouter
 }
