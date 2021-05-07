@@ -14,7 +14,6 @@ const {
   recipesRouter,
   boxesRouter,
   reviewsRouter,
-  likesRouter,
   statusRouter,
   picturesRouter
 } = require("./routes/routers")
