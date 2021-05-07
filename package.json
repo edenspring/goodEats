@@ -1,7 +1,9 @@
 {
   "name": "express-project-starter",
   "version": "0.0.0",
-  "private": true,
+  "private": true,"engines": {
+    "node": "12.22.1"
+  },
   "scripts": {
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www -e js,pug",
