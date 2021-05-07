@@ -12,7 +12,10 @@ block content
             div(class="recent-recipe-container")
                 a(class="recent-recipe-description" href=`/recipes/${recipe.id}`)=recipe.name
                 a(class="recent-recipe-image-link" href=`/recipes/${recipe.id}`)
-                    img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
+                    if recipe.Pictures[0]
+                        img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
+                    else
+                        img(class="placeholder-image" type="image" src="/images/logo2.png")
     div(class="recent-boxes" href="/boxes") Most Recent Recipe Boxes
     if !locals.authenticated
         div(class="overlay-wrap")

@@ -88,9 +88,7 @@ router.get("/:id", asyncHandler(async (req, res) => {
         //         ['createdAt', 'DESC']
         //     ]
         // })
-        // console.log(recipe.Pictures)
         const ingredients = recipe.Ingredients;
-        // console.log(recipe)
         const instructions = recipe.Instructions;
         const reviews = recipe.Reviews;
         const likes = recipe.Likes;
@@ -149,7 +147,6 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
         const ingredients = recipe.Ingredients;
         const instructions = recipe.Instructions;
         const listOrder = instructions.length + 1;
-        // console.log('here', recipe)
         res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
     } else {
         next(recipeNotFoundError(recipeId));
@@ -200,7 +197,7 @@ router.post("/:id/likes", asyncHandler(async (req, res) => {
 
     const newLike = Like.build({ recipeId, userId });
     await newLike.save();
-    
+
     res.redirect(`/recipes/${recipeId}`);
 }));
 
