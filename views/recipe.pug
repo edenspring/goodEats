@@ -69,13 +69,6 @@ block content
       else
         p No reviews yet! Click the button above to write one
   form(action='/recipes' method='get')
-    button.btn(type='submit') Back to recipes
-                form(action='/reviews/delete' method='post')
-                  input(type='hidden' name='reviewId' value=review.id)
-                  button.reviews__delete(type='submit' class="btn") Delete this review
-      else
-        p No reviews yet! Click the button above to write one
-  form(action='/recipes' method='get')
     button(type='submit' class="cancel-btn") Back to recipes
   form(action=`/recipes/${recipeId}/likes` method='post')
     input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
