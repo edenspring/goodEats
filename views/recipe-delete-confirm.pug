@@ -6,5 +6,5 @@ block content
   h3=`Would you like to delete ${recipe.name}?`
   form(action=`/recipes/${recipeId}/delete` method='post')
     input(type='hidden' name='recipeId' value=recipeId)
-    button(type='submit' class='cancel-btn') Confirm
+    button(type='submit' class='btn') Confirm
     a(href=`/recipes/${recipeId}/edit`) Cancel
