@@ -22,7 +22,7 @@ router.post('/', asyncHandler(async(req, res)=>{
   if (workingStatus){
     workingStatus.status = cookStatus;
     await workingStatus.save();
-    res.end();
+    res.sendStatus(200).end;
   } else {
       const newStatus = CookStatus.build({
       userId,
@@ -30,7 +30,7 @@ router.post('/', asyncHandler(async(req, res)=>{
       status: cookStatus
     })
     await newStatus.save();
-    res.end();
+    res.sendStatus(200).end();
   }
 }))
 
