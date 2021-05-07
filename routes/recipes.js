@@ -52,11 +52,11 @@ router.get("/new", asyncHandler(async (req, res) => {
 }))
 
 router.get("/:id", asyncHandler(async (req, res) => {
+    const recipeId = parseInt(req.params.id, 10);
     let userId = 0;
     if (req.session.auth) {
         userId = req.session.auth.userId;
     };
-    const recipeId = parseInt(req.params.id, 10);
     const recipe = await Recipe.findByPk(recipeId, {
         include:[
             {model: Picture},
@@ -200,7 +200,7 @@ router.post("/:id/likes", asyncHandler(async (req, res) => {
 
     const newLike = Like.build({ recipeId, userId });
     await newLike.save();
-    
+
     res.redirect(`/recipes/${recipeId}`);
 }));
 
