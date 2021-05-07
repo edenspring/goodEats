@@ -58,11 +58,11 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
   });
 }));
 
-router.post('/demo', csrfProtection, asyncHandler(async (req, res) => {
+router.get('/demo', csrfProtection, asyncHandler(async (req, res) => {
   const username = 'demoguy';
   const user = await db.User.findOne({ where: { username } });
   loginUser(req, res, user)
-  return res.redirect('/');
+  req.session.save(() => res.redirect('/'));
 }))
 
 router.get('/logout', (req, res) => {

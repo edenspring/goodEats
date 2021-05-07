@@ -4,24 +4,87 @@
     font-family: 'Roboto', sans-serif;
 }
 
-@media screen and (max-width: 1000px) {
-    .navbar {
-        width: auto;
-        height: auto;
-    }
-}
-
 .navbar {
     /* background-color: rgb(231,223,212); */
+    width: auto;
+    height: auto;
     position: sticky;
     top: 0px;
     background-color:wheat;
     border-radius: 2em;
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: 1fr;
-    grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
     z-index: 1;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
+}
+
+@media screen and (min-width: 1000px) {
+    .menu {
+        display: none;
+    }
+
+    .big {
+        display: block;
+    }
+
+    .small {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .menu {
+        display: block;
+        position: fixed;
+        z-index: 2;
+        top: 14px;
+        right: 5%;
+        justify-content: center;
+    }
+
+    .menu div {
+        position: sticky;
+        top: 0px;
+        right: 0px;
+        background-color: wheat;
+        border-radius: 2em;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    ul.dropdown {
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+    }
+
+    li.small {
+        position: relative;
+        display: none;
+    }
+
+    .menu:hover div ul li.small {
+        display: block;
+        cursor: pointer;
+        border-top: 1px solid papayawhip;
+        padding: 0px;
+    }
+
+    .menu:hover div ul li a.small {
+        text-align: right;
+    }
+
+    .big {
+        display: none;
+    }
+
+    .small {
+        display: block;
+    }
 }
 
 body {
@@ -57,7 +120,7 @@ body {
 .boxes,
 .about
 {
-    display: grid;
+    /* display: grid; */
     justify-content: left;
     padding: 10px;
     text-decoration: none;
@@ -79,8 +142,9 @@ a.about:hover {
 
 .logout,
 .login,
-.register {
-    display: grid;
+.register,
+.demo {
+    /* display: grid; */
     justify-content: left;
     padding: 10px;
     text-decoration: none;
@@ -91,7 +155,8 @@ a.about:hover {
 
 a.logout:hover,
 a.login:hover,
-a.register:hover {
+a.register:hover,
+a.demo:hover {
     font-style: italic;
     color: #ffbe54;
 }
@@ -123,17 +188,49 @@ img.banner {
     white-space: nowrap;
 }
 
-.banner-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: papayawhip;
-    font-size: 300%;
-    font-style: italic;
-    text-align: right;
-    text-shadow: 0px 3px 3px black;
-    white-space: nowrap;
+@media screen and (max-width: 549px) {
+    .banner-text {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: papayawhip;
+        font-size: 100%;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 0px 3px 3px black;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (min-width: 550px) and (max-width: 999px) {
+    .banner-text {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: papayawhip;
+        font-size: 150%;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 0px 3px 3px black;
+        white-space: nowrap;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: papayawhip;
+        font-size: 300%;
+        font-style: italic;
+        text-align: center;
+        text-shadow: 0px 3px 3px black;
+        white-space: nowrap;
+    }
 }
 
 .recent-recipes {
@@ -214,7 +311,7 @@ img.banner {
     top:0;
     left:0;
     right:0;
-    z-index:2;
+    z-index:3;
 }
 .hide {
     position:absolute;
@@ -224,7 +321,7 @@ img.banner {
     color:white;
     padding:10px;
     font-size:200%;
-    z-index:2;
+    z-index:3;
     cursor:pointer;
     animation:fadein 3s forwards;
     font-family: 'Roboto',Arial;
