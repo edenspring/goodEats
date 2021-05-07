@@ -10,11 +10,11 @@ block content
   .recipes__grid
     +validationErrorSummary(errors)
     .recipe__title.recipes
-      h1=recipe.name
+      h1(class="recipe-title")=recipe.name
         form(action=`/recipes/${recipe.id}/edit` method='get')
           input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
-            button(type='submit') Edit this recipe
+            button(type='submit' class='btn') Edit this recipe
       form.recipes__cookedStatus(action=`/status`, method='post')
         label(for='cookStatus') I...
         select.status__selector(name='cookStatus' id="cookStatus")
@@ -56,7 +56,7 @@ block content
             textarea(name='review' placeholder='Write your review here...')
           div
             button(type='submit') Submit Review
-    if recipe.Pictures
+    if recipe.Pictures[0]
       div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
           .picture__container

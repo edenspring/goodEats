@@ -7,4 +7,4 @@ block content
   form(action=`/boxes/${boxId}/delete` method='post')
     input(type='hidden' name='boxId' value=boxId)
     button(type='submit' class='btn') Confirm
-    a(href=`/boxes/${boxId}/edit`) Cancel
+    a(href=`/boxes/${boxId}/edit` class='cancel-btn') Cancel
