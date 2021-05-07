@@ -94,6 +94,7 @@ body {
 .logo {
     height: 5rem;
     width: 5rem;
+    margin: auto;
 }
 
 .recipe-ul {
@@ -284,6 +285,15 @@ img.banner {
     height: 100%;
 }
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #d8c3a3;
+    margin: 1em 0;
+    padding: 0;
+}
+
 /* overlay */
 
 .overlay {
@@ -393,7 +403,7 @@ img.banner {
 .my-recipe-box-title {
     margin: 0px;
     text-decoration: none;
-    color: white;
+    color: papayawhip;
     text-align: center;
 }
 
@@ -428,7 +438,7 @@ img.banner {
 .my-recipe-title {
     margin: 0px;
     text-decoration: none;
-    color: white;
+    color: papayawhip;
     text-align: center;
 }
 
