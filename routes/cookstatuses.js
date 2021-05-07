@@ -4,9 +4,9 @@ const { asyncHandler } = require("./utils");
 const { check, validationResult } = require("express-validator");
 const { CookStatus } = require("../db/models");
 const { checkPermissions } = require("../auth");
-const { noExtendLeft } = require("sequelize/types/lib/operators");
 
-//define constraints for status 
+
+//define constraints for status
 const statusValidator = [
   check("userId")
     .exists({ checkFalsy: true })
