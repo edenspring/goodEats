@@ -2,19 +2,20 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler, handleValidationErrors } = require('./utils');
 const { check, validationResult } = require('express-validator');
-const { Recipe, Picture } = require('../db/models');
+const { Ingredient, Instruction, Recipe, Picture } = require('../db/models');
 
 
 const pictureValidator = [
-    check("url")
+    check("src")
         .exists({ checkFalsy: true })
-        .withMessage("Please provide an URL for the recipe.")
+        .withMessage("Please provide an URL.")
 ];
 
 router.post('/', pictureValidator, asyncHandler(async (req, res) => {
     const { src, alt, recipeId } = req.body;
+    console.log(req.body);
     const validatorErrors = validationResult(req);
-    const picture = Ingredient.build({
+    const picture = Picture.build({
         src,
         alt,
         recipeId
@@ -24,11 +25,11 @@ router.post('/', pictureValidator, asyncHandler(async (req, res) => {
         res.redirect(`/recipes/${recipeId}/edit`);
     } else {
         const errors = validatorErrors.array().map((e) => e.msg);
-        const src = Ingredient.build();
-        const alt = Instruction.build();
         const recipe = await Recipe.findByPk(recipeId);
+        const ingredient = Ingredient.build();
+        const instruction = Instruction.build();
         if (recipe) {
-            const picture = await Picture.findAll({
+            const ingredients = await Ingredient.findAll({
                 where: {
                     recipeId: recipeId
                 },

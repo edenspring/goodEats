@@ -47,10 +47,13 @@ block content
         if userId === recipe.userId
           a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
     if recipe.Pictures[0]
-      div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
+      div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
           .picture__container
-            img.recipe__picture(src='../'+picture.src alt=picture.alt type="image" width="300" height="400" )
+            img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
+    else 
+      if userId === recipe.userId
+        a(href=`/recipes/${recipe.id}/edit`) No pictures yet, get started here!
     .recipe__reviews
       if reviews.length
         each review in reviews
