@@ -293,6 +293,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        specification: "While steaks are cooling, gently cook some tortillas on the hot grill, watch them closely as they'll need maybe a bit more than a minute per side (depending on how hot your grill still is)",
+        listOrder: 12,
+        recipeId: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        specification: "Once the steak is rested, large dice against the grain and serve with tortillas, onions, cilantro, hot sauce and toppings of choice!(we added avocado crema in the attached photo)",
+        listOrder: 13,
+        recipeId: 5,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
     ]);
   },
 

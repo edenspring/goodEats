@@ -50,7 +50,8 @@ module.exports = {
       {name: 'Vegetable Oil', measurements: '2 tbsp', recipeId: 5, createdAt: new Date(), updatedAt: new Date(), },
       {name: 'Fresh Cilantro', measurements: '2-3tbsp chopped leaves for garnish', recipeId: 5, createdAt: new Date(), updatedAt: new Date(), },
       {name: 'Onion', measurements: '1/4 fine diced whole', recipeId: 5, createdAt: new Date(), updatedAt: new Date(), },
-      
+      {name: 'Tortillas', measurements: 'Some', recipeId: 5, createdAt: new Date(), updatedAt: new Date(), },
+
     ])
   },
 
