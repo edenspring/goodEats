@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
   editButton.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log("a new thing");
     const editDiv = document.createElement("div");
     editDiv.classList.add("review-edit-container");
     const editTextArea = document.createElement("textarea");
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
       editReview(reviewId, reviewContent);
       const reviewsDiv = editButton.closest(".reviews");
-      console.log(reviewsDiv);
       reviewsDiv.firstChild.children[1].innerHTML = reviewContent;
       editDiv.remove();
     });
@@ -35,7 +33,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     data = {};
     data.reviewId = reviewId;
     data.review = review;
-    // console.log(data);
     await fetch(`/reviews/${reviewId}/edit`, {
       method: "PATCH",
       headers: {

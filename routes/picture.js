@@ -13,7 +13,6 @@ const pictureValidator = [
 
 router.post('/', pictureValidator, asyncHandler(async (req, res) => {
     const { src, alt, recipeId } = req.body;
-    console.log(req.body);
     const validatorErrors = validationResult(req);
     const picture = Picture.build({
         src,
