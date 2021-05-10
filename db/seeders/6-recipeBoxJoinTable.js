@@ -14,7 +14,10 @@ module.exports = {
     */
     return queryInterface.bulkInsert('RecipeBoxJoinTables', [
       {recipeId: 1, recipeBoxId: 1, createdAt: new Date(), updatedAt: new Date(),},
-      {recipeId: 2, recipeBoxId: 1, createdAt: new Date(), updatedAt: new Date(),}
+      {recipeId: 2, recipeBoxId: 1, createdAt: new Date(), updatedAt: new Date(),},
+      {recipeId: 3, recipeBoxId: 2, createdAt: new Date(), updatedAt: new Date(),},
+      {recipeId: 4, recipeBoxId: 2, createdAt: new Date(), updatedAt: new Date(),},
+      {recipeId: 5, recipeBoxId: 2, createdAt: new Date(), updatedAt: new Date(),},
     ])
   },
 

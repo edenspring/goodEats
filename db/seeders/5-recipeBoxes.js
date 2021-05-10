@@ -13,7 +13,8 @@ module.exports = {
       }], {});
     */
     return queryInterface.bulkInsert('RecipeBoxes', [
-      {name: 'Delicious Foods', userId: 1, createdAt: new Date(), updatedAt: new Date(),}
+      {name: 'Delicious Foods', userId: 1, createdAt: new Date(), updatedAt: new Date(),},
+      {name: 'illest grillest', userId: 2, createdAt: new Date(), updatedAt: new Date(),}
     ])
   },
 
