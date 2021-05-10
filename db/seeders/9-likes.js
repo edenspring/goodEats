@@ -13,7 +13,7 @@ module.exports = {
       }], {});
     */
       return queryInterface.bulkInsert('Like', [
-        {userId: 1, recipeId: 1, createdAt: new Date(), updatedAt: new Date()}
+        {userId: 1, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
         {userId: 2, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
         {userId: 3, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
         {userId: 4, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
@@ -34,7 +34,7 @@ module.exports = {
         {userId: 2, recipeId: 5, createdAt: new Date(), updatedAt: new Date()},
       ]);
   },
-  
+
   down: (queryInterface, Sequelize) => {
     /*
       Add reverting commands here.
