@@ -3,7 +3,7 @@ extends layout.pug
 include utils.pug
 
 block content
-  div(class="my-box")
+  div(class="my-box my-box-page")
     +validationErrorSummary(errors)
     h1(class="box-title")=box.name
       form(action=`/boxes/${box.id}/edit` method='get')
