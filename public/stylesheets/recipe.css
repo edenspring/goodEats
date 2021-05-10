@@ -128,9 +128,9 @@ font-size: larger;
 color: #444444;
 }
 
-.write__review textarea {
-  min-height: 95px;
-  min-width: 400px;
+.recipe__writereview textarea {
+  min-height: 100%;
+  min-width: 85%;
 }
 
 .button {
@@ -168,4 +168,20 @@ color: #444444;
 }
 .status__selector {
   background-color: #F5DEB3;
+}
+
+#reviews__container {
+  height: 95%;
+}
+
+.reviews__form {
+  height: 100%;
+
+}
+.reviews__form > div {
+  height: 55%;
+}
+.reviews__form * {
+  margin: 5px;
+  padding: 3px;
 }

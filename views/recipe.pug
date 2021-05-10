@@ -47,10 +47,13 @@ block content
         if userId === recipe.userId
           a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
     if recipe.Pictures[0]
-      div.recipe__pictures(style="background-image: url(../"+recipe.Pictures[0].src+")")
+      div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
           .picture__container
-            img.recipe__picture(src='../'+picture.src alt=picture.alt type="image" width="300" height="400" )
+            img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
+    else 
+      if userId === recipe.userId
+        a(href=`/recipes/${recipe.id}/edit`) No pictures yet, get started here!
     .recipe__reviews
       if reviews.length
         each review in reviews
@@ -65,22 +68,24 @@ block content
                   form(action=`/reviews/${review.id}/edit` method='post')
                     input(type='hidden' name='reviewId' value=review.id id="reviewIdForReviewEdit")
                     input(type='hidden' name='userId' value=userId id="userIdForReviewEdit")
-                    button(id="reviews_edit_button" class="reviews__edit button") Edit Review
+                    div 
+                      button(id="reviews_edit_button" class="reviews__edit button") Edit Review
       else
         p No reviews yet! Click the 'Write a review' button to create yours!
+    .recipe__writereview
+      button.reviews__button(class="btn") Write a review
+      #reviews__container.reviews__container-hidden
+        form.reviews__form(method='post' action='/reviews')
+          input(type='hidden' name='userId' value=userId)
+          input(type='hidden' name='recipeId' value=recipeId)
+          div
+            textarea(name='review' id='review-content' placeholder='Write your review here...')
+          div
+            button.btn(type='submit' btn) Submit Review
   form(action='/recipes' method='get')
     button(type='submit' class="cancel-btn") Back to recipes
   form(action=`/recipes/${recipeId}/likes` method='post')
     input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
     input(type='hidden' name='userId' value=userId)
     input(type='hidden' name='like' value=likes)
-    button(type='submit' class='recipe-like-btn') #{counter} Like
-  button.reviews__button(class="btn") Write a review
-  #reviews__container.reviews__container-hidden
-    form.reviews__form(method='post' action='/reviews')
-      input(type='hidden' name='userId' value=userId)
-      input(type='hidden' name='recipeId' value=recipeId)
-      div
-        textarea(name='review' id='review-content' placeholder='Write your review here...')
-      div
-        button(type='submit' btn) Submit Review
+    button.btn(type='submit' class='recipe-like-btn') #{counter} NomNoms
