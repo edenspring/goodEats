@@ -147,107 +147,107 @@ GoodEats
   **Registration**
   
 
-    * As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
-        * When I'm on the /users/register page:
-            - I would like to be able to enter my username, email, and preferred password on a clearly laid out form.
-            - I would like the website to log me in upon successful completion of the sign-up form.
-                - So that I can seamlessly access the site's functionality
-        * When I enter invalid data on the sign-up form:
-            - I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
-            - So that I can try again without needing to refill forms I entered valid data into.
+  * As an unregistered and unauthorized user, I want to be able to sign up for the website via a sign-up form.
+      * When I'm on the /users/register page:
+          - I would like to be able to enter my username, email, and preferred password on a clearly laid out form.
+          - I would like the website to log me in upon successful completion of the sign-up form.
+              - So that I can seamlessly access the site's functionality
+      * When I enter invalid data on the sign-up form:
+          - I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
+          - So that I can try again without needing to refill forms I entered valid data into.
 
   **Log in**
 
-    * When I'm on the /users/login page:
-        - I would like to be able to enter my username and password on a clearly laid out form.
-    * I would like the website to log me in upon successful authentication.
-        - Successful authentication occurs when my password hash matches the stored hash.
-    * I would like to stay logged in when closing the page.
-    * When I enter invalid data on the log-up form:
-        - I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
-            - So that I can try again without needing to refill forms I entered valid data into.
+  * When I'm on the /users/login page:
+      - I would like to be able to enter my username and password on a clearly laid out form.
+  * I would like the website to log me in upon successful authentication.
+      - Successful authentication occurs when my password hash matches the stored hash.
+  * I would like to stay logged in when closing the page.
+  * When I enter invalid data on the log-up form:
+      - I would like the website to inform me of the validations I failed to pass, and repopulate the form with my valid entries (except my password).
+          - So that I can try again without needing to refill forms I entered valid data into.
 
   **Demo User**
 
-    * I would like to have full access like a normal user without having to log in.
-    * I would like to have an easy to see and access button to become a demo user.
-        - So that I can test features and functionality without having to register.
+  * I would like to have full access like a normal user without having to log in.
+  * I would like to have an easy to see and access button to become a demo user.
+      - So that I can test features and functionality without having to register.
 
   **Not logged in**
 
-    * When trying to do things that require a registered user like creating or saving recipes
-        - I would like to be redirected to the login page.
+  * When trying to do things that require a registered user like creating or saving recipes
+      - I would like to be redirected to the login page.
 
   **Log out**
 
-    * I would like to have an easy to access button to log out.
-        * When on any page and when logged in
-          - Be redirected to the home page
+  * I would like to have an easy to access button to log out.
+      * When on any page and when logged in
+        - Be redirected to the home page
 
 **Recipes**
 
   **Create**
   
-    * As a logged in user, I want to be able to post new recipes.
-        * When I'm on the /recipes/new page:
-            - I can write and submit a new recipe.
-                - So that I can share my recipes and food memes with my friends.
+  * As a logged in user, I want to be able to post new recipes.
+      * When I'm on the /recipes/new page:
+          - I can write and submit a new recipe.
+              - So that I can share my recipes and food memes with my friends.
 
   **View**
    
-    * As a logged in or logged out user, I want to be able to view a selection of the most recent recipes.
-        * When I'm on the / page:
-            - I can view the ten most recently posted recipes.
-                - So that I can read and review with the recipes of my friends.
-    * As a logged in or logged out user, I want to be able to view a specific recipe and its associated reviews and likes.
-        * When I'm on the /recipes/:id page:
-            - I can view the ingredients and instructions of the recipe, as well as the associated reviews and likes.
-                - So that I can read and review the recipes of my friends, and add my own reviews in the reviews section.
+  * As a logged in or logged out user, I want to be able to view a selection of the most recent recipes.
+      * When I'm on the / page:
+          - I can view the ten most recently posted recipes.
+              - So that I can read and review with the recipes of my friends.
+  * As a logged in or logged out user, I want to be able to view a specific recipe and its associated reviews and likes.
+      * When I'm on the /recipes/:id page:
+          - I can view the ingredients and instructions of the recipe, as well as the associated reviews and likes.
+              - So that I can read and review the recipes of my friends, and add my own reviews in the reviews section.
 
 
   **Updating**
   
-    * As a logged in user, I want to be able to edit my recipes by clicking an Edit button associated with the recipe anywhere that recipe appears.
-        * When I'm on the /recipes/:id page:
-            - I can click "Edit" to make permanent changes to recipes I have posted.
-                - So that I can fix any errors I make in my recipes.
+  * As a logged in user, I want to be able to edit my recipes by clicking an Edit button associated with the recipe anywhere that recipe appears.
+      * When I'm on the /recipes/:id page:
+          - I can click "Edit" to make permanent changes to recipes I have posted.
+              - So that I can fix any errors I make in my recipes.
 
   **Delete**
   
-    * As a logged in user, I want to be able to delete my recipes by clicking a Delete button associated with the recipe anywhere that the recipe appears.
-        * When I'm on the /recipes:id/edit page:
-            - I can click "Delete" to permanently delete a recipe I have posted.
-                - So that when I realize I shouldn't have shared my secret recipe, I can easily remove it.
+  * As a logged in user, I want to be able to delete my recipes by clicking a Delete button associated with the recipe anywhere that the recipe appears.
+      * When I'm on the /recipes:id/edit page:
+          - I can click "Delete" to permanently delete a recipe I have posted.
+              - So that when I realize I shouldn't have shared my secret recipe, I can easily remove it.
 
 **Reviews**
   
   **Create**
-  
-    * I would like to add my own reviews to recipes.
-        - So other users can like or add to their recipe boxes.
+
+  * I would like to add my own reviews to recipes.
+      - So other users can like or add to their recipe boxes.
 
   **Read**
   
-    * As a logged in user, I want to be able to see what people think of recipes.
-        - So I can like the recipe or add to my recipe boxes.
+  * As a logged in user, I want to be able to see what people think of recipes.
+      - So I can like the recipe or add to my recipe boxes.
 
   **Edit/Delete**
     
-    * I would like to be able to delete or edit my own reviews.
-        - So that I can remove what I said or correct a mistake.
+  * I would like to be able to delete or edit my own reviews.
+      - So that I can remove what I said or correct a mistake.
 
 **Recipe Boxes**
 
   **Create**
 
-    * I would like to have the ability to make multiple collections of recipes.
-        - So that I can name them according to how I see fit.
+  * I would like to have the ability to make multiple collections of recipes.
+      - So that I can name them according to how I see fit.
   
   **Edit/Delete**
   
-    * As a logged in user, I want to be able to add to, edit, and delete my recipe boxes.
-        - I can add or remove recipes from a recipe box.
-        - I can add or remove recipe boxes.
+  * As a logged in user, I want to be able to add to, edit, and delete my recipe boxes.
+      - I can add or remove recipes from a recipe box.
+      - I can add or remove recipe boxes.
 
 -------------
 
