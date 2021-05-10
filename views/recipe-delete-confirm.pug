@@ -7,4 +7,4 @@ block content
   form(action=`/recipes/${recipeId}/delete` method='post')
     input(type='hidden' name='recipeId' value=recipeId)
     button(type='submit' class='btn') Confirm
-    a(href=`/recipes/${recipeId}/edit`) Cancel
+    a(href=`/recipes/${recipeId}/edit` class='cancel-btn') Cancel

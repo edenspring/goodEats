@@ -42,6 +42,26 @@ block content
         button(type='submit' class='btn') Add Instruction
       div
         a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
+    h2 Picture
+    if picture && picture.length
+      each thing in picture
+        
+        img.recipe-picture(src=thing.src alt=thing.alt)
+    else if userId === recipe.userId
+      p No picture yet, get started below!
+    if recipe.Pictures[0]
+      div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
+        each picture in recipe.Pictures
+          .picture__container
+            img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
+    form(action='/picture' method='post')
+      input(type='hidden' name='recipeId' value=recipeId)
+      +field('Photo URL: ', 'src', 'Paste your photo URL here...')
+      +field('Alt: ', 'alt', 'Paste your alternate text here...')
+      div
+        button(type='submit' class='btn') Add picture URL
+      div
+        a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
     form(action=`/instructions/${recipeId}/delete` method='post')
       input(type='hidden' name='listOrder' value=instructions.length)
       input(type='hidden' name='recipeId' value=recipeId)

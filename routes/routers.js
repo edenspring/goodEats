@@ -5,7 +5,8 @@ const instructionsRouter = require('./instructions');
 const recipesRouter = require('./recipes');
 const boxesRouter = require('./boxes');
 const reviewsRouter = require('./reviews');
-const statusRouter = require('./cookstatuses')
+const statusRouter = require('./cookstatuses');
+const picturesRouter = require('./picture');
 
 module.exports = {
     indexRouter,
@@ -15,5 +16,6 @@ module.exports = {
     recipesRouter,
     boxesRouter,
     reviewsRouter,
-    statusRouter
+    statusRouter,
+    picturesRouter
 }

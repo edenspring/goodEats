@@ -14,8 +14,8 @@ const {
   recipesRouter,
   boxesRouter,
   reviewsRouter,
-  likesRouter,
   statusRouter,
+  picturesRouter
 } = require("./routes/routers")
 const { restoreUser } = require('./auth')
 
@@ -55,6 +55,7 @@ app.use('/instructions', instructionsRouter);
 app.use('/boxes', boxesRouter);
 app.use('/reviews', reviewsRouter);
 app.use('/status', statusRouter);
+app.use('/picture', picturesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

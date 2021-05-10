@@ -30,13 +30,17 @@ router.post(
     });
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-      console.log('made it here')
       const user = await User.findByPk(userId)
+      if (!req.session.auth) {
+        res.redirect("/users/login");
+      }
       newReview.username = user.username;
       await newReview.save();
       res.redirect(`/recipes/${recipeId}`);
     } else {
-
+      if (!req.session.auth) {
+        res.redirect("/users/login");
+      }
       res.redirect(`/recipes/${recipeId}`)
     }
   })
@@ -58,8 +62,6 @@ router.delete("/:id/delete", asyncHandler(async(req, res)=>{
   const {reviewId} = req.body;
   const review = await Review.findByPk(reviewId);
   const currentUserId = res.locals.user.id;
-  // console.log('user id = ',res.locals.user.id)
-  // console.log('reviewId = ', reviewId)
   checkPermissions(review, currentUserId);
   await review.destroy();
 }))

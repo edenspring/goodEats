@@ -16,7 +16,8 @@ module.exports = {
       {name: 'Scrambled Eggs', createdAt: new Date(), updatedAt: new Date(), userId: 1 },
       {name: 'Grilled Cheese', createdAt: new Date(), updatedAt: new Date(), userId: 1 },
       {name: 'Beer Can Chicken', createdAt: new Date(), updatedAt: new Date(), userId: 2 },
-      {name: 'Grilled Veggies', createdAt: new Date(), updatedAt: new Date(), userId: 2 }
+      {name: 'Grilled Veggies', createdAt: new Date(), updatedAt: new Date(), userId: 2 },
+      {name: 'Marinated Flank Steak Tacos', createdAt: new Date(), updatedAt: new Date(), userId: 7 },
     ])
   },
 

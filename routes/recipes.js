@@ -152,7 +152,8 @@ router.get("/:id/edit", asyncHandler(async (req, res, next) => {
         const ingredients = recipe.Ingredients;
         const instructions = recipe.Instructions;
         const listOrder = instructions.length + 1;
-        res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder});
+        const picture = recipe.Picture;
+        res.render('recipes-edit', { recipe, ingredients, instructions, recipeId, ingredient, instruction, listOrder, picture });
     } else {
         next(recipeNotFoundError(recipeId));
     }
