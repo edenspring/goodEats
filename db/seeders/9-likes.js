@@ -12,7 +12,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-      return queryInterface.bulkInsert('Like', [
+      return queryInterface.bulkInsert('Likes', [
         {userId: 1, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
         {userId: 2, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
         {userId: 3, recipeId: 1, createdAt: new Date(), updatedAt: new Date()},
@@ -42,6 +42,6 @@ module.exports = {
 
       Example:
       */
-    return queryInterface.bulkDelete('Like', null, {});
+    return queryInterface.bulkDelete('Likes', null, {});
   }
 };
