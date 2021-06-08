@@ -2,6 +2,9 @@
 GoodEats
 </h1>
 
+![logo2](https://user-images.githubusercontent.com/76574880/121215581-c34f8800-c845-11eb-8379-c4493810c7c8.png)
+
+
 <h2 align="center">
   A Goodreads clone and community that helps foodies find their favorite new foods.
 </h2>
@@ -16,6 +19,9 @@ GoodEats
   * Users can use a demo log in to try the site.
   * Users can't use certain features without logging in (like reviewing and rating recipes).
   * Logged in/out users are directed to a landing page which displays most recent recipes.
+
+![Screen Shot 2021-06-06 at 5 10 50 PM](https://user-images.githubusercontent.com/76574880/121215296-7ff51980-c845-11eb-80a9-95bc1da9d7f1.png)
+
   
 **Recipes**
 
@@ -37,6 +43,9 @@ GoodEats
 **Status**
 
   * Logged in users can choose whether they have made, will make, or are not interested in a recipe.
+
+<img width="1425" alt="Screen Shot 2021-06-08 at 10 47 44 AM" src="https://user-images.githubusercontent.com/76574880/121218598-8042e400-c848-11eb-9334-4c3251ef16ae.png">
+
   
 **Bonus Features**
 
@@ -63,6 +72,9 @@ GoodEats
   * A logged out user will be shown a short list of recipes and prompted to log in when they try to take actions that need authorization.
 
     - GET /api/
+
+<img width="1226" alt="Screen Shot 2021-06-08 at 10 51 47 AM" src="https://user-images.githubusercontent.com/76574880/121218308-3c4fdf00-c848-11eb-8e95-37aa41c341a7.png">
+
     
   * A logged in user will be shown a larger list of recipes and be able to click on buttons that redirect them to specific actions or display requested       
       information.
@@ -77,6 +89,9 @@ GoodEats
 **Registration**
   * An unregistered user can access a sign up page to create a new account.
     - GET /api/signup
+
+<img width="856" alt="Screen Shot 2021-06-08 at 10 52 53 AM" src="https://user-images.githubusercontent.com/76574880/121218413-54276300-c848-11eb-9669-5b711d9c8e87.png">
+
 
 **Profile**
 
@@ -137,6 +152,9 @@ GoodEats
     - POST /api/users
   * A registered user will be able to log in to their account, gaining access to restricted features
     - (GET) /api/user:id?
+
+<img width="1131" alt="Screen Shot 2021-06-08 at 10 54 08 AM" src="https://user-images.githubusercontent.com/76574880/121218474-61445200-c848-11eb-936d-453fbdf6b3ef.png">
+
 
 -----------------------
 
@@ -262,4 +280,9 @@ Pug
 <h3> Authentication </h3>
 
   * Users are authenticated before being authorized to perform particular actions like editing, deleting, and updating.
+
+<h3> Developed By: </h3>
+
+![Screen Shot 2021-06-06 at 5 45 38 PM](https://user-images.githubusercontent.com/76574880/121215467-a74be680-c845-11eb-89fe-b3bbc3c46fac.png)
+
 
