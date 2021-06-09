@@ -1,7 +1,3 @@
-<h1 align="center">
-GoodEats
-</h1>
-
 ![logo2](https://user-images.githubusercontent.com/76574880/121215581-c34f8800-c845-11eb-8379-c4493810c7c8.png)
 
 
@@ -285,4 +281,7 @@ Pug
 
 ![Screen Shot 2021-06-06 at 5 45 38 PM](https://user-images.githubusercontent.com/76574880/121215467-a74be680-c845-11eb-89fe-b3bbc3c46fac.png)
 
-
+[Bill Adams](https://github.com/edenspring)
+[Esther Kang](https://github.com/estherhrkang)
+[Melonnie Hicks](https://github.com/Melonnie13)
+[Nathan Mac](https://github.com/nathan-mac)
