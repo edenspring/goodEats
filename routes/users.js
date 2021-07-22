@@ -35,22 +35,26 @@ router.get('/login', csrfProtection, (req, res) => {
 router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, res) => {
   const { username, password } = req.body;
 
+
   let errors = [];
 
   const validatorErrors = validationResult(req);
 
   if (validatorErrors.isEmpty()) {
     const user = await db.User.findOne({ where: { username } });
+    console.log(user, "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!USER BEFORE MATCH")
 
     if (user !== null) {
+      console.log('BEFORE PASSWORD MATCH&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
       const passwordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
       if (passwordMatch) {
+        console.log('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&AFTER PASSWORD MATCH')
         loginUser(req, res, user);
         req.session.save(() => res.redirect("/"));
+      } else {
+        errors.push('Log-in failed for the provided username and password.');
       }
     }
-
-    errors.push('Log-in failed for the provided username and password.');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
   }
@@ -155,6 +159,8 @@ router.post('/register', csrfProtection, registerUserValidators, asyncHandler(as
   if (validatorErrors.isEmpty()) {
     const hashedPassword = await bcrypt.hash(password, 10);
     user.hashedPassword = hashedPassword;
+
+    console.log("MADE IT HERE ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^", user)
     await user.save();
     loginUser(req, res, user);
     res.redirect("/");
