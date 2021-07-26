@@ -19,6 +19,7 @@ block content
       form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
         label(for='cookStatus') I...
         select.status__selector(name='cookStatus' id="cookStatus")
+          option Please select...
           option(value='Have Cooked') Have Cooked
           option(value='Will Cook') Will Cook
           option(value='Not Interested') Am Not Interested In

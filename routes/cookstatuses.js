@@ -14,22 +14,34 @@ const statusValidator = [
   check("recipeId")
     .exists({ checkFalsy: true })
     .withMessage("current recipeId must be provided"),
-  check("status")
+  check("cookStatus")
     .exists({ checkFalsy: true })
     .withMessage("a valid status must be provided"),
 ];
+
+router.get(`/:id`, asyncHandler(async (req, res)=>{
+  const recipeId = parseInt(req.params.id, 10);
+  const userId = res.locals.user.id;
+  const currentStatus = await CookStatus.findOne({
+    where: {
+      userId: userId,
+      recipeId: recipeId,
+    }
+  })
+  if (currentStatus) return res.json(currentStatus)
+  else return res.json(false)
+}))
 
 router.post(
   "/",
   statusValidator,
   asyncHandler(async (req, res, next) => {
-    console.log('ping')
     const { userId, recipeId, cookStatus } = req.body;
 
     //check for validation errors
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-      console.log('pong')
+
       //attempt to find User's status for recipe, if it exists
       const workingStatus = await CookStatus.findOne({
         where: {
@@ -42,7 +54,7 @@ router.post(
       const currentUser = res.locals.user.id;
       if (workingStatus) {
         //verify current user is authorized to make changes
-        checkPermissions(workingStatus, currentUser);
+        // checkPermissions(workingStatus, currentUser);
 
         //update status
         workingStatus.status = cookStatus;
@@ -55,16 +67,12 @@ router.post(
           recipeId,
           status: cookStatus,
         });
-        //verify current user is the one making request
-        checkPermissions(workingStatus, newStatus);
-
         //save review
         await newStatus.save();
         res.sendStatus(200).end();
       }
     } else {
       const errors = validatorErrors.array().map((e) => e.msg);
-      console.log(errors)
       next(errors);
     }
   })
