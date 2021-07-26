@@ -382,6 +382,32 @@ hr {
  100%{opacity:1;top:10px;}
 }
 
+/* login page */
+.login__div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.login__form {
+    min-width: 25%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
+
+.form-group {
+    max-width: 35%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 3px;
+}
 
 /* my recipe boxes */
 
