@@ -383,7 +383,8 @@ hr {
 }
 
 /* login page */
-.login__div {
+.login__div,
+.signup__div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -402,11 +403,17 @@ hr {
 
 .form-group {
     max-width: 35%;
-    min-width: 250px;
+    min-width: 310px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 3px;
+    padding: 1px 3px 1px 3px;
+}
+
+/* signup page */
+.signup__div {
+
 }
 
 /* my recipe boxes */
