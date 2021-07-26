@@ -492,6 +492,8 @@ hr {
     font-size: 1.5em;
 }
 
+/* edit recipes page */
+
 /* footer */
 
 footer {
@@ -610,4 +612,14 @@ footer {
 .cancel-btn:hover,
 .recipe-like-btn:hover {
     background-color:rgb(166,77,120);
+}
+
+.delete-recipe-btn,
+.delete-instruction-btn {
+    background-color: rgb(206,50,50);
+}
+
+.delete-recipe-btn:hover,
+.delete-instruction-btn:hover {
+    background-color: red;
 }
