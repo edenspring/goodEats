@@ -23,12 +23,13 @@ router.post(
   "/",
   statusValidator,
   asyncHandler(async (req, res, next) => {
+    console.log('ping')
     const { userId, recipeId, cookStatus } = req.body;
 
     //check for validation errors
     const validatorErrors = validationResult(req);
     if (validatorErrors.isEmpty()) {
-
+      console.log('pong')
       //attempt to find User's status for recipe, if it exists
       const workingStatus = await CookStatus.findOne({
         where: {
@@ -63,6 +64,7 @@ router.post(
       }
     } else {
       const errors = validatorErrors.array().map((e) => e.msg);
+      console.log(errors)
       next(errors);
     }
   })

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event)=>{
-  const statusButton = document.querySelector('.recipes__cookedStatus');
+  const statusButton = document.querySelector('.recipes__status_submit');
   statusButton.addEventListener('click', async (e)=>{
     e.preventDefault();
     const userId = document.querySelector('#userIdForStatus').value;
@@ -16,12 +16,18 @@ async function updateStatus(recipeId, userId, cookStatus){
   data.recipeId = recipeId;
   data.userId = userId;
   data.cookStatus = cookStatus;
-  return await fetch(`/status`,{
+  console.log(data)
+
+  const res = await fetch(`/status`,{
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
   });
+
+  const newData = await res.json()
+  console.log(newData)
+  return newData;
 
 }

@@ -238,4 +238,9 @@ router.post("/:id/likes", asyncHandler(async (req, res) => {
     res.end();
 }));
 
+router.post("/:id/status", asyncHandler(async (req, res) => {
+    const {recipeId, userId, cookStatus} = req.body;
+    console.log(recipeId, userId, cookStatus)
+}))
+
 module.exports = router;
