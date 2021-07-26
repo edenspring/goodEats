@@ -53,14 +53,14 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
     errors.push('Log-in failed for the provided username and password.');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
+    res.render('users-login', {
+      title: 'Log-in',
+      username,
+      errors,
+      csrfToken: req.csrfToken()
+    });
   }
 
-  res.render('users-login', {
-    title: 'Log-in',
-    username,
-    errors,
-    csrfToken: req.csrfToken()
-  });
 }));
 
 router.get('/demo', csrfProtection, asyncHandler(async (req, res) => {

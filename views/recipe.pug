@@ -16,16 +16,18 @@ block content
           input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
             button(type='submit' class='btn') Edit this recipe
-      form.recipes__cookedStatus(action=`/status`, method='post')
+      form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
         label(for='cookStatus') I...
         select.status__selector(name='cookStatus' id="cookStatus")
+          option Please select...
           option(value='Have Cooked') Have Cooked
           option(value='Will Cook') Will Cook
           option(value='Not Interested') Am Not Interested In
         span this recipe
         input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
         input(type='hidden' name='userId' id='userIdForStatus' value=userId)
-        button.recipes__status_submit.btn(type='submit' class="btn") Update Status
+        div
+          button.recipes__status_submit.btn(type='submit' class="btn") Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
       if ingredients && ingredients.length
@@ -51,7 +53,7 @@ block content
         each picture in recipe.Pictures
           .picture__container
             img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
-    else 
+    else
       if userId === recipe.userId
         a(href=`/recipes/${recipe.id}/edit`) No pictures yet, get started here!
     .recipe__reviews
@@ -68,7 +70,7 @@ block content
                   form(action=`/reviews/${review.id}/edit` method='post')
                     input(type='hidden' name='reviewId' value=review.id id="reviewIdForReviewEdit")
                     input(type='hidden' name='userId' value=userId id="userIdForReviewEdit")
-                    div 
+                    div
                       button(id="reviews_edit_button" class="reviews__edit button") Edit Review
       else
         p No reviews yet! Click the 'Write a review' button to create yours!
