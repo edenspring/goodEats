@@ -494,6 +494,45 @@ hr {
 
 /* edit recipes page */
 
+.my-recipe-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredients_edit__div,
+.instructions_edit__div {
+    display: flex;
+    flex-direction: column;
+    min-width: 375px;
+    max-width: 80%;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+
+}
+
+.instructions_edit_form__div,
+.add_instruction__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.instruction__add_textarea {
+    width: 85%;
+    justify-self: center;
+    justify-content: center;
+    align-self: center;
+}
+.instruction__add_textarea > textarea {
+    width: 100%;
+    min-height: 130px;
+}
+
+
 /* footer */
 
 footer {
