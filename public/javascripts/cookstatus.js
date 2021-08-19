@@ -35,8 +35,6 @@ async function updateStatus(recipeId, userId, cookStatus){
     },
     body: JSON.stringify(data)
   });
-
-  const newData = await res.json()
-  return newData;
+  return res; // the return from the api fetch is already a json, so no need to do .json()
 
 }
