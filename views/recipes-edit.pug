@@ -60,11 +60,12 @@ block content
         img.recipe-picture(src=thing.src alt=thing.alt)
     else
       p No picture yet, get started below!
-    if recipe.Pictures[0]
-      div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
-        each picture in recipe.Pictures
-          .picture__container
-            img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
+    if recipe.Pictures
+      if recipe.Pictures[0]
+        div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
+          each picture in recipe.Pictures
+            .picture__container
+              img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
     form(action='/picture' method='post')
       input(type='hidden' name='recipeId' value=recipeId)
       div(class='form-group')
