@@ -1,33 +1,35 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   const editButton = document.getElementById("reviews_edit_button");
 
-  editButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    const editDiv = document.createElement("div");
-    editDiv.classList.add("review-edit-container");
-    const editTextArea = document.createElement("textarea");
-    editTextArea.classList.add("review-edit-text-area");
-    const confirmButton = document.createElement("button");
-    confirmButton.classList.add("confirm-button", "btn");
-    confirmButton.innerHTML = "Confirm Changes";
-
-    editDiv.appendChild(editTextArea);
-    editDiv.appendChild(confirmButton);
-
-    editButton.parentElement.appendChild(editDiv);
-
-    confirmButton.addEventListener("click", (e) => {
+  if (editButton) {
+    editButton.addEventListener("click", (e) => {
       e.preventDefault();
+      const editDiv = document.createElement("div");
+      editDiv.classList.add("review-edit-container");
+      const editTextArea = document.createElement("textarea");
+      editTextArea.classList.add("review-edit-text-area");
+      const confirmButton = document.createElement("button");
+      confirmButton.classList.add("confirm-button", "btn");
+      confirmButton.innerHTML = "Confirm Changes";
 
-      const reviewId = document.getElementById("reviewIdForReviewEdit").value;
-      const reviewContent = editTextArea.value;
+      editDiv.appendChild(editTextArea);
+      editDiv.appendChild(confirmButton);
 
-      editReview(reviewId, reviewContent);
-      const reviewsDiv = editButton.closest(".reviews");
-      reviewsDiv.firstChild.children[1].innerHTML = reviewContent;
-      editDiv.remove();
+      editButton.parentElement.appendChild(editDiv);
+
+      confirmButton.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const reviewId = document.getElementById("reviewIdForReviewEdit").value;
+        const reviewContent = editTextArea.value;
+
+        editReview(reviewId, reviewContent);
+        const reviewsDiv = editButton.closest(".reviews");
+        reviewsDiv.firstChild.children[1].innerHTML = reviewContent;
+        editDiv.remove();
+      });
     });
-  });
+  };
 
   async function editReview(reviewId, review) {
     data = {};

@@ -1,24 +1,28 @@
 document.addEventListener("DOMContentLoaded", async (event)=>{
-  const statusButton = document.querySelector('.recipes__status_submit');
-  const currentStatus = document.querySelector('#cookStatus')
-  const userId = document.querySelector('#userIdForStatus').value;
-  const recipeId = document.querySelector('#recipeIdForStatus').value;
+  const user = document.querySelector('#userIdForStatus');
+  if (user) {
 
-  const ping = await fetch(`/status/${recipeId}`)
+    const statusButton = document.querySelector('.recipes__status_submit');
+    const currentStatus = document.querySelector('#cookStatus');
+    const userId = user.value;
+    const recipeId = document.querySelector('#recipeIdForStatus').value;
 
-  if (ping.ok){
-    const pong = await ping.json()
-    document.querySelectorAll('option').forEach((e) => {
-      if (e.value === pong.status) e.selected = true;
+    const ping = await fetch(`/status/${recipeId}`)
+
+    if (ping.ok){
+      const pong = await ping.json()
+      document.querySelectorAll('option').forEach((e) => {
+        if (e.value === pong.status) e.selected = true;
+      })
+    }
+
+    statusButton.addEventListener('click', async (e)=>{
+      e.preventDefault();
+      const cookStatus = document.querySelector('#cookStatus').value;
+      const update = await updateStatus(recipeId, userId, cookStatus);
+      return update;
     })
   }
-
-  statusButton.addEventListener('click', async (e)=>{
-    e.preventDefault();
-    const cookStatus = document.querySelector('#cookStatus').value;
-    const update = await updateStatus(recipeId, userId, cookStatus);
-    return update;
-  })
 
 })
 
