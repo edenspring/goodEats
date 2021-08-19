@@ -67,8 +67,12 @@ block content
             img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
     form(action='/picture' method='post')
       input(type='hidden' name='recipeId' value=recipeId)
-      +field('Photo URL: ', 'src', 'Paste your photo URL here...')
-      +field('Alt: ', 'alt', 'Paste your alternate text here...')
+      div(class='form-group')
+        label(for="src")= "Photo URL: "
+        input(type="text" id="src" name="src" placeholder='Paste your photo URL here...' class='form-control')
+      div(class='form-group')
+        label(for="alt")= "Alt: "
+        input(type="text" id="alt" name="alt" placeholder='Paste your alternate text here...' class='form-control')
       div
         button(type='submit' class='btn') Add picture URL
       div
