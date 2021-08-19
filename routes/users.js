@@ -25,6 +25,9 @@ const logInValidator = [
     .custom((value, { req }) =>{
       return db.User.findOne({ where: { username: req.body.username } }).then(
         async (user) => {
+          if (!user) {
+            return Promise.reject("Login failed. Please check your credentials.");
+          }
           const correct = await bcrypt.compare(value, user.hashedPassword.toString())
           if (!correct){
             return Promise.reject("Login failed. Please check your credentials.");
@@ -72,6 +75,8 @@ router.post('/login', csrfProtection, logInValidator, asyncHandler( async(req, r
     errors.push('Log-in failed for the provided username and password.');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
+    errors = [...new Set(errors)]; // remove duplicates
+    console.log(errors)
     res.render('users-login', {
       title: 'Log-in',
       username,
