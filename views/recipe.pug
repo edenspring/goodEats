@@ -16,18 +16,19 @@ block content
           input(type='hidden' name='recipeId' value=recipeId)
           if userId === recipe.userId
             button(type='submit' class='btn') Edit this recipe
-      form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
-        label(for='cookStatus') I...
-        select.status__selector(name='cookStatus' id="cookStatus")
-          option Please select...
-          option(value='Have Cooked') Have Cooked
-          option(value='Will Cook') Will Cook
-          option(value='Not Interested') Am Not Interested In
-        span this recipe
-        input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
-        input(type='hidden' name='userId' id='userIdForStatus' value=userId)
-        div
-          button.recipes__status_submit.btn(type='submit' class="btn") Update Status
+      if userId
+        form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
+          label(for='cookStatus') I...
+          select.status__selector(name='cookStatus' id="cookStatus")
+            option Please select...
+            option(value='Have Cooked') Have Cooked
+            option(value='Will Cook') Will Cook
+            option(value='Not Interested') Am Not Interested In
+          span this recipe
+          input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
+          input(type='hidden' name='userId' id='userIdForStatus' value=userId)
+          div
+            button.recipes__status_submit.btn(type='submit' class="btn") Update Status
     .recipe__ingredients.recipes
       h2 Ingredients
       if ingredients && ingredients.length

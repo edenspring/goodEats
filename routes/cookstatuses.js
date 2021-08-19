@@ -59,7 +59,7 @@ router.post(
         //update status
         workingStatus.status = cookStatus;
         await workingStatus.save();
-        res.sendStatus(200).end;
+        res.sendStatus(200).end();
       } else {
         //if no status found for user and recipe, build new
         const newStatus = CookStatus.build({
