@@ -66,19 +66,19 @@ router.get("/:id", asyncHandler(async (req, res) => {
 
 router.post("/:id/delete", asyncHandler(async (req, res) => {
     const { recipeId, listOrder } = req.body;
-    
+
     const instructions = await Instruction.findOne({
         where: {
             recipeId: recipeId,
             listOrder: listOrder
-        }, 
+        },
         include: {
             model: Recipe
         }
     });
     const currentUserId = res.locals.user.id;
     checkPermissions(instructions.Recipe, currentUserId);
-    
+
     await instructions.destroy();
 
     res.redirect(`/recipes/${recipeId}/edit`);
