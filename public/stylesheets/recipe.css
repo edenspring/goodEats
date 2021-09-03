@@ -185,3 +185,7 @@ color: #444444;
   margin: 5px;
   padding: 3px;
 }
+
+.hidden {
+  display: none;
+}

@@ -1,7 +1,14 @@
 document.addEventListener("DOMContentLoaded", (event) => {
   const editButton = document.getElementById("reviews_edit_button");
+  const writeButton = document.querySelector(".reviews__button");
+  const deleteButton = document.querySelector(".reviews__delete");
 
   if (editButton) {
+    writeButton.classList.add("hidden");
+    deleteButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      writeButton.classList.remove("hidden");
+    })
     editButton.addEventListener("click", (e) => {
       e.preventDefault();
       const editDiv = document.createElement("div");
@@ -16,6 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       editDiv.appendChild(confirmButton);
 
       editButton.parentElement.appendChild(editDiv);
+      editButton.classList.add("hidden");
 
       confirmButton.addEventListener("click", (e) => {
         e.preventDefault();
@@ -27,6 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const reviewsDiv = editButton.closest(".reviews");
         reviewsDiv.firstChild.children[1].innerHTML = reviewContent;
         editDiv.remove();
+        editButton.classList.remove("hidden");
       });
     });
   };
