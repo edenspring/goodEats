@@ -18,13 +18,11 @@ block content
             button(type='submit' class='btn') Edit this recipe
       if userId
         form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
-          label(for='cookStatus') I...
           select.status__selector(name='cookStatus' id="cookStatus")
             option Please select...
-            option(value='Have Cooked') Have Cooked
-            option(value='Will Cook') Will Cook
-            option(value='Not Interested') Am Not Interested In
-          span this recipe.
+            option(value='Have Cooked') I HAVE COOKED this recipe.
+            option(value='Will Cook') I WILL COOK this recipe.
+            option(value='Not Interested') I am NOT INTERESTED in this recipe.
           input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
           input(type='hidden' name='userId' id='userIdForStatus' value=userId)
           div
@@ -33,7 +31,7 @@ block content
         input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
         input(type='hidden' name='userId' value=userId)
         input(type='hidden' name='like' value=likes)
-        button.btn(type='submit' class='recipe-like-btn') #{counter} NomNoms
+        button.btn(type='submit' class='recipe-like-btn') #{counter} NomNoms ❤️
     .recipe__content.recipes
       div
         h2 Ingredients

@@ -18,6 +18,7 @@
     grid-template-rows: 1fr;
     grid-template-columns: repeat(9, 1fr);
     grid-template-areas: "logo" "recent-recipes" "recent-boxes" "login" "logout" "register";
+    align-items: center;
 }
 
 @media screen and (min-width: 1000px) {
@@ -450,7 +451,7 @@ img.banner {
 }
 
 .my-recipe-box-title {
-    margin: 0px;
+    margin-bottom: 10px;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -527,7 +528,7 @@ img.banner {
 }
 
 .my-recipe-title {
-    margin: 0px;
+    margin-bottom: 10px;
     text-decoration: none;
     color: white;
     text-align: center;
@@ -693,7 +694,7 @@ img.banner {
     /* border-radius: 0.5em; */
     padding: 8px;
     margin: 3px;
-    border-top: 5px solid rgb(245,222,179);
+    border-top: 5px solid linen;
     /* border-bottom: 5px solid rgb(97, 43, 69); */
 }
 
@@ -707,6 +708,8 @@ img.banner {
     padding:0.3em 1.2em;
     margin: 1em;
     border-radius:2em;
+    min-width: 100px;
+    font-size:medium;
     box-sizing: border-box;
     text-decoration:none;
     color:#FFFFFF;
@@ -722,6 +725,8 @@ img.banner {
     padding:0.3em 1.2em;
     margin: 1em;
     border-radius:2em;
+    min-width: 100px;
+    font-size:medium;
     box-sizing: border-box;
     text-decoration:none;
     color:#FFFFFF;

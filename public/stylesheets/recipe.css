@@ -66,7 +66,7 @@ body {
 
 .picture__container {
   /* border: 1px solid #777; */
-  border-radius: 4px;
+  /* border-radius: 4px; */
   width: 100%;
   min-height: 800px;
 }
@@ -121,7 +121,7 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
   /* border: 1px solid black; */
-  background-color: lightgray;
+  background-color: linen;
   border-radius: .75em;
   margin: 4px;
 }
@@ -166,6 +166,8 @@ color: #444444;
     padding:0.3em 1.2em;
     margin:0 0.3em 0.3em 0;
     border-radius:2em;
+    min-width: 100px;
+    font-size:medium;
     box-sizing: border-box;
     text-decoration:none;
     color:#FFFFFF;
@@ -175,7 +177,8 @@ color: #444444;
     border: none;
 }
 .status__selector {
-  background-color: #F5DEB3;
+  background-color: linen;
+
 }
 
 .recipes__cookedStatus {
