@@ -766,3 +766,10 @@ img.banner {
 .delete-instruction-btn:hover {
     background-color: red;
 }
+
+.alert {
+    display: flex;
+    justify-content: center;
+    color: red;
+    margin: 10px 0;
+}
