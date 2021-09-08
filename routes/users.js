@@ -105,7 +105,7 @@ router.get('/register', csrfProtection, (req, res) => {
   } else {
     const user = db.User.build();
     res.render('users-register', {
-      title: "Register a new User",
+      title: "Register a New User",
       user,
       csrfToken: req.csrfToken(),
     });

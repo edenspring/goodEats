@@ -393,7 +393,8 @@ img.banner {
     justify-items: center;
 }
 
-.login__form {
+.login__form,
+.signup__form {
     min-width: 25%;
     max-width: 100%;
     display: flex;
