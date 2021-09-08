@@ -7,8 +7,7 @@ block content
             div(class="welcome")
                 h2(class="welcome")= `Welcome, ${locals.user.username}!`
         div(class="banner-text") Create and Share Your Favorite Recipes!
-    div(class="recent-recipes-link")
-        a(class="recipes" href="/recipes") Most Recent Recipes
+    a(class="recent-recipes-link" href="/recipes") Most Recent Recipes
     div(class="recent-recipes")
         each recipe in recipes
             div(class="recent-recipe-container")
@@ -18,9 +17,7 @@ block content
                         img(class="recent-recipe-image" type="image" src=recipe.Pictures[0].dataValues.src)
                     else
                         img(class="placeholder-image" type="image" src="/images/logo2.png")
-    hr(class="divider")
-    div(class="recent-recipes-link")
-        a(class="boxes" href="/boxes") Most Recent Recipe Boxes
+    a(class="recent-recipe-boxes-link" href="/boxes") Most Recent Recipe Boxes
     div(class="recent-recipes")
         each box in boxes
             div(class="recent-recipe-container")
