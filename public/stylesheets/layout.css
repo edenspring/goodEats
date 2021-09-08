@@ -419,7 +419,8 @@ img.banner {
 
 /* my recipe boxes */
 
-.my-recipe-boxes-title {
+.my-recipe-boxes-title,
+.my-recipes-title {
     text-align: center;
 }
 
@@ -536,10 +537,47 @@ img.banner {
 /* edit recipes page */
 
 .my-recipe-page {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: .25fr auto;
+    gap: 0.5em 0.5em;
+    grid-template-areas:
+        'title title'
+        'pics ingredients'
+        'pics instructions'
+        'buttons buttons'
+}
+
+.my-recipe-page .recipe-title {
+    grid-area: title;
+}
+
+.pictures_edit__div {
+    grid-area: pics;
+}
+
+.ingredients_edit__div {
+    grid-area: ingredients;
+}
+
+.instructions_edit__div {
+    grid-area: instructions;
+}
+
+.form-group {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-control {
+    width: 100%;
+    margin: 5px 0;
 }
 
 .ingredients_edit__div,
@@ -571,6 +609,14 @@ img.banner {
 .instruction__add_textarea > textarea {
     width: 100%;
     min-height: 130px;
+}
+
+.recipe_edit__buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: space-around;
+    background-color: linen;
+    border-radius: 2em;
 }
 
 /* create a recipe box */
@@ -632,6 +678,11 @@ img.banner {
     width: 45px;
     height: 45px;
     margin: 0 10px;
+}
+
+.linkedin:hover,
+.github:hover {
+    cursor: pointer;
 }
 
 .about-content {
