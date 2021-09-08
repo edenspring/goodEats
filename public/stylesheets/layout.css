@@ -574,6 +574,19 @@ img.banner {
     padding: 1em;
 }
 
+.social-media-img {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; */
+}
+
+.linkedin,
+.github {
+    width: 45px;
+    height: 45px;
+    margin: 0 10px;
+}
+
 .about-content {
     display: flex;
     justify-content: center;
