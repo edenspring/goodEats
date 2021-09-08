@@ -154,8 +154,9 @@ a.my-boxes:hover,
 a.recipes:hover,
 a.boxes:hover,
 a.about:hover {
-    font-style: italic;
+    /* font-style: italic; */
     color: #ffbe54;
+    cursor: pointer;
 }
 
 .logout,
@@ -175,8 +176,9 @@ a.logout:hover,
 a.login:hover,
 a.register:hover,
 a.demo:hover {
-    font-style: italic;
+    /* font-style: italic; */
     color: #ffbe54;
+    cursor: pointer;
 }
 
 
@@ -417,6 +419,10 @@ img.banner {
 
 /* my recipe boxes */
 
+.my-recipe-boxes-title {
+    text-align: center;
+}
+
 .my-recipe-boxes {
     height: auto;
     display: grid;
@@ -453,6 +459,42 @@ img.banner {
 .box-title,
 .recipe-title {
     font-family: 'Playfair Display', serif;
+}
+
+.my-box-page-recipes,
+.remove-recipe,
+.add-recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.my-box-page-recipes a,
+.add-recipe a {
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    margin: 10px 0;
+}
+
+.remove-recipe div {
+    margin: 10px 0;
+}
+
+.remove-recipe div a {
+    text-decoration: none;
+    color: black;
+}
+
+.my-box-page-recipes a:hover,
+.add-recipe a:hover {
+    color: rgb(166,77,120);
+}
+
+.add-recipe-confirm,
+.remove-box-confirm {
+    display: flex;
+    justify-content: center;
 }
 
 /* my recipes */
@@ -565,6 +607,11 @@ img.banner {
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+}
+
+.about-each h2 {
+    margin: 0;
+    margin-bottom: 5px;
 }
 
 .about-img {

@@ -3,9 +3,9 @@ extends layout.pug
 include utils.pug
 
 block content
-  div(class="my-box-page-add-recipe") My Recipes
-    each recipe in recipes
-      div
+  div(class="my-box-page-add-recipe") Add a Recipe:
+    div(class="add-recipe")
+      each recipe in recipes
         a(class="my-box-page-add-recipe__each-recipe" href=`/boxes/${boxId}/add/${recipe.dataValues.id}`)=recipe.dataValues.name
     div
       a(href=`/boxes/${boxId}/edit` class='cancel-btn') Cancel
