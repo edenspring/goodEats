@@ -18,37 +18,42 @@ block content
             button(type='submit' class='btn') Edit this recipe
       if userId
         form(action=`/recipes/${recipe.id}/status` method='post' class='recipes__cookedStatus')
-          label(for='cookStatus') I...
           select.status__selector(name='cookStatus' id="cookStatus")
             option Please select...
-            option(value='Have Cooked') Have Cooked
-            option(value='Will Cook') Will Cook
-            option(value='Not Interested') Am Not Interested In
-          span this recipe
+            option(value='Have Cooked') I HAVE COOKED this recipe.
+            option(value='Will Cook') I WILL COOK this recipe.
+            option(value='Not Interested') I am NOT INTERESTED in this recipe.
           input(type='hidden' name='recipeId' id='recipeIdForStatus' value=recipeId)
           input(type='hidden' name='userId' id='userIdForStatus' value=userId)
           div
             button.recipes__status_submit.btn(type='submit' class="btn") Update Status
-    .recipe__ingredients.recipes
-      h2 Ingredients
-      if ingredients && ingredients.length
-        each item in ingredients
-          div
-            span= item.measurements
-            span= " "
-            span= item.name
-      else
-        if userId === recipe.userId
-          a(href=`/recipes/${recipe.id}/edit`) No ingredients yet, get started here!
-    .recipe__instructions.recipes
-      h2 Instructions
-      if instructions && instructions.length
-        ol
-          each thing in instructions
-            li.instructions__instruction= thing.specification
-      else
-        if userId === recipe.userId
-          a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
+      form(action=`/recipes/${recipeId}/likes` method='post')
+        input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
+        input(type='hidden' name='userId' value=userId)
+        input(type='hidden' name='like' value=likes)
+        button.btn(type='submit' class='recipe-like-btn') #{counter} NomNoms ❤️
+    .recipe__content.recipes
+      div
+        h2 Ingredients
+        if ingredients && ingredients.length
+          ul
+            each item in ingredients
+              li
+                span= item.measurements
+                span= " "
+                span= item.name
+        else
+          if userId === recipe.userId
+            a(href=`/recipes/${recipe.id}/edit`) No ingredients yet, get started here!
+      div
+        h2 Instructions
+        if instructions && instructions.length
+          ol
+            each thing in instructions
+              li.instructions__instruction= thing.specification
+        else
+          if userId === recipe.userId
+            a(href=`/recipes/${recipe.id}/edit`) No instructions yet, get started here!
     if recipe.Pictures[0]
       div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
         each picture in recipe.Pictures
@@ -59,6 +64,7 @@ block content
         a(href=`/recipes/${recipe.id}/edit`) No pictures yet, get started here!
     .recipe__reviews
       if reviews.length
+        h2 Reviews
         each review in reviews
           .review__container
             .reviews
@@ -86,9 +92,4 @@ block content
           div
             button.btn(type='submit' btn) Submit Review
   form(action='/recipes' method='get')
-    button(type='submit' class="cancel-btn") Back to recipes
-  form(action=`/recipes/${recipeId}/likes` method='post')
-    input(type='hidden' id='recipeIdForLike' name='recipeId' value=recipeId)
-    input(type='hidden' name='userId' value=userId)
-    input(type='hidden' name='like' value=likes)
-    button.btn(type='submit' class='recipe-like-btn') #{counter} NomNoms
+    button(type='submit' class="back-to-recipes cancel-btn") Back to Recipes

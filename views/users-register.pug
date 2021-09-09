@@ -5,10 +5,9 @@ append head
   link(rel="stylesheet" href="/stylesheets/layout.css")
 
 block content
-  h1= title
-
   +validationErrorSummary(errors)
   div(class="signup__div")
+    h1= title
     form(method="post" action="/users/register" class="signup__form")
       input(type="hidden" name="_csrf" value=csrfToken)
       +field("Username", "username", user.username)

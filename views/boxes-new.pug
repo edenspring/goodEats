@@ -4,7 +4,7 @@ include utils.pug
 
 block content
   +validationErrorSummary(errors)
-  p(class='new-box-form') Enter a name for your box and click Get Started!
+  h2(class='new-box-form') Get started by entering a name for your new box!
   form(class='new-box-form' action='/boxes/new' method='post')
     +field('Box Name: ', 'name', box.name)
     div

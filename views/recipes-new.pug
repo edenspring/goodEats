@@ -4,7 +4,7 @@ include utils.pug
 
 block content
   +validationErrorSummary(errors)
-  p(class='new-recipe-form') Enter a name for your new recipe and click Get Started!
+  h2(class='new-recipe-form') Get started by entering a name for your new recipe!
   form(class='new-recipe-form' action='/recipes/new' method='post')
     +field('Recipe Name: ', 'name', recipe.name)
     div

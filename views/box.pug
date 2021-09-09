@@ -10,11 +10,10 @@ block content
         input(type='hidden', name='boxId' value=boxId)
         if userId === box.userId
           button(type='submit' class="btn") Edit this recipe box
-    h2 Recipes
     if recipes && recipes.length
-      each recipe in recipes
-        div
-          a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
+      div(class="my-box-page-recipes")
+        each recipe in recipes
+          a(href=`/recipes/${recipe.id}`)=`${recipe.name} ➜`
     else if userId === box.userId
       a(href=`/boxes/${boxId}/edit`) No recipes yet, get started here!
     form(action='/boxes' method='get')

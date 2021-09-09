@@ -5,6 +5,7 @@ include utils.pug
 block content
     +validationErrorSummary(errors)
     div(class='login__div')
+        h1 Log In
         form(action='/users/login' method='post' class="login__form")
             input(type='hidden' name='_csrf' value=csrfToken)
             +field('Username', 'username', username)

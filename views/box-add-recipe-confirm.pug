@@ -3,7 +3,8 @@ extends layout.pug
 include utils.pug
 
 block content
-  h3=`Would you like to add ${recipe.dataValues.name} to ${box.name}?`
-  form(action=`/boxes/${boxId}/add/${recipeId}` method='post')
-    button(type='submit' class='btn') Confirm
-    a(href=`/boxes/${boxId}/add`) Cancel
+  div(class='add-recipe-confirm')
+    h3=`Would you like to add ${recipe.dataValues.name} to ${box.name}?`
+    form(action=`/boxes/${boxId}/add/${recipeId}` method='post')
+      button(type='submit' class='btn') Confirm
+      a(href=`/boxes/${boxId}/add` class='cancel-btn') Cancel

@@ -6,14 +6,15 @@ block content
   +validationErrorSummary(errors)
   div(class="my-recipe-page")
     h1(class="recipe-title")=recipe.name
-    h2 Ingredients
     div(class="ingredients_edit__div")
+      h2 Ingredients
       if ingredients && ingredients.length
-        each item in ingredients
-          div
-            span= item.measurements
-            span= " "
-            span= item.name
+        ul
+          each item in ingredients
+            li
+              span= item.measurements
+              span= " "
+              span= item.name
       else
         p No ingredients yet, get started below!
       div
@@ -26,8 +27,8 @@ block content
       //- having this button on each section feels redundant, reducing to 1 cancel button lower in page
       //- div
       //-   a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
-    h2 Instructions
     div(class="instructions_edit__div")
+      h2 Instructions
       if instructions && instructions.length
         div(class='instructions_list__div')
           ol
@@ -44,43 +45,34 @@ block content
         form(action='/instructions' method='post' class="add_instruction__form")
           input(type='hidden' name='recipeId' value=recipeId)
           input(type='hidden' name='listOrder' value=listOrder)
-
-          label(for='specification') Next Instruction:
           div(class='instruction__add_textarea')
-            textarea(name='specification' placeholder='Type your instruction here...' class="instruction_add__body")
+            textarea(name='specification' placeholder='Type your next instruction here...' class="instruction_add__body")
           div
             button(type='submit' class='btn') Add Instruction
         //- div
         //-   a(href=`/recipes/${recipeId}` class='cancel-btn') Cancel
-
-    h2 Picture
-    if picture && picture.length
-      each thing in picture
-
-        img.recipe-picture(src=thing.src alt=thing.alt)
-    else
-      p No picture yet, get started below!
-    if recipe.Pictures
-      if recipe.Pictures[0]
-        div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
-          each picture in recipe.Pictures
-            .picture__container
-              img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
-    form(action='/picture' method='post')
-      input(type='hidden' name='recipeId' value=recipeId)
-      div(class='form-group')
-        label(for="src")= "Photo URL: "
+    div(class="pictures_edit__div")
+      h2 Picture
+      if picture && picture.length
+        each thing in picture
+          img.recipe-picture(src=thing.src alt=thing.alt)
+      else
+        p No picture yet, get started below!
+      if recipe.Pictures
+        if recipe.Pictures[0]
+          div.recipe__pictures(style="background-image: url("+recipe.Pictures[0].src+")")
+            each picture in recipe.Pictures
+              .picture__container
+                img.recipe__picture(src=picture.src alt=picture.alt type="image" width="300" height="400" )
+      form(class='form-group' action='/picture' method='post')
+        input(type='hidden' name='recipeId' value=recipeId)
         input(type="text" id="src" name="src" placeholder='Paste your photo URL here...' class='form-control')
-      div(class='form-group')
-        label(for="alt")= "Alt: "
         input(type="text" id="alt" name="alt" placeholder='Paste your alternate text here...' class='form-control')
-      div
         button(type='submit' class='btn') Add picture URL
-      div
-        a(href=`/recipes/${recipeId}` class='cancel-btn') Back to Recipe
-    form(action='/recipes/my')
-      button(type='submit' class='done btn') Done With Recipe
-    div
+    div(class='recipe_edit__buttons')
+      a(href=`/recipes/${recipeId}` class='cancel-btn') Back to Recipe
+      form(action='/recipes/my')
+        button(type='submit' class='done btn') Save this Recipe
       form(action=`/recipes/${recipeId}/delete` method='GET')
         input(type='hidden' name='recipeId' value=recipeId)
         button(type='submit' class="btn delete-recipe-btn") Delete this recipe

@@ -5,16 +5,14 @@ include utils.pug
 block content
   div(class="my-box-page")
     h1(class="box-title")=box.name
-    h2 Recipes
     if recipes && recipes.length
-      div
+      div(class="remove-recipe")
         each recipe in recipes
           div
             a(href=`/recipes/${recipe.id}` style="margin-right:30px")=recipe.name
-            a(href=`/boxes/${boxId}/remove/${recipe.id}`) Remove
+            a(href=`/boxes/${boxId}/remove/${recipe.id}` style="color:red;") Remove
     div
       a(class='add-a-recipe-btn' href=`/boxes/${boxId}/add`) Add a Recipe
-    div
       a(href='/boxes/#{boxId}' class='cancel-btn') Cancel
     div
       p=''
